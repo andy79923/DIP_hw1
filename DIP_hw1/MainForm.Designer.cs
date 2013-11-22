@@ -1,4 +1,6 @@
-﻿namespace DIP_hw1
+﻿using System.Collections.Generic;
+using System.Drawing;
+namespace DIP_hw1
 {
     partial class MainForm
     {
@@ -28,13 +30,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this._bnLoadImage = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // _bnLoadImage
+            // 
+            this._bnLoadImage.Location = new System.Drawing.Point(104, 196);
+            this._bnLoadImage.Name = "_bnLoadImage";
+            this._bnLoadImage.Size = new System.Drawing.Size(75, 23);
+            this._bnLoadImage.TabIndex = 0;
+            this._bnLoadImage.Text = "Load Image";
+            this._bnLoadImage.UseVisualStyleBackColor = true;
+            this._bnLoadImage.Click += new System.EventHandler(this._bnLoadImage_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this._bnLoadImage);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "MainForm";
             this.Text = "Main menu";
@@ -43,6 +57,9 @@
         }
 
         #endregion
+
+        private List<Bitmap> _inputImages; 
+        private System.Windows.Forms.Button _bnLoadImage;
     }
 }
 

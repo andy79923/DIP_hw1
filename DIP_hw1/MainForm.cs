@@ -15,5 +15,16 @@ namespace DIP_hw1
         {
             InitializeComponent();
         }
+
+        private void _bnLoadImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openfileDialog = new OpenFileDialog();
+            openfileDialog.InitialDirectory = "C:";
+            openfileDialog.Filter = "All Files|*.*|Bitmap Files (.bmp)|*.bmp";
+            if (openfileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _inputImages.Add(new Bitmap(openfileDialog.FileName));
+            }
+        }
     }
 }
