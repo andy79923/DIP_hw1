@@ -14,16 +14,18 @@ namespace DIP_hw1
         public MainForm()
         {
             InitializeComponent();
+            _inputImages = new List<Bitmap>();
         }
 
         private void _bnLoadImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog openfileDialog = new OpenFileDialog();
             openfileDialog.InitialDirectory = "C:";
-            openfileDialog.Filter = "All Files|*.*|Bitmap Files (.bmp)|*.bmp";
+            openfileDialog.Filter = "Bitmap Files (.bmp)|*.bmp|JPEG (.jpg)|*.jpg|PNG (.png)|*.png|All Files|*.*";
             if (openfileDialog.ShowDialog() == DialogResult.OK)
             {
                 _inputImages.Add(new Bitmap(openfileDialog.FileName));
+                _pbInputImage.Image = _inputImages[_inputImages.Count-1];
             }
         }
     }
