@@ -32,6 +32,7 @@ namespace DIP_hw1
         {
             this._bnLoadImage = new System.Windows.Forms.Button();
             this._pbInputImage = new System.Windows.Forms.PictureBox();
+            this._lbInputImage = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,18 +49,30 @@ namespace DIP_hw1
             // _pbInputImage
             // 
             this._pbInputImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._pbInputImage.Location = new System.Drawing.Point(28, 25);
+            this._pbInputImage.Location = new System.Drawing.Point(146, 28);
             this._pbInputImage.Name = "_pbInputImage";
             this._pbInputImage.Size = new System.Drawing.Size(407, 381);
             this._pbInputImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this._pbInputImage.TabIndex = 1;
             this._pbInputImage.TabStop = false;
             // 
+            // _lbInputImage
+            // 
+            this._lbInputImage.FormattingEnabled = true;
+            this._lbInputImage.HorizontalScrollbar = true;
+            this._lbInputImage.ItemHeight = 12;
+            this._lbInputImage.Location = new System.Drawing.Point(12, 28);
+            this._lbInputImage.Name = "_lbInputImage";
+            this._lbInputImage.Size = new System.Drawing.Size(120, 376);
+            this._lbInputImage.TabIndex = 2;
+            this._lbInputImage.SelectedIndexChanged += new System.EventHandler(this._lbInputImage_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 499);
+            this.Controls.Add(this._lbInputImage);
             this.Controls.Add(this._pbInputImage);
             this.Controls.Add(this._bnLoadImage);
             this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -75,6 +88,7 @@ namespace DIP_hw1
         private List<Bitmap> _inputImages; 
         private System.Windows.Forms.Button _bnLoadImage;
         private System.Windows.Forms.PictureBox _pbInputImage;
+        private System.Windows.Forms.ListBox _lbInputImage;
     }
 }
 
