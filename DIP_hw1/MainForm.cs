@@ -36,8 +36,9 @@ namespace DIP_hw1
             _pbInputImage.Image = _inputImages[_lbInputImage.SelectedIndex];
         }
 
-        private void RGBExtraction()
+        private void RGBExtraction(ref List<Bitmap> results)
         {
+            results.Clear();
             Bitmap inputImage = new Bitmap(_inputImages[_lbInputImage.SelectedIndex]);
             Bitmap RImage = new Bitmap(inputImage.Width, inputImage.Height);
             Bitmap GImage = new Bitmap(inputImage.Width, inputImage.Height);
@@ -53,7 +54,9 @@ namespace DIP_hw1
                     BImage.SetPixel(x, y, Color.FromArgb(RGB.B, RGB.B, RGB.B));
                 }
             }
-
+            results.Add(new Bitmap(RImage));
+            results.Add(new Bitmap(GImage));
+            results.Add(new Bitmap(BImage));
         }
 
         private void _bnRGBExtraction_Click(object sender, EventArgs e)
@@ -62,7 +65,14 @@ namespace DIP_hw1
             {
                 return;
             }
-            RGBExtraction();
+            _lbResult.Items.Clear();
+
+            RGBExtraction(ref _resultImages);
+            _lbResult.Items.Add("Red channel");
+            _lbResult.Items.Add("Green channel");
+            _lbResult.Items.Add("Blue channel");
+            _pbResult.Image = _resultImages[0];
+
         }
 
         private void _lbResult_SelectedIndexChanged(object sender, EventArgs e)

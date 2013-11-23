@@ -80,13 +80,14 @@ namespace DIP_hw1
             this._bnRGBExtraction.Text = "RGB Extraction";
             this._bnRGBExtraction.UseVisualStyleBackColor = true;
             this._bnRGBExtraction.Click += new System.EventHandler(this._bnRGBExtraction_Click);
-            //
+            // 
             // _pbResult
             // 
             this._pbResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._pbResult.Location = new System.Drawing.Point(680, 10);
             this._pbResult.Name = "_pbResult";
             this._pbResult.Size = new System.Drawing.Size(512, 512);
+            this._pbResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this._pbResult.TabIndex = 3;
             this._pbResult.TabStop = false;
             // 
@@ -104,7 +105,6 @@ namespace DIP_hw1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 572);
             this.ClientSize = new System.Drawing.Size(1374, 698);
             this.Controls.Add(this._bnRGBExtraction);
             this.Controls.Add(this._lbResult);
