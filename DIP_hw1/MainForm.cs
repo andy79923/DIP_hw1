@@ -34,5 +34,25 @@ namespace DIP_hw1
         {
             _pbInputImage.Image = _inputImages[_lbInputImage.SelectedIndex];
         }
+
+        private void RGBExtraction()
+        {
+            Bitmap inputImage = new Bitmap(_inputImages[_lbInputImage.SelectedIndex]);
+            Bitmap RImage = new Bitmap(inputImage.Width, inputImage.Height);
+            Bitmap GImage = new Bitmap(inputImage.Width, inputImage.Height);
+            Bitmap BImage = new Bitmap(inputImage.Width, inputImage.Height);
+
+            for (int y = 0; y < inputImage.Height; y++)
+            {
+                for (int x = 0; x < inputImage.Width; x++)
+                {
+                    Color RGB = inputImage.GetPixel(x, y);
+                    RImage.SetPixel(x, y, Color.FromArgb(RGB.R, RGB.R, RGB.R));
+                    GImage.SetPixel(x, y, Color.FromArgb(RGB.G, RGB.G, RGB.G));
+                    BImage.SetPixel(x, y, Color.FromArgb(RGB.B, RGB.B, RGB.B));
+                }
+            }
+
+        }
     }
 }
