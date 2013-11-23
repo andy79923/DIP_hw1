@@ -15,6 +15,7 @@ namespace DIP_hw1
         {
             InitializeComponent();
             _inputImages = new List<Bitmap>();
+            _resultImages = new List<Bitmap>();
         }
 
         private void _bnLoadImage_Click(object sender, EventArgs e)
@@ -62,6 +63,11 @@ namespace DIP_hw1
                 return;
             }
             RGBExtraction();
+        }
+
+        private void _lbResult_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _pbResult.Image = _resultImages[_lbResult.SelectedIndex];
         }
     }
 }
