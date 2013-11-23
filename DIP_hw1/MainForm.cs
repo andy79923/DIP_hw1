@@ -41,7 +41,7 @@ namespace DIP_hw1
             _pbInputImage.Image = _inputImages[_lbInputImage.SelectedIndex];
         }
 
-        static public void RGBExtraction(Bitmap image, out List<Bitmap> results)
+        static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
         {
             results = new List<Bitmap>();
             for (int i = 0; i < 3; i++)
@@ -71,24 +71,34 @@ namespace DIP_hw1
             {
                 return;
             }
-             RGBExtraction(_inputImages[_lbInputImage.SelectedIndex], out _resultImages);
+
+            Bitmap inputImage = _inputImages[_lbInputImage.SelectedIndex];
+            List<Bitmap> results;
+            RGBExtraction(ref inputImage, out results);
 
             List<string> resultName = new List<string>();
             resultName.Add("Red channel");
             resultName.Add("Green channel");
             resultName.Add("Blue channel");
-            ShowResult(ref resultName);
+            ShowResult(ref results, ref resultName, true);
         }
 
-        private void ShowResult(ref List<string> names)
+        private void ShowResult(ref List<Bitmap> results, ref List<string> names, bool isClearAllResult)
         {
-            _lbResult.Items.Clear();
-            for (int i = 0; i < names.Count; i++)
+            if (isClearAllResult == true)
+            {
+                _lbResult.Items.Clear();
+                _resultImages.Clear();
+            }
+           
+            for (int i = 0; i < results.Count; i++)
             {
                 _lbResult.Items.Add(names[i]);
+                _resultImages.Add(new Bitmap(results[i]));
             }
-            _pbResult.Image = _resultImages[0];
-            _lbResult.SetSelected(0, true);
+            
+            _lbResult.SetSelected(_lbResult.Items.Count-names.Count, true);
+            _pbResult.Image = _resultImages[_lbResult.SelectedIndex];
 
         }
 
