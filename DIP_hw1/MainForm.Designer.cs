@@ -33,6 +33,7 @@ namespace DIP_hw1
             this._bnLoadImage = new System.Windows.Forms.Button();
             this._pbInputImage = new System.Windows.Forms.PictureBox();
             this._lbInputImage = new System.Windows.Forms.ListBox();
+            this._bnRGBExtraction = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,11 +68,22 @@ namespace DIP_hw1
             this._lbInputImage.TabIndex = 2;
             this._lbInputImage.SelectedIndexChanged += new System.EventHandler(this._lbInputImage_SelectedIndexChanged);
             // 
+            // _bnRGBExtraction
+            // 
+            this._bnRGBExtraction.Location = new System.Drawing.Point(35, 477);
+            this._bnRGBExtraction.Name = "_bnRGBExtraction";
+            this._bnRGBExtraction.Size = new System.Drawing.Size(95, 23);
+            this._bnRGBExtraction.TabIndex = 3;
+            this._bnRGBExtraction.Text = "RGB Extraction";
+            this._bnRGBExtraction.UseVisualStyleBackColor = true;
+            this._bnRGBExtraction.Click += new System.EventHandler(this._bnRGBExtraction_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 572);
+            this.Controls.Add(this._bnRGBExtraction);
             this.Controls.Add(this._lbInputImage);
             this.Controls.Add(this._pbInputImage);
             this.Controls.Add(this._bnLoadImage);
@@ -89,6 +101,7 @@ namespace DIP_hw1
         private System.Windows.Forms.Button _bnLoadImage;
         private System.Windows.Forms.PictureBox _pbInputImage;
         private System.Windows.Forms.ListBox _lbInputImage;
+        private System.Windows.Forms.Button _bnRGBExtraction;
     }
 }
 

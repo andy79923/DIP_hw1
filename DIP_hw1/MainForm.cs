@@ -54,5 +54,14 @@ namespace DIP_hw1
             }
 
         }
+
+        private void _bnRGBExtraction_Click(object sender, EventArgs e)
+        {
+            if (_inputImages.Count == 0)
+            {
+                return;
+            }
+            RGBExtraction();
+        }
     }
 }
