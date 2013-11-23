@@ -24,9 +24,14 @@ namespace DIP_hw1
             openfileDialog.Filter = "Bitmap Files (.bmp)|*.bmp|JPEG (.jpg)|*.jpg|PNG (.png)|*.png|All Files|*.*";
             if (openfileDialog.ShowDialog() == DialogResult.OK)
             {
-                _lbInputImage.Items.Add(openfileDialog.FileName);
-                _inputImages.Add(new Bitmap(openfileDialog.FileName));
-                _pbInputImage.Image = _inputImages[_inputImages.Count-1];
+                int index = _lbInputImage.FindString(openfileDialog.FileName);
+                if (index == ListBox.NoMatches)
+                {
+                    _lbInputImage.Items.Add(openfileDialog.FileName);
+                    _inputImages.Add(new Bitmap(openfileDialog.FileName));
+                    index = _lbInputImage.Items.Count - 1;
+                }
+                _lbInputImage.SetSelected(index, true);
             }
         }
 
