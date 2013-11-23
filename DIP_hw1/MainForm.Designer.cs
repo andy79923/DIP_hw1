@@ -34,6 +34,7 @@ namespace DIP_hw1
             this._pbInputImage = new System.Windows.Forms.PictureBox();
             this._lbInputImage = new System.Windows.Forms.ListBox();
             this._pbResult = new System.Windows.Forms.PictureBox();
+            this._lbResult = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbResult)).BeginInit();
             this.SuspendLayout();
@@ -78,11 +79,22 @@ namespace DIP_hw1
             this._pbResult.TabIndex = 3;
             this._pbResult.TabStop = false;
             // 
+            // _lbResult
+            // 
+            this._lbResult.FormattingEnabled = true;
+            this._lbResult.ItemHeight = 12;
+            this._lbResult.Location = new System.Drawing.Point(1212, 10);
+            this._lbResult.Name = "_lbResult";
+            this._lbResult.Size = new System.Drawing.Size(120, 400);
+            this._lbResult.TabIndex = 4;
+            this._lbResult.SelectedIndexChanged += new System.EventHandler(this._lbResult_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 721);
+            this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._lbResult);
             this.Controls.Add(this._pbResult);
             this.Controls.Add(this._lbInputImage);
             this.Controls.Add(this._pbInputImage);
@@ -104,6 +116,7 @@ namespace DIP_hw1
         private System.Windows.Forms.PictureBox _pbInputImage;
         private System.Windows.Forms.ListBox _lbInputImage;
         private System.Windows.Forms.PictureBox _pbResult;
+        private System.Windows.Forms.ListBox _lbResult;
     }
 }
 

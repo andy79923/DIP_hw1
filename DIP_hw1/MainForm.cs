@@ -35,5 +35,10 @@ namespace DIP_hw1
         {
             _pbInputImage.Image = _inputImages[_lbInputImage.SelectedIndex];
         }
+
+        private void _lbResult_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _pbResult.Image = _resultImages[_lbResult.SelectedIndex];
+        }
     }
 }
