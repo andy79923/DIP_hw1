@@ -70,13 +70,24 @@ namespace DIP_hw1
             {
                 return;
             }
-            _lbResult.Items.Clear();
-
             RGBExtraction(ref _resultImages);
-            _lbResult.Items.Add("Red channel");
-            _lbResult.Items.Add("Green channel");
-            _lbResult.Items.Add("Blue channel");
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Red channel");
+            resultName.Add("Green channel");
+            resultName.Add("Blue channel");
+            ShowResult(ref resultName);
+        }
+
+        private void ShowResult(ref List<string> names)
+        {
+            _lbResult.Items.Clear();
+            for (int i = 0; i < names.Count; i++)
+            {
+                _lbResult.Items.Add(names[i]);
+            }
             _pbResult.Image = _resultImages[0];
+            _lbResult.SetSelected(0, true);
 
         }
 
