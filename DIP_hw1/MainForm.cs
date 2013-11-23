@@ -15,6 +15,7 @@ namespace DIP_hw1
         {
             InitializeComponent();
             _inputImages = new List<Bitmap>();
+            _resultImages = new List<Bitmap>();
         }
 
         private void _bnLoadImage_Click(object sender, EventArgs e)
