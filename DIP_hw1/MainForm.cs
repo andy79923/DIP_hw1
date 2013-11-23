@@ -127,14 +127,15 @@ namespace DIP_hw1
             {
                 return;
             }
-            _lbResult.Items.Clear();
-
             Bitmap inputImage = _inputImages[_lbInputImage.SelectedIndex];
             Bitmap result;
             TranslateGrayLevel(ref inputImage, out result);
-            _lbResult.Items.Add("Gray Level Image");
-            _pbResult.Image = result;
 
+            List<string> resultName = new List<string>();
+            resultName.Add("Gray Level Image");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(result);            
+            ShowResult(ref results, ref resultName, true);
         }
     }
 }
