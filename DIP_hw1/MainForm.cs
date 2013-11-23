@@ -85,7 +85,7 @@ namespace DIP_hw1
             _pbResult.Image = _resultImages[_lbResult.SelectedIndex];
         }
 
-        static private void TranslateGrayLevel(ref Bitmap image, out Bitmap result)
+        static public void TranslateGrayLevel(ref Bitmap image, out Bitmap result)
         {
             result = new Bitmap(image.Width, image.Height);
             for (int y = 0; y < image.Height; y++)
