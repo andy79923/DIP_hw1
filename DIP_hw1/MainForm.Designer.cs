@@ -38,7 +38,7 @@ namespace DIP_hw1
             // 
             // _bnLoadImage
             // 
-            this._bnLoadImage.Location = new System.Drawing.Point(28, 424);
+            this._bnLoadImage.Location = new System.Drawing.Point(35, 434);
             this._bnLoadImage.Name = "_bnLoadImage";
             this._bnLoadImage.Size = new System.Drawing.Size(75, 23);
             this._bnLoadImage.TabIndex = 0;
@@ -49,9 +49,9 @@ namespace DIP_hw1
             // _pbInputImage
             // 
             this._pbInputImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._pbInputImage.Location = new System.Drawing.Point(146, 28);
+            this._pbInputImage.Location = new System.Drawing.Point(150, 10);
             this._pbInputImage.Name = "_pbInputImage";
-            this._pbInputImage.Size = new System.Drawing.Size(407, 381);
+            this._pbInputImage.Size = new System.Drawing.Size(512, 512);
             this._pbInputImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this._pbInputImage.TabIndex = 1;
             this._pbInputImage.TabStop = false;
@@ -61,9 +61,9 @@ namespace DIP_hw1
             this._lbInputImage.FormattingEnabled = true;
             this._lbInputImage.HorizontalScrollbar = true;
             this._lbInputImage.ItemHeight = 12;
-            this._lbInputImage.Location = new System.Drawing.Point(12, 28);
+            this._lbInputImage.Location = new System.Drawing.Point(10, 10);
             this._lbInputImage.Name = "_lbInputImage";
-            this._lbInputImage.Size = new System.Drawing.Size(120, 376);
+            this._lbInputImage.Size = new System.Drawing.Size(120, 400);
             this._lbInputImage.TabIndex = 2;
             this._lbInputImage.SelectedIndexChanged += new System.EventHandler(this._lbInputImage_SelectedIndexChanged);
             // 
@@ -71,7 +71,7 @@ namespace DIP_hw1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 499);
+            this.ClientSize = new System.Drawing.Size(683, 572);
             this.Controls.Add(this._lbInputImage);
             this.Controls.Add(this._pbInputImage);
             this.Controls.Add(this._bnLoadImage);
