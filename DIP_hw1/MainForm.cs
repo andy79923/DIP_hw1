@@ -96,5 +96,35 @@ namespace DIP_hw1
         {
             _pbResult.Image = _resultImages[_lbResult.SelectedIndex];
         }
+
+        static public void TranslateGrayLevel(ref Bitmap image, out Bitmap result)
+        {
+            result = new Bitmap(image.Width, image.Height);
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color RGB = image.GetPixel(x, y);
+                    int grayLevel = (RGB.R + RGB.G + RGB.B) / 3;
+                    result.SetPixel(x, y, Color.FromArgb(grayLevel, grayLevel, grayLevel));
+                }
+            }
+        }
+
+        private void _bnGrayLevel_Click(object sender, EventArgs e)
+        {
+            if (_inputImages.Count == 0)
+            {
+                return;
+            }
+            _lbResult.Items.Clear();
+
+            Bitmap inputImage = _inputImages[_lbInputImage.SelectedIndex];
+            Bitmap result;
+            TranslateGrayLevel(ref inputImage, out result);
+            _lbResult.Items.Add("Gray Level Image");
+            _pbResult.Image = result;
+
+        }
     }
 }

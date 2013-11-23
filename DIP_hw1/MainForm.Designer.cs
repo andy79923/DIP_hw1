@@ -36,6 +36,7 @@ namespace DIP_hw1
             this._bnRGBExtraction = new System.Windows.Forms.Button();
             this._pbResult = new System.Windows.Forms.PictureBox();
             this._lbResult = new System.Windows.Forms.ListBox();
+            this._bnGrayLevel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbResult)).BeginInit();
             this.SuspendLayout();
@@ -101,11 +102,22 @@ namespace DIP_hw1
             this._lbResult.TabIndex = 4;
             this._lbResult.SelectedIndexChanged += new System.EventHandler(this._lbResult_SelectedIndexChanged);
             // 
+            // _bnGrayLevel
+            // 
+            this._bnGrayLevel.Location = new System.Drawing.Point(35, 528);
+            this._bnGrayLevel.Name = "_bnGrayLevel";
+            this._bnGrayLevel.Size = new System.Drawing.Size(154, 23);
+            this._bnGrayLevel.TabIndex = 5;
+            this._bnGrayLevel.Text = "Translate to Gray Level Image";
+            this._bnGrayLevel.UseVisualStyleBackColor = true;
+            this._bnGrayLevel.Click += new System.EventHandler(this._bnGrayLevel_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._bnGrayLevel);
             this.Controls.Add(this._bnRGBExtraction);
             this.Controls.Add(this._lbResult);
             this.Controls.Add(this._pbResult);
@@ -131,6 +143,7 @@ namespace DIP_hw1
         private System.Windows.Forms.Button _bnRGBExtraction;
         private System.Windows.Forms.PictureBox _pbResult;
         private System.Windows.Forms.ListBox _lbResult;
+        private System.Windows.Forms.Button _bnGrayLevel;
     }
 }
 
