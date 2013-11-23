@@ -36,27 +36,28 @@ namespace DIP_hw1
             _pbInputImage.Image = _inputImages[_lbInputImage.SelectedIndex];
         }
 
-        private void RGBExtraction(ref List<Bitmap> results)
+        static public void RGBExtraction(Bitmap image, out List<Bitmap> results)
         {
-            results.Clear();
-            Bitmap inputImage = new Bitmap(_inputImages[_lbInputImage.SelectedIndex]);
-            Bitmap RImage = new Bitmap(inputImage.Width, inputImage.Height);
-            Bitmap GImage = new Bitmap(inputImage.Width, inputImage.Height);
-            Bitmap BImage = new Bitmap(inputImage.Width, inputImage.Height);
-
-            for (int y = 0; y < inputImage.Height; y++)
+            results = new List<Bitmap>();
+            for (int i = 0; i < 3; i++)
             {
-                for (int x = 0; x < inputImage.Width; x++)
+                results.Add(new Bitmap(image.Width, image.Height));
+            }
+
+            Bitmap RImage = results[0];
+            Bitmap GImage = results[1];
+            Bitmap BImage = results[2];
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
                 {
-                    Color RGB = inputImage.GetPixel(x, y);
+                    Color RGB = image.GetPixel(x, y);
                     RImage.SetPixel(x, y, Color.FromArgb(RGB.R, RGB.R, RGB.R));
                     GImage.SetPixel(x, y, Color.FromArgb(RGB.G, RGB.G, RGB.G));
                     BImage.SetPixel(x, y, Color.FromArgb(RGB.B, RGB.B, RGB.B));
                 }
             }
-            results.Add(new Bitmap(RImage));
-            results.Add(new Bitmap(GImage));
-            results.Add(new Bitmap(BImage));
         }
 
         private void _bnRGBExtraction_Click(object sender, EventArgs e)
@@ -67,7 +68,8 @@ namespace DIP_hw1
             }
             _lbResult.Items.Clear();
 
-            RGBExtraction(ref _resultImages);
+
+            RGBExtraction(_inputImages[_lbInputImage.SelectedIndex], out _resultImages);
             _lbResult.Items.Add("Red channel");
             _lbResult.Items.Add("Green channel");
             _lbResult.Items.Add("Blue channel");
