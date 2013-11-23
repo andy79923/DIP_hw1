@@ -33,7 +33,11 @@ namespace DIP_hw1
             this._bnLoadImage = new System.Windows.Forms.Button();
             this._pbInputImage = new System.Windows.Forms.PictureBox();
             this._lbInputImage = new System.Windows.Forms.ListBox();
+            this._bnRGBExtraction = new System.Windows.Forms.Button();
+            this._pbResult = new System.Windows.Forms.PictureBox();
+            this._lbResult = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._pbResult)).BeginInit();
             this.SuspendLayout();
             // 
             // _bnLoadImage
@@ -67,11 +71,44 @@ namespace DIP_hw1
             this._lbInputImage.TabIndex = 2;
             this._lbInputImage.SelectedIndexChanged += new System.EventHandler(this._lbInputImage_SelectedIndexChanged);
             // 
+            // _bnRGBExtraction
+            // 
+            this._bnRGBExtraction.Location = new System.Drawing.Point(35, 477);
+            this._bnRGBExtraction.Name = "_bnRGBExtraction";
+            this._bnRGBExtraction.Size = new System.Drawing.Size(95, 23);
+            this._bnRGBExtraction.TabIndex = 3;
+            this._bnRGBExtraction.Text = "RGB Extraction";
+            this._bnRGBExtraction.UseVisualStyleBackColor = true;
+            this._bnRGBExtraction.Click += new System.EventHandler(this._bnRGBExtraction_Click);
+            // 
+            // _pbResult
+            // 
+            this._pbResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._pbResult.Location = new System.Drawing.Point(680, 10);
+            this._pbResult.Name = "_pbResult";
+            this._pbResult.Size = new System.Drawing.Size(512, 512);
+            this._pbResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this._pbResult.TabIndex = 3;
+            this._pbResult.TabStop = false;
+            // 
+            // _lbResult
+            // 
+            this._lbResult.FormattingEnabled = true;
+            this._lbResult.ItemHeight = 12;
+            this._lbResult.Location = new System.Drawing.Point(1212, 10);
+            this._lbResult.Name = "_lbResult";
+            this._lbResult.Size = new System.Drawing.Size(120, 400);
+            this._lbResult.TabIndex = 4;
+            this._lbResult.SelectedIndexChanged += new System.EventHandler(this._lbResult_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 572);
+            this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._bnRGBExtraction);
+            this.Controls.Add(this._lbResult);
+            this.Controls.Add(this._pbResult);
             this.Controls.Add(this._lbInputImage);
             this.Controls.Add(this._pbInputImage);
             this.Controls.Add(this._bnLoadImage);
@@ -79,16 +116,21 @@ namespace DIP_hw1
             this.Name = "MainForm";
             this.Text = "Main menu";
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._pbResult)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private List<Bitmap> _inputImages; 
+        private List<Bitmap> _inputImages;
+        private List<Bitmap> _resultImages;
         private System.Windows.Forms.Button _bnLoadImage;
         private System.Windows.Forms.PictureBox _pbInputImage;
         private System.Windows.Forms.ListBox _lbInputImage;
+        private System.Windows.Forms.Button _bnRGBExtraction;
+        private System.Windows.Forms.PictureBox _pbResult;
+        private System.Windows.Forms.ListBox _lbResult;
     }
 }
 
