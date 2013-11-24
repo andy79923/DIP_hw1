@@ -35,6 +35,7 @@ namespace DIP_hw1
                 _lbInputImage.SetSelected(index, true);
                 _openFile.FileName = "";
                 _openFile.InitialDirectory = _openFile.FileName.Substring(0, _openFile.FileName.Length - _openFile.SafeFileName.Length);
+                _cbThresholding.Checked = false;
             }
         }
 
@@ -161,9 +162,15 @@ namespace DIP_hw1
 
         private void _cbThresholding_CheckedChanged(object sender, EventArgs e)
         {
-            if (_inputImages.Count == 0 || _cbThresholding.Checked == false)
+            if (_inputImages.Count == 0)
             {
                 _cbThresholding.Checked = false;
+                return;
+            }
+            if (_cbThresholding.Checked == false)
+            {
+                _tbThresholding.Value = 0;
+                _lbResult.SetSelected(0, true);
                 return;
             }
             Bitmap inputImage = _resultImages[_lbResult.SelectedIndex];
@@ -171,8 +178,10 @@ namespace DIP_hw1
             TranslateGrayLevel(ref inputImage, out result);
 
             List<string> resultName = new List<string>();
-            resultName.Add("temp");
+            resultName.Add("Origin Image");
+            resultName.Add("Gray Level Image");
             List<Bitmap> results = new List<Bitmap>();
+            results.Add(inputImage);
             results.Add(result);
             ShowResult(ref results, ref resultName, true);
             _tbThresholding.Value = 100;
