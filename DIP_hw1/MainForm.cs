@@ -35,6 +35,7 @@ namespace DIP_hw1
                 _lbInputImage.SetSelected(index, true);
                 _openFile.FileName = "";
                 _openFile.InitialDirectory = _openFile.FileName.Substring(0, _openFile.FileName.Length - _openFile.SafeFileName.Length);
+                _cbThresholding.Checked = false;
             }
         }
 
@@ -144,6 +145,64 @@ namespace DIP_hw1
             List<Bitmap> results = new List<Bitmap>();
             results.Add(result);            
             ShowResult(ref results, ref resultName, true);
+        }
+
+        static public void Thresholding(ref Bitmap image, out Bitmap result, int thresholdValue)//the image should be a gray level image
+        {
+            result = new Bitmap(image.Width, image.Height);
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    byte intensity = image.GetPixel(x, y).R;
+                    result.SetPixel(x, y, (intensity >= thresholdValue) ? Color.FromArgb(255, 255, 255) : Color.FromArgb(0, 0, 0));
+                }
+            }
+        }
+
+        private void _cbThresholding_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_inputImages.Count == 0)
+            {
+                _cbThresholding.Checked = false;
+                return;
+            }
+            if (_cbThresholding.Checked == false)
+            {
+                _tbThresholding.Value = 0;
+                _lbResult.SetSelected(0, true);
+                return;
+            }
+            Bitmap inputImage = _resultImages[_lbResult.SelectedIndex];
+            Bitmap result;
+            TranslateGrayLevel(ref inputImage, out result);
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Origin Image");
+            resultName.Add("Gray Level Image");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(inputImage);
+            results.Add(result);
+            ShowResult(ref results, ref resultName, true);
+            _tbThresholding.Value = 100;
+
+        }
+
+        private void _tbThresholding_ValueChange(object sender, EventArgs e)
+        {
+            if (_inputImages.Count == 0 || _cbThresholding.Checked == false)
+            {
+                return;
+            }
+            Bitmap inputImage = _resultImages[0];
+            Bitmap result;
+            Thresholding(ref inputImage, out result, _tbThresholding.Value);
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Thresholding Image(" + _tbThresholding.Value.ToString() + ")");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(result);
+            ShowResult(ref results, ref resultName, false);
         }
     }
 }
