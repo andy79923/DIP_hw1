@@ -48,8 +48,8 @@ namespace DIP_hw1
             List<string> resultName = new List<string>();
             resultName.Add("Temp Result");
             ShowResult(ref results, ref resultName, true);
+            _cbThresholding.Enabled = true;
             _cbThresholding.Checked = false;
-
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -163,17 +163,18 @@ namespace DIP_hw1
 
         private void _cbThresholding_CheckedChanged(object sender, EventArgs e)
         {
-            if (_inputImages.Count == 0)
-            {
-                _cbThresholding.Checked = false;
-                return;
-            }
             if (_cbThresholding.Checked == false)
             {
+                _tbThresholding.Enabled = false;
                 _tbThresholding.Value = 0;
+                _textBoxThresholding.Enabled = false;
+                _textBoxThresholding.Text = "0";
                 _lbResult.SetSelected(0, true);
+
                 return;
             }
+            _tbThresholding.Enabled = true;
+            _textBoxThresholding.Enabled = true;
             Bitmap inputImage = _resultImages[_lbResult.SelectedIndex];
             Bitmap result;
             TranslateGrayLevel(ref inputImage, out result);
@@ -191,10 +192,11 @@ namespace DIP_hw1
 
         private void _tbThresholding_ValueChange(object sender, EventArgs e)
         {
-            if (_inputImages.Count == 0 || _cbThresholding.Checked == false)
+            if (_cbThresholding.Checked == false)
             {
                 return;
             }
+            _textBoxThresholding.Text = _tbThresholding.Value.ToString();
             Bitmap inputImage = _resultImages[0];
             Bitmap result;
             Thresholding(ref inputImage, out result, _tbThresholding.Value);
@@ -204,6 +206,27 @@ namespace DIP_hw1
             List<Bitmap> results = new List<Bitmap>();
             results.Add(result);
             ShowResult(ref results, ref resultName, false);
+        }
+
+        private void _textBoxThresholding_TextChanged(object sender, EventArgs e)
+        {
+            if (_cbThresholding.Checked == false || _textBoxThresholding.Text == "")
+            {
+                return;
+            }
+            if (Convert.ToInt32(_textBoxThresholding.Text) > 255)
+            {
+                _textBoxThresholding.Text = "255";
+            }
+            _tbThresholding.Value = Convert.ToInt32(_textBoxThresholding.Text);
+        }
+
+        private void _textBoxThresholding_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -40,6 +40,7 @@ namespace DIP_hw1
             this._bnGrayLevel = new System.Windows.Forms.Button();
             this._cbThresholding = new System.Windows.Forms.CheckBox();
             this._tbThresholding = new System.Windows.Forms.TrackBar();
+            this._textBoxThresholding = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._tbThresholding)).BeginInit();
@@ -120,6 +121,7 @@ namespace DIP_hw1
             // _cbThresholding
             // 
             this._cbThresholding.AutoSize = true;
+            this._cbThresholding.Enabled = false;
             this._cbThresholding.Location = new System.Drawing.Point(35, 583);
             this._cbThresholding.Name = "_cbThresholding";
             this._cbThresholding.Size = new System.Drawing.Size(118, 16);
@@ -130,6 +132,7 @@ namespace DIP_hw1
             // 
             // _tbThresholding
             // 
+            this._tbThresholding.Enabled = false;
             this._tbThresholding.Location = new System.Drawing.Point(150, 583);
             this._tbThresholding.Maximum = 255;
             this._tbThresholding.Name = "_tbThresholding";
@@ -138,11 +141,23 @@ namespace DIP_hw1
             this._tbThresholding.TickStyle = System.Windows.Forms.TickStyle.None;
             this._tbThresholding.ValueChanged += new System.EventHandler(this._tbThresholding_ValueChange);
             // 
+            // _textBoxThresholding
+            // 
+            this._textBoxThresholding.Enabled = false;
+            this._textBoxThresholding.Location = new System.Drawing.Point(261, 583);
+            this._textBoxThresholding.Name = "_textBoxThresholding";
+            this._textBoxThresholding.Size = new System.Drawing.Size(30, 22);
+            this._textBoxThresholding.TabIndex = 8;
+            this._textBoxThresholding.Text = "0";
+            this._textBoxThresholding.TextChanged += new System.EventHandler(this._textBoxThresholding_TextChanged);
+            this._textBoxThresholding.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBoxThresholding_KeyPress);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._textBoxThresholding);
             this.Controls.Add(this._tbThresholding);
             this.Controls.Add(this._cbThresholding);
             this.Controls.Add(this._bnGrayLevel);
@@ -177,6 +192,7 @@ namespace DIP_hw1
         private System.Windows.Forms.Button _bnGrayLevel;
         private CheckBox _cbThresholding;
         private TrackBar _tbThresholding;
+        private TextBox _textBoxThresholding;
     }
 }
 
