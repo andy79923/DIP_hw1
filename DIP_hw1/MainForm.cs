@@ -41,6 +41,13 @@ namespace DIP_hw1
         private void _lbInputImage_SelectedIndexChanged(object sender, EventArgs e)
         {
             _pbInputImage.Image = _inputImages[_lbInputImage.SelectedIndex];
+            Bitmap inputImage = _inputImages[_lbInputImage.SelectedIndex];
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(new Bitmap(_inputImages[_lbInputImage.SelectedIndex]));
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Temp Result");
+            ShowResult(ref results, ref resultName, true);
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
