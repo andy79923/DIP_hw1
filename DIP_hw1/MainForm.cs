@@ -145,5 +145,18 @@ namespace DIP_hw1
             results.Add(result);            
             ShowResult(ref results, ref resultName, true);
         }
+
+        static public void Thresholding(ref Bitmap image, out Bitmap result, int thresholdValue)//the image should be a gray level image
+        {
+            result = new Bitmap(image.Width, image.Height);
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    byte intensity = image.GetPixel(x, y).R;
+                    result.SetPixel(x, y, (intensity >= thresholdValue) ? Color.FromArgb(255, 255, 255) : Color.FromArgb(0, 0, 0));
+                }
+            }
+        }
     }
 }
