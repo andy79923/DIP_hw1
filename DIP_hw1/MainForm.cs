@@ -220,5 +220,13 @@ namespace DIP_hw1
             }
             _tbThresholding.Value = Convert.ToInt32(_textBoxThresholding.Text);
         }
+
+        private void _textBoxThresholding_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

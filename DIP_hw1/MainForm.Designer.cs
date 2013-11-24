@@ -149,6 +149,7 @@ namespace DIP_hw1
             this._textBoxThresholding.TabIndex = 8;
             this._textBoxThresholding.Text = "0";
             this._textBoxThresholding.TextChanged += new System.EventHandler(this._textBoxThresholding_TextChanged);
+            this._textBoxThresholding.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBoxThresholding_KeyPress);
             // 
             // MainForm
             // 
