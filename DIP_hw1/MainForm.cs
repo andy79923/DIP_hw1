@@ -169,16 +169,31 @@ namespace DIP_hw1
             Bitmap inputImage = _resultImages[_lbResult.SelectedIndex];
             Bitmap result;
             TranslateGrayLevel(ref inputImage, out result);
-            inputImage = result;
-            int thresholdValue = 100;
-            Thresholding(ref inputImage, out result, thresholdValue);//suppose the threshold value is 100
 
             List<string> resultName = new List<string>();
-            resultName.Add("Thresholding Image(" + thresholdValue.ToString() + ")");
+            resultName.Add("temp");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(result);
+            ShowResult(ref results, ref resultName, true);
+            _tbThresholding.Value = 100;
+
+        }
+
+        private void _tbThresholding_ValueChange(object sender, EventArgs e)
+        {
+            if (_inputImages.Count == 0 || _cbThresholding.Checked == false)
+            {
+                return;
+            }
+            Bitmap inputImage = _resultImages[0];
+            Bitmap result;
+            Thresholding(ref inputImage, out result, _tbThresholding.Value);
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Thresholding Image(" + _tbThresholding.Value.ToString() + ")");
             List<Bitmap> results = new List<Bitmap>();
             results.Add(result);
             ShowResult(ref results, ref resultName, false);
-
         }
     }
 }

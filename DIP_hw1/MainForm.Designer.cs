@@ -39,8 +39,10 @@ namespace DIP_hw1
             this._lbResult = new System.Windows.Forms.ListBox();
             this._bnGrayLevel = new System.Windows.Forms.Button();
             this._cbThresholding = new System.Windows.Forms.CheckBox();
+            this._tbThresholding = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbResult)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._tbThresholding)).BeginInit();
             this.SuspendLayout();
             // 
             // _bnLoadImage
@@ -125,11 +127,22 @@ namespace DIP_hw1
             this._cbThresholding.UseVisualStyleBackColor = true;
             this._cbThresholding.CheckedChanged += new System.EventHandler(this._cbThresholding_CheckedChanged);
             // 
+            // _tbThresholding
+            // 
+            this._tbThresholding.Location = new System.Drawing.Point(150, 583);
+            this._tbThresholding.Maximum = 255;
+            this._tbThresholding.Name = "_tbThresholding";
+            this._tbThresholding.Size = new System.Drawing.Size(104, 45);
+            this._tbThresholding.TabIndex = 7;
+            this._tbThresholding.TickStyle = System.Windows.Forms.TickStyle.None;
+            this._tbThresholding.ValueChanged += new System.EventHandler(this._tbThresholding_ValueChange);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._tbThresholding);
             this.Controls.Add(this._cbThresholding);
             this.Controls.Add(this._bnGrayLevel);
             this.Controls.Add(this._bnRGBExtraction);
@@ -143,6 +156,7 @@ namespace DIP_hw1
             this.Text = "Main menu";
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbResult)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._tbThresholding)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,6 +175,7 @@ namespace DIP_hw1
         private System.Windows.Forms.ListBox _lbResult;
         private System.Windows.Forms.Button _bnGrayLevel;
         private CheckBox _cbThresholding;
+        private TrackBar _tbThresholding;
     }
 }
 
