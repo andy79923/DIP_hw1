@@ -106,7 +106,7 @@ namespace DIP_hw1
                 _resultImages.Add(new Bitmap(results[i]));
             }
             
-            _lbResult.SetSelected(_lbResult.Items.Count-names.Count, true);
+            _lbResult.SetSelected(_lbResult.Items.Count-1, true);
 
         }
 
