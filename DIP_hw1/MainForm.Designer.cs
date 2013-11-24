@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 namespace DIP_hw1
 {
     partial class MainForm
@@ -135,6 +136,7 @@ namespace DIP_hw1
 
         #endregion
 
+        private OpenFileDialog _openFile;
         private List<Bitmap> _inputImages;
         private List<Bitmap> _resultImages;
         private System.Windows.Forms.Button _bnLoadImage;

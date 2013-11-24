@@ -16,23 +16,25 @@ namespace DIP_hw1
             InitializeComponent();
             _inputImages = new List<Bitmap>();
             _resultImages = new List<Bitmap>();
+            _openFile = new OpenFileDialog();
+            _openFile.InitialDirectory = "C:";
+            _openFile.Filter = "Bitmap Files (.bmp)|*.bmp|JPEG (.jpg)|*.jpg|PNG (.png)|*.png|All Files|*.*";
         }
 
         private void _bnLoadImage_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openfileDialog = new OpenFileDialog();
-            openfileDialog.InitialDirectory = "C:";
-            openfileDialog.Filter = "Bitmap Files (.bmp)|*.bmp|JPEG (.jpg)|*.jpg|PNG (.png)|*.png|All Files|*.*";
-            if (openfileDialog.ShowDialog() == DialogResult.OK)
+            if (_openFile.ShowDialog() == DialogResult.OK)
             {
-                int index = _lbInputImage.FindString(openfileDialog.FileName);
+                int index = _lbInputImage.FindString(_openFile.FileName);
                 if (index == ListBox.NoMatches)
                 {
-                    _lbInputImage.Items.Add(openfileDialog.FileName);
-                    _inputImages.Add(new Bitmap(openfileDialog.FileName));
+                    _lbInputImage.Items.Add(_openFile.FileName);
+                    _inputImages.Add(new Bitmap(_openFile.FileName));
                     index = _lbInputImage.Items.Count - 1;
                 }
                 _lbInputImage.SetSelected(index, true);
+                _openFile.FileName = "";
+                _openFile.InitialDirectory = _openFile.FileName.Substring(0, _openFile.FileName.Length - _openFile.SafeFileName.Length);
             }
         }
 
