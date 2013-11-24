@@ -204,5 +204,14 @@ namespace DIP_hw1
             results.Add(result);
             ShowResult(ref results, ref resultName, false);
         }
+
+        private void _tbThresholding_Scroll(object sender, EventArgs e)
+        {
+            if (_inputImages.Count == 0 || _cbThresholding.Checked == false)
+            {
+                _tbThresholding.Value = 0;
+                return;
+            }
+        }
     }
 }

@@ -136,6 +136,7 @@ namespace DIP_hw1
             this._tbThresholding.TabIndex = 7;
             this._tbThresholding.TickStyle = System.Windows.Forms.TickStyle.None;
             this._tbThresholding.ValueChanged += new System.EventHandler(this._tbThresholding_ValueChange);
+            this._tbThresholding.Scroll += new System.EventHandler(this._tbThresholding_Scroll);
             // 
             // MainForm
             // 
