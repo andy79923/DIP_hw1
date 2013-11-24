@@ -119,6 +119,7 @@ namespace DIP_hw1
             // _cbThresholding
             // 
             this._cbThresholding.AutoSize = true;
+            this._cbThresholding.Enabled = false;
             this._cbThresholding.Location = new System.Drawing.Point(35, 583);
             this._cbThresholding.Name = "_cbThresholding";
             this._cbThresholding.Size = new System.Drawing.Size(118, 16);
@@ -129,6 +130,7 @@ namespace DIP_hw1
             // 
             // _tbThresholding
             // 
+            this._tbThresholding.Enabled = false;
             this._tbThresholding.Location = new System.Drawing.Point(150, 583);
             this._tbThresholding.Maximum = 255;
             this._tbThresholding.Name = "_tbThresholding";
@@ -136,7 +138,6 @@ namespace DIP_hw1
             this._tbThresholding.TabIndex = 7;
             this._tbThresholding.TickStyle = System.Windows.Forms.TickStyle.None;
             this._tbThresholding.ValueChanged += new System.EventHandler(this._tbThresholding_ValueChange);
-            this._tbThresholding.Scroll += new System.EventHandler(this._tbThresholding_Scroll);
             // 
             // MainForm
             // 
