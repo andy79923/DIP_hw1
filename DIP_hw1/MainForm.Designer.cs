@@ -96,6 +96,7 @@ namespace DIP_hw1
             // _lbResult
             // 
             this._lbResult.FormattingEnabled = true;
+            this._lbResult.HorizontalScrollbar = true;
             this._lbResult.ItemHeight = 12;
             this._lbResult.Location = new System.Drawing.Point(1212, 10);
             this._lbResult.Name = "_lbResult";
