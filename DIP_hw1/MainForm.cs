@@ -35,7 +35,6 @@ namespace DIP_hw1
                 _lbInputImage.SetSelected(index, true);
                 _openFile.FileName = "";
                 _openFile.InitialDirectory = _openFile.FileName.Substring(0, _openFile.FileName.Length - _openFile.SafeFileName.Length);
-                _cbThresholding.Checked = false;
             }
         }
 
@@ -49,6 +48,8 @@ namespace DIP_hw1
             List<string> resultName = new List<string>();
             resultName.Add("Temp Result");
             ShowResult(ref results, ref resultName, true);
+            _cbThresholding.Checked = false;
+
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
