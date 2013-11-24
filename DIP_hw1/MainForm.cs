@@ -107,7 +107,6 @@ namespace DIP_hw1
             }
             
             _lbResult.SetSelected(_lbResult.Items.Count-names.Count, true);
-            _pbResult.Image = _resultImages[_lbResult.SelectedIndex];
 
         }
 
