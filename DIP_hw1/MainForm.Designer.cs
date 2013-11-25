@@ -156,7 +156,7 @@ namespace DIP_hw1
             this._textBoxThresholding.TabIndex = 8;
             this._textBoxThresholding.Text = "0";
             this._textBoxThresholding.TextChanged += new System.EventHandler(this._textBoxThresholding_TextChanged);
-            this._textBoxThresholding.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBoxThresholding_KeyPress);
+            this._textBoxThresholding.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_KeyPress);
             // 
             // _checkBoxSmoothing
             // 
@@ -206,7 +206,7 @@ namespace DIP_hw1
             this._textBoxSmoothing.TabIndex = 12;
             this._textBoxSmoothing.Text = "3";
             this._textBoxSmoothing.TextChanged += new System.EventHandler(this._textBoxSmoothing_TextChanged);
-            this._textBoxSmoothing.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBoxThresholding_KeyPress);
+            this._textBoxSmoothing.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_KeyPress);
             // 
             // label1
             // 
