@@ -288,5 +288,38 @@ namespace DIP_hw1
 
             ShowResult(ref results, ref resultName, true);
         }
+
+        static public void MedianSmoothing(ref Bitmap image, out Bitmap result, int filterSize)//the image should be a gray level image
+        {
+            if (filterSize % 2 != 1)
+            {
+                result = new Bitmap(image);
+                return;
+            }
+            result = new Bitmap(image.Width, image.Height);
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    List<int> intensity = new List<int>();
+                    for (int j = 0; j < filterSize; j++)//Use replicate to interpolate the pixel when the filter position is out of the boundary of the source image
+                    {
+                        int wY = y - filterSize / 2 + j;
+                        wY = (wY < 0) ? 0 : wY;
+                        wY = (wY >= image.Height) ? image.Height - 1 : wY;
+                        for (int i = 0; i < filterSize; i++)
+                        {
+                            int wX = x - filterSize / 2 + i;
+                            wX = (wX < 0) ? 0 : wX;
+                            wX = (wX >= image.Width) ? image.Width - 1 : wX;
+                            intensity.Add((image.GetPixel(wX, wY).R));
+                        }
+                    }
+                    intensity.Sort();
+                    int median = intensity.Count / 2 + 1;
+                    result.SetPixel(x, y, Color.FromArgb(intensity[median], intensity[median], intensity[median]));
+                }
+            }
+        }
     }
 }
