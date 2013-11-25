@@ -270,10 +270,16 @@ namespace DIP_hw1
             if (_checkBoxSmoothing.Checked == false)
             {
                 _lbResult.SetSelected(0, true);
+                _radioButtonMeanSmoothing.Enabled = false;
+                _radioButtonMeanSmoothing.Checked = true;
+                _radioButtonMedianSmoothing.Enabled = false;
+                _textBoxSmoothing.Enabled = false;
+                _textBoxSmoothing.Text = "3";
                 return;
             }
             _radioButtonMeanSmoothing.Enabled = true;
             _radioButtonMedianSmoothing.Enabled = true;
+            _textBoxSmoothing.Enabled = true;
 
             Bitmap inputImage = _resultImages[_lbResult.SelectedIndex];
             Bitmap result;
@@ -287,7 +293,8 @@ namespace DIP_hw1
             results.Add(inputImage);
             results.Add(result);
             inputImage = result;
-            _smoothingMethod(ref inputImage, out result, 3);//set filter size is 3;
+
+            _smoothingMethod(ref inputImage, out result, (_textBoxSmoothing.Text == "1") ? 3 : Convert.ToInt32(_textBoxSmoothing.Text));//if filter size is 1, replace the value with 3
             results.Add(result);
 
             ShowResult(ref results, ref resultName, true);
@@ -328,22 +335,32 @@ namespace DIP_hw1
 
         private void _radioButtonMeanSmoothing_CheckedChanged(object sender, EventArgs e)
         {
-            if (_radioButtonMeanSmoothing.Checked == true)
+            /*if (_radioButtonMeanSmoothing.Checked == true)
             {
                 _smoothingMethod = MeanSmoothing;
                 _lbResult.SetSelected(0, true);
                 _checkBoxSmoothing_CheckedChanged(sender, e);
-            }
+            }*/
         }
 
         private void _radioButtonMedianSmoothing_CheckedChanged(object sender, EventArgs e)
         {
-            if (_radioButtonMedianSmoothing.Checked == true)
+            /*if (_radioButtonMedianSmoothing.Checked == true)
             {
                 _smoothingMethod = MedianSmoothing;
                 _lbResult.SetSelected(0, true);
                 _checkBoxSmoothing_CheckedChanged(sender, e);
-            }
+            }*/
+        }
+
+        private void _textBoxSmoothing_TextChanged(object sender, EventArgs e)
+        {
+            /*if (_textBoxSmoothing.Text != "")
+            {
+                _lbResult.SetSelected(0, true);
+                _checkBoxSmoothing_CheckedChanged(sender, e);
+            }*/
+            
         }
     }
 }
