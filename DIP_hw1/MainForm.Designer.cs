@@ -47,6 +47,7 @@ namespace DIP_hw1
             this._radioButtonMedianSmoothing = new System.Windows.Forms.RadioButton();
             this._textBoxSmoothing = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this._buttonHistogramEqualization = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -217,11 +218,23 @@ namespace DIP_hw1
             this.label1.TabIndex = 13;
             this.label1.Text = "Filter Size";
             // 
+            // _buttonHistogramEqualization
+            // 
+            this._buttonHistogramEqualization.Enabled = false;
+            this._buttonHistogramEqualization.Location = new System.Drawing.Point(35, 650);
+            this._buttonHistogramEqualization.Name = "_buttonHistogramEqualization";
+            this._buttonHistogramEqualization.Size = new System.Drawing.Size(154, 23);
+            this._buttonHistogramEqualization.TabIndex = 14;
+            this._buttonHistogramEqualization.Text = "Apply Histogram Equalization";
+            this._buttonHistogramEqualization.UseVisualStyleBackColor = true;
+            this._buttonHistogramEqualization.Click += new System.EventHandler(this._buttonHistogramEqualization_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._buttonHistogramEqualization);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._textBoxSmoothing);
             this.Controls.Add(this._radioButtonMedianSmoothing);
@@ -269,6 +282,7 @@ namespace DIP_hw1
         private RadioButtonSmoothing _smoothingMethod;
         private TextBox _textBoxSmoothing;
         private Label label1;
+        private Button _buttonHistogramEqualization;
     }
 }
 
