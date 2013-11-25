@@ -362,5 +362,32 @@ namespace DIP_hw1
             }
             
         }
+
+        static public void HistogramEqualization(ref Bitmap image, out Bitmap result, int filterSize)//the image should be a gray level image
+        {
+            result = new Bitmap(image.Width, image.Height);
+            int[] histogram = new int[256];
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    int intensity = image.GetPixel(x, y).R;
+                    histogram[intensity]++;
+                }
+            }
+            for (int i = 1; i < 256; i++)
+            {
+                histogram[i] += histogram[i - 1];
+            }
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    int intensity = histogram[image.GetPixel(x, y).R];
+                    result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
+                }
+            }
+
+        }
     }
 }
