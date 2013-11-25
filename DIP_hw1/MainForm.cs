@@ -50,6 +50,8 @@ namespace DIP_hw1
             ShowResult(ref results, ref resultName, true);
             _cbThresholding.Enabled = true;
             _cbThresholding.Checked = false;
+            _checkBoxSmoothing.Enabled = true;
+            _checkBoxSmoothing.Checked = false;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -246,10 +248,12 @@ namespace DIP_hw1
                     {
                         int wY = y - filterSize / 2 + j;
                         wY = (wY < 0) ? 0 : wY;
+                        wY = (wY >= image.Height) ? image.Height - 1 : wY;
                         for (int i = 0; i < filterSize; i++)
                         {
                             int wX = x - filterSize / 2 + i;
                             wX = (wX < 0) ? 0 : wX;
+                            wX = (wX >= image.Width) ? image.Width - 1 : wX;
                             intensity += image.GetPixel(wX, wY).R;
                         }
                     }
@@ -257,6 +261,32 @@ namespace DIP_hw1
                     result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
                 }
             }
+        }
+
+        private void _checkBoxSmoothing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_checkBoxSmoothing.Checked == false)
+            {
+                _lbResult.SetSelected(0, true);
+                return;
+            }
+
+            Bitmap inputImage = _resultImages[_lbResult.SelectedIndex];
+            Bitmap result;
+            TranslateGrayLevel(ref inputImage, out result);
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Origin Image");
+            resultName.Add("Gray Level Image");
+            resultName.Add("Smoothing image");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(inputImage);
+            results.Add(result);
+            inputImage = result;
+            MeanSmoothing(ref inputImage, out result, 3);//set filter size is 3;
+            results.Add(result);
+
+            ShowResult(ref results, ref resultName, true);
         }
     }
 }

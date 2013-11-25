@@ -41,6 +41,7 @@ namespace DIP_hw1
             this._cbThresholding = new System.Windows.Forms.CheckBox();
             this._tbThresholding = new System.Windows.Forms.TrackBar();
             this._textBoxThresholding = new System.Windows.Forms.TextBox();
+            this._checkBoxSmoothing = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._tbThresholding)).BeginInit();
@@ -152,11 +153,24 @@ namespace DIP_hw1
             this._textBoxThresholding.TextChanged += new System.EventHandler(this._textBoxThresholding_TextChanged);
             this._textBoxThresholding.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBoxThresholding_KeyPress);
             // 
+            // _checkBoxSmoothing
+            // 
+            this._checkBoxSmoothing.AutoSize = true;
+            this._checkBoxSmoothing.Enabled = false;
+            this._checkBoxSmoothing.Location = new System.Drawing.Point(35, 611);
+            this._checkBoxSmoothing.Name = "_checkBoxSmoothing";
+            this._checkBoxSmoothing.Size = new System.Drawing.Size(107, 16);
+            this._checkBoxSmoothing.TabIndex = 9;
+            this._checkBoxSmoothing.Text = "Apply Smoothing";
+            this._checkBoxSmoothing.UseVisualStyleBackColor = true;
+            this._checkBoxSmoothing.CheckedChanged += new System.EventHandler(this._checkBoxSmoothing_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._checkBoxSmoothing);
             this.Controls.Add(this._textBoxThresholding);
             this.Controls.Add(this._tbThresholding);
             this.Controls.Add(this._cbThresholding);
@@ -193,6 +207,7 @@ namespace DIP_hw1
         private CheckBox _cbThresholding;
         private TrackBar _tbThresholding;
         private TextBox _textBoxThresholding;
+        private CheckBox _checkBoxSmoothing;
     }
 }
 
