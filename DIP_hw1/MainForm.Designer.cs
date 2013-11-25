@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 namespace DIP_hw1
 {
+    delegate void RadioButtonSmoothing(ref Bitmap image, out Bitmap result, int filterSize);
     partial class MainForm
     {
         /// <summary>
@@ -41,6 +42,11 @@ namespace DIP_hw1
             this._checkBoxThresholding = new System.Windows.Forms.CheckBox();
             this._trackBarThresholding = new System.Windows.Forms.TrackBar();
             this._textBoxThresholding = new System.Windows.Forms.TextBox();
+            this._checkBoxSmoothing = new System.Windows.Forms.CheckBox();
+            this._radioButtonMeanSmoothing = new System.Windows.Forms.RadioButton();
+            this._radioButtonMedianSmoothing = new System.Windows.Forms.RadioButton();
+            this._textBoxSmoothing = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -152,11 +158,75 @@ namespace DIP_hw1
             this._textBoxThresholding.TextChanged += new System.EventHandler(this._textBoxThresholding_TextChanged);
             this._textBoxThresholding.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBoxThresholding_KeyPress);
             // 
+            // _checkBoxSmoothing
+            // 
+            this._checkBoxSmoothing.AutoSize = true;
+            this._checkBoxSmoothing.Enabled = false;
+            this._checkBoxSmoothing.Location = new System.Drawing.Point(35, 616);
+            this._checkBoxSmoothing.Name = "_checkBoxSmoothing";
+            this._checkBoxSmoothing.Size = new System.Drawing.Size(107, 16);
+            this._checkBoxSmoothing.TabIndex = 9;
+            this._checkBoxSmoothing.Text = "Apply Smoothing";
+            this._checkBoxSmoothing.UseVisualStyleBackColor = true;
+            this._checkBoxSmoothing.CheckedChanged += new System.EventHandler(this._checkBoxSmoothing_CheckedChanged);
+            // 
+            // _radioButtonMeanSmoothing
+            // 
+            this._radioButtonMeanSmoothing.AutoSize = true;
+            this._radioButtonMeanSmoothing.Checked = true;
+            this._radioButtonMeanSmoothing.Enabled = false;
+            this._radioButtonMeanSmoothing.Location = new System.Drawing.Point(159, 616);
+            this._radioButtonMeanSmoothing.Name = "_radioButtonMeanSmoothing";
+            this._radioButtonMeanSmoothing.Size = new System.Drawing.Size(49, 16);
+            this._radioButtonMeanSmoothing.TabIndex = 10;
+            this._radioButtonMeanSmoothing.TabStop = true;
+            this._radioButtonMeanSmoothing.Text = "Mean";
+            this._radioButtonMeanSmoothing.UseVisualStyleBackColor = true;
+            this._radioButtonMeanSmoothing.CheckedChanged += new System.EventHandler(this._radioButtonMeanSmoothing_CheckedChanged);
+            // 
+            // _radioButtonMedianSmoothing
+            // 
+            this._radioButtonMedianSmoothing.AutoSize = true;
+            this._radioButtonMedianSmoothing.Enabled = false;
+            this._radioButtonMedianSmoothing.Location = new System.Drawing.Point(214, 615);
+            this._radioButtonMedianSmoothing.Name = "_radioButtonMedianSmoothing";
+            this._radioButtonMedianSmoothing.Size = new System.Drawing.Size(58, 16);
+            this._radioButtonMedianSmoothing.TabIndex = 11;
+            this._radioButtonMedianSmoothing.TabStop = true;
+            this._radioButtonMedianSmoothing.Text = "Median";
+            this._radioButtonMedianSmoothing.UseVisualStyleBackColor = true;
+            this._radioButtonMedianSmoothing.CheckedChanged += new System.EventHandler(this._radioButtonMedianSmoothing_CheckedChanged);
+            // 
+            // _textBoxSmoothing
+            // 
+            this._textBoxSmoothing.Enabled = false;
+            this._textBoxSmoothing.Location = new System.Drawing.Point(335, 614);
+            this._textBoxSmoothing.Name = "_textBoxSmoothing";
+            this._textBoxSmoothing.Size = new System.Drawing.Size(28, 22);
+            this._textBoxSmoothing.TabIndex = 12;
+            this._textBoxSmoothing.Text = "3";
+            this._textBoxSmoothing.TextChanged += new System.EventHandler(this._textBoxSmoothing_TextChanged);
+            this._textBoxSmoothing.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBoxThresholding_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(278, 617);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 12);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Filter Size";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this._textBoxSmoothing);
+            this.Controls.Add(this._radioButtonMedianSmoothing);
+            this.Controls.Add(this._radioButtonMeanSmoothing);
+            this.Controls.Add(this._checkBoxSmoothing);
             this.Controls.Add(this._textBoxThresholding);
             this.Controls.Add(this._trackBarThresholding);
             this.Controls.Add(this._checkBoxThresholding);
@@ -193,6 +263,12 @@ namespace DIP_hw1
         private CheckBox _checkBoxThresholding;
         private TrackBar _trackBarThresholding;
         private TextBox _textBoxThresholding;
+        private CheckBox _checkBoxSmoothing;
+        private RadioButton _radioButtonMeanSmoothing;
+        private RadioButton _radioButtonMedianSmoothing;
+        private RadioButtonSmoothing _smoothingMethod;
+        private TextBox _textBoxSmoothing;
+        private Label label1;
     }
 }
 

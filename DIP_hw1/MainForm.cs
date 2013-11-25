@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace DIP_hw1
 {
+
     public partial class MainForm : Form
     {
         public MainForm()
@@ -19,6 +20,7 @@ namespace DIP_hw1
             _openFile = new OpenFileDialog();
             _openFile.InitialDirectory = "C:";
             _openFile.Filter = "Bitmap Files (.bmp)|*.bmp|JPEG (.jpg)|*.jpg|PNG (.png)|*.png|All Files|*.*";
+            _smoothingMethod = MeanSmoothing;
         }
 
         private void _bnLoadImage_Click(object sender, EventArgs e)
@@ -50,6 +52,8 @@ namespace DIP_hw1
             ShowResult(ref results, ref resultName, true);
             _checkBoxThresholding.Enabled = true;
             _checkBoxThresholding.Checked = false;
+            _checkBoxSmoothing.Enabled = true;
+            _checkBoxSmoothing.Checked = false;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -227,6 +231,136 @@ namespace DIP_hw1
             {
                 e.Handled = true;
             }
+        }
+
+        static public void MeanSmoothing(ref Bitmap image, out Bitmap result, int filterSize)//the image should be a gray level image
+        {
+            if (filterSize % 2 != 1)
+            {
+                result = new Bitmap(image);
+                return;
+            }
+            result = new Bitmap(image.Width, image.Height);
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    int intensity = 0;
+                    for (int j = 0; j < filterSize; j++)//Use replicate to interpolate the pixel when the filter position is out of the boundary of the source image
+                    {
+                        int wY = y - filterSize / 2 + j;
+                        wY = (wY < 0) ? 0 : wY;
+                        wY = (wY >= image.Height) ? image.Height - 1 : wY;
+                        for (int i = 0; i < filterSize; i++)
+                        {
+                            int wX = x - filterSize / 2 + i;
+                            wX = (wX < 0) ? 0 : wX;
+                            wX = (wX >= image.Width) ? image.Width - 1 : wX;
+                            intensity += image.GetPixel(wX, wY).R;
+                        }
+                    }
+                    intensity /= (filterSize * filterSize);
+                    result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
+                }
+            }
+        }
+
+        private void _checkBoxSmoothing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_checkBoxSmoothing.Checked == false)
+            {
+                _listBoxResult.SetSelected(0, true);
+                _radioButtonMeanSmoothing.Enabled = false;
+                _radioButtonMeanSmoothing.Checked = true;
+                _radioButtonMedianSmoothing.Enabled = false;
+                _textBoxSmoothing.Enabled = false;
+                _textBoxSmoothing.Text = "3";
+                return;
+            }
+            _radioButtonMeanSmoothing.Enabled = true;
+            _radioButtonMedianSmoothing.Enabled = true;
+            _textBoxSmoothing.Enabled = true;
+
+            Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
+            Bitmap result;
+            TranslateGrayLevel(ref inputImage, out result);
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Origin Image");
+            resultName.Add("Gray Level Image");
+            resultName.Add("Smoothing image");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(inputImage);
+            results.Add(result);
+            inputImage = result;
+
+            _smoothingMethod(ref inputImage, out result, (_textBoxSmoothing.Text == "1") ? 3 : Convert.ToInt32(_textBoxSmoothing.Text));//if filter size is 1, replace the value with 3
+            results.Add(result);
+
+            ShowResult(ref results, ref resultName, true);
+        }
+
+        static public void MedianSmoothing(ref Bitmap image, out Bitmap result, int filterSize)//the image should be a gray level image
+        {
+            if (filterSize % 2 != 1)
+            {
+                result = new Bitmap(image);
+                return;
+            }
+            result = new Bitmap(image.Width, image.Height);
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    List<int> intensity = new List<int>();
+                    for (int j = 0; j < filterSize; j++)//Use replicate to interpolate the pixel when the filter position is out of the boundary of the source image
+                    {
+                        int wY = y - filterSize / 2 + j;
+                        wY = (wY < 0) ? 0 : wY;
+                        wY = (wY >= image.Height) ? image.Height - 1 : wY;
+                        for (int i = 0; i < filterSize; i++)
+                        {
+                            int wX = x - filterSize / 2 + i;
+                            wX = (wX < 0) ? 0 : wX;
+                            wX = (wX >= image.Width) ? image.Width - 1 : wX;
+                            intensity.Add((image.GetPixel(wX, wY).R));
+                        }
+                    }
+                    intensity.Sort();
+                    int median = intensity.Count / 2 + 1;
+                    result.SetPixel(x, y, Color.FromArgb(intensity[median], intensity[median], intensity[median]));
+                }
+            }
+        }
+
+        private void _radioButtonMeanSmoothing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_radioButtonMeanSmoothing.Checked == true)
+            {
+                _smoothingMethod = MeanSmoothing;
+                _listBoxResult.SetSelected(0, true);
+                _checkBoxSmoothing_CheckedChanged(sender, e);
+            }
+        }
+
+        private void _radioButtonMedianSmoothing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_radioButtonMedianSmoothing.Checked == true)
+            {
+                _smoothingMethod = MedianSmoothing;
+                _listBoxResult.SetSelected(0, true);
+                _checkBoxSmoothing_CheckedChanged(sender, e);
+            }
+        }
+
+        private void _textBoxSmoothing_TextChanged(object sender, EventArgs e)
+        {
+            if (_textBoxSmoothing.Text != "")
+            {
+                _listBoxResult.SetSelected(0, true);
+                _checkBoxSmoothing_CheckedChanged(sender, e);
+            }
+            
         }
     }
 }
