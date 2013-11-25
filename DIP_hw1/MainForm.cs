@@ -228,5 +228,35 @@ namespace DIP_hw1
                 e.Handled = true;
             }
         }
+
+        static public void MeanSmoothing(ref Bitmap image, out Bitmap result, int filterSize)//the image should be a gray level image
+        {
+            if (filterSize % 2 != 1)
+            {
+                result = new Bitmap(image);
+                return;
+            }
+            result = new Bitmap(image.Width, image.Height);
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    int intensity = 0;
+                    for (int j = 0; j < filterSize; j++)//Use replicate to interpolate the pixel when the filter position is out of the boundary of the source image
+                    {
+                        int wY = y - filterSize / 2 + j;
+                        wY = (wY < 0) ? 0 : wY;
+                        for (int i = 0; i < filterSize; i++)
+                        {
+                            int wX = x - filterSize / 2 + i;
+                            wX = (wX < 0) ? 0 : wX;
+                            intensity += image.GetPixel(wX, wY).R;
+                        }
+                    }
+                    intensity /= (filterSize * filterSize);
+                    result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
+                }
+            }
+        }
     }
 }
