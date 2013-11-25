@@ -25,14 +25,14 @@ namespace DIP_hw1
         {
             if (_openFile.ShowDialog() == DialogResult.OK)
             {
-                int index = _lbInputImage.FindString(_openFile.FileName);
+                int index = _listBoxInput.FindString(_openFile.FileName);
                 if (index == ListBox.NoMatches)
                 {
-                    _lbInputImage.Items.Add(_openFile.FileName);
+                    _listBoxInput.Items.Add(_openFile.FileName);
                     _inputImages.Add(new Bitmap(_openFile.FileName));
-                    index = _lbInputImage.Items.Count - 1;
+                    index = _listBoxInput.Items.Count - 1;
                 }
-                _lbInputImage.SetSelected(index, true);
+                _listBoxInput.SetSelected(index, true);
                 _openFile.FileName = "";
                 _openFile.InitialDirectory = _openFile.FileName.Substring(0, _openFile.FileName.Length - _openFile.SafeFileName.Length);
             }
@@ -40,16 +40,16 @@ namespace DIP_hw1
 
         private void _lbInputImage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _pbInputImage.Image = _inputImages[_lbInputImage.SelectedIndex];
-            Bitmap inputImage = _inputImages[_lbInputImage.SelectedIndex];
+            _pictureBoxInput.Image = _inputImages[_listBoxInput.SelectedIndex];
+            Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
             List<Bitmap> results = new List<Bitmap>();
-            results.Add(new Bitmap(_inputImages[_lbInputImage.SelectedIndex]));
+            results.Add(new Bitmap(_inputImages[_listBoxInput.SelectedIndex]));
 
             List<string> resultName = new List<string>();
             resultName.Add("Temp Result");
             ShowResult(ref results, ref resultName, true);
-            _cbThresholding.Enabled = true;
-            _cbThresholding.Checked = false;
+            _checkBoxThresholding.Enabled = true;
+            _checkBoxThresholding.Checked = false;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -83,7 +83,7 @@ namespace DIP_hw1
                 return;
             }
 
-            Bitmap inputImage = _inputImages[_lbInputImage.SelectedIndex];
+            Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
             List<Bitmap> results;
             RGBExtraction(ref inputImage, out results);
 
@@ -98,23 +98,23 @@ namespace DIP_hw1
         {
             if (isClearAllResult == true)
             {
-                _lbResult.Items.Clear();
+                _listBoxResult.Items.Clear();
                 _resultImages.Clear();
             }
            
             for (int i = 0; i < results.Count; i++)
             {
-                _lbResult.Items.Add(names[i]);
+                _listBoxResult.Items.Add(names[i]);
                 _resultImages.Add(new Bitmap(results[i]));
             }
             
-            _lbResult.SetSelected(_lbResult.Items.Count-1, true);
+            _listBoxResult.SetSelected(_listBoxResult.Items.Count-1, true);
 
         }
 
         private void _lbResult_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _pbResult.Image = _resultImages[_lbResult.SelectedIndex];
+            _pictureBoxResult.Image = _resultImages[_listBoxResult.SelectedIndex];
         }
 
         static public void TranslateGrayLevel(ref Bitmap image, out Bitmap result)
@@ -137,7 +137,7 @@ namespace DIP_hw1
             {
                 return;
             }
-            Bitmap inputImage = _inputImages[_lbInputImage.SelectedIndex];
+            Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
             Bitmap result;
             TranslateGrayLevel(ref inputImage, out result);
 
@@ -163,19 +163,19 @@ namespace DIP_hw1
 
         private void _cbThresholding_CheckedChanged(object sender, EventArgs e)
         {
-            if (_cbThresholding.Checked == false)
+            if (_checkBoxThresholding.Checked == false)
             {
-                _tbThresholding.Enabled = false;
-                _tbThresholding.Value = 0;
+                _trackBarThresholding.Enabled = false;
+                _trackBarThresholding.Value = 0;
                 _textBoxThresholding.Enabled = false;
                 _textBoxThresholding.Text = "0";
-                _lbResult.SetSelected(0, true);
+                _listBoxResult.SetSelected(0, true);
 
                 return;
             }
-            _tbThresholding.Enabled = true;
+            _trackBarThresholding.Enabled = true;
             _textBoxThresholding.Enabled = true;
-            Bitmap inputImage = _resultImages[_lbResult.SelectedIndex];
+            Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
             Bitmap result;
             TranslateGrayLevel(ref inputImage, out result);
 
@@ -186,23 +186,23 @@ namespace DIP_hw1
             results.Add(inputImage);
             results.Add(result);
             ShowResult(ref results, ref resultName, true);
-            _tbThresholding.Value = 100;
+            _trackBarThresholding.Value = 100;
 
         }
 
         private void _tbThresholding_ValueChange(object sender, EventArgs e)
         {
-            if (_cbThresholding.Checked == false)
+            if (_checkBoxThresholding.Checked == false)
             {
                 return;
             }
-            _textBoxThresholding.Text = _tbThresholding.Value.ToString();
+            _textBoxThresholding.Text = _trackBarThresholding.Value.ToString();
             Bitmap inputImage = _resultImages[0];
             Bitmap result;
-            Thresholding(ref inputImage, out result, _tbThresholding.Value);
+            Thresholding(ref inputImage, out result, _trackBarThresholding.Value);
 
             List<string> resultName = new List<string>();
-            resultName.Add("Thresholding Image(" + _tbThresholding.Value.ToString() + ")");
+            resultName.Add("Thresholding Image(" + _trackBarThresholding.Value.ToString() + ")");
             List<Bitmap> results = new List<Bitmap>();
             results.Add(result);
             ShowResult(ref results, ref resultName, false);
@@ -210,7 +210,7 @@ namespace DIP_hw1
 
         private void _textBoxThresholding_TextChanged(object sender, EventArgs e)
         {
-            if (_cbThresholding.Checked == false || _textBoxThresholding.Text == "")
+            if (_checkBoxThresholding.Checked == false || _textBoxThresholding.Text == "")
             {
                 return;
             }
@@ -218,7 +218,7 @@ namespace DIP_hw1
             {
                 _textBoxThresholding.Text = "255";
             }
-            _tbThresholding.Value = Convert.ToInt32(_textBoxThresholding.Text);
+            _trackBarThresholding.Value = Convert.ToInt32(_textBoxThresholding.Text);
         }
 
         private void _textBoxThresholding_KeyPress(object sender, KeyPressEventArgs e)

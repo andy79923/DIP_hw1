@@ -31,115 +31,115 @@ namespace DIP_hw1
         /// </summary>
         private void InitializeComponent()
         {
-            this._bnLoadImage = new System.Windows.Forms.Button();
-            this._pbInputImage = new System.Windows.Forms.PictureBox();
-            this._lbInputImage = new System.Windows.Forms.ListBox();
-            this._bnRGBExtraction = new System.Windows.Forms.Button();
-            this._pbResult = new System.Windows.Forms.PictureBox();
-            this._lbResult = new System.Windows.Forms.ListBox();
-            this._bnGrayLevel = new System.Windows.Forms.Button();
-            this._cbThresholding = new System.Windows.Forms.CheckBox();
-            this._tbThresholding = new System.Windows.Forms.TrackBar();
+            this._buttonLoadImage = new System.Windows.Forms.Button();
+            this._pictureBoxInput = new System.Windows.Forms.PictureBox();
+            this._listBoxInput = new System.Windows.Forms.ListBox();
+            this._buttonRGBExtraction = new System.Windows.Forms.Button();
+            this._pictureBoxResult = new System.Windows.Forms.PictureBox();
+            this._listBoxResult = new System.Windows.Forms.ListBox();
+            this._buttonGrayLevel = new System.Windows.Forms.Button();
+            this._checkBoxThresholding = new System.Windows.Forms.CheckBox();
+            this._trackBarThresholding = new System.Windows.Forms.TrackBar();
             this._textBoxThresholding = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._pbResult)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._tbThresholding)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
             this.SuspendLayout();
             // 
-            // _bnLoadImage
+            // _buttonLoadImage
             // 
-            this._bnLoadImage.Location = new System.Drawing.Point(35, 434);
-            this._bnLoadImage.Name = "_bnLoadImage";
-            this._bnLoadImage.Size = new System.Drawing.Size(75, 23);
-            this._bnLoadImage.TabIndex = 0;
-            this._bnLoadImage.Text = "Load Image";
-            this._bnLoadImage.UseVisualStyleBackColor = true;
-            this._bnLoadImage.Click += new System.EventHandler(this._bnLoadImage_Click);
+            this._buttonLoadImage.Location = new System.Drawing.Point(35, 434);
+            this._buttonLoadImage.Name = "_buttonLoadImage";
+            this._buttonLoadImage.Size = new System.Drawing.Size(75, 23);
+            this._buttonLoadImage.TabIndex = 0;
+            this._buttonLoadImage.Text = "Load Image";
+            this._buttonLoadImage.UseVisualStyleBackColor = true;
+            this._buttonLoadImage.Click += new System.EventHandler(this._bnLoadImage_Click);
             // 
-            // _pbInputImage
+            // _pictureBoxInput
             // 
-            this._pbInputImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._pbInputImage.Location = new System.Drawing.Point(150, 10);
-            this._pbInputImage.Name = "_pbInputImage";
-            this._pbInputImage.Size = new System.Drawing.Size(512, 512);
-            this._pbInputImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this._pbInputImage.TabIndex = 1;
-            this._pbInputImage.TabStop = false;
+            this._pictureBoxInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._pictureBoxInput.Location = new System.Drawing.Point(150, 10);
+            this._pictureBoxInput.Name = "_pictureBoxInput";
+            this._pictureBoxInput.Size = new System.Drawing.Size(512, 512);
+            this._pictureBoxInput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this._pictureBoxInput.TabIndex = 1;
+            this._pictureBoxInput.TabStop = false;
             // 
-            // _lbInputImage
+            // _listBoxInput
             // 
-            this._lbInputImage.FormattingEnabled = true;
-            this._lbInputImage.HorizontalScrollbar = true;
-            this._lbInputImage.ItemHeight = 12;
-            this._lbInputImage.Location = new System.Drawing.Point(10, 10);
-            this._lbInputImage.Name = "_lbInputImage";
-            this._lbInputImage.Size = new System.Drawing.Size(120, 400);
-            this._lbInputImage.TabIndex = 2;
-            this._lbInputImage.SelectedIndexChanged += new System.EventHandler(this._lbInputImage_SelectedIndexChanged);
+            this._listBoxInput.FormattingEnabled = true;
+            this._listBoxInput.HorizontalScrollbar = true;
+            this._listBoxInput.ItemHeight = 12;
+            this._listBoxInput.Location = new System.Drawing.Point(10, 10);
+            this._listBoxInput.Name = "_listBoxInput";
+            this._listBoxInput.Size = new System.Drawing.Size(120, 400);
+            this._listBoxInput.TabIndex = 2;
+            this._listBoxInput.SelectedIndexChanged += new System.EventHandler(this._lbInputImage_SelectedIndexChanged);
             // 
-            // _bnRGBExtraction
+            // _buttonRGBExtraction
             // 
-            this._bnRGBExtraction.Location = new System.Drawing.Point(35, 477);
-            this._bnRGBExtraction.Name = "_bnRGBExtraction";
-            this._bnRGBExtraction.Size = new System.Drawing.Size(95, 23);
-            this._bnRGBExtraction.TabIndex = 3;
-            this._bnRGBExtraction.Text = "RGB Extraction";
-            this._bnRGBExtraction.UseVisualStyleBackColor = true;
-            this._bnRGBExtraction.Click += new System.EventHandler(this._bnRGBExtraction_Click);
+            this._buttonRGBExtraction.Location = new System.Drawing.Point(35, 477);
+            this._buttonRGBExtraction.Name = "_buttonRGBExtraction";
+            this._buttonRGBExtraction.Size = new System.Drawing.Size(95, 23);
+            this._buttonRGBExtraction.TabIndex = 3;
+            this._buttonRGBExtraction.Text = "RGB Extraction";
+            this._buttonRGBExtraction.UseVisualStyleBackColor = true;
+            this._buttonRGBExtraction.Click += new System.EventHandler(this._bnRGBExtraction_Click);
             // 
-            // _pbResult
+            // _pictureBoxResult
             // 
-            this._pbResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._pbResult.Location = new System.Drawing.Point(680, 10);
-            this._pbResult.Name = "_pbResult";
-            this._pbResult.Size = new System.Drawing.Size(512, 512);
-            this._pbResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this._pbResult.TabIndex = 3;
-            this._pbResult.TabStop = false;
+            this._pictureBoxResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._pictureBoxResult.Location = new System.Drawing.Point(680, 10);
+            this._pictureBoxResult.Name = "_pictureBoxResult";
+            this._pictureBoxResult.Size = new System.Drawing.Size(512, 512);
+            this._pictureBoxResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this._pictureBoxResult.TabIndex = 3;
+            this._pictureBoxResult.TabStop = false;
             // 
-            // _lbResult
+            // _listBoxResult
             // 
-            this._lbResult.FormattingEnabled = true;
-            this._lbResult.HorizontalScrollbar = true;
-            this._lbResult.ItemHeight = 12;
-            this._lbResult.Location = new System.Drawing.Point(1212, 10);
-            this._lbResult.Name = "_lbResult";
-            this._lbResult.Size = new System.Drawing.Size(120, 400);
-            this._lbResult.TabIndex = 4;
-            this._lbResult.SelectedIndexChanged += new System.EventHandler(this._lbResult_SelectedIndexChanged);
+            this._listBoxResult.FormattingEnabled = true;
+            this._listBoxResult.HorizontalScrollbar = true;
+            this._listBoxResult.ItemHeight = 12;
+            this._listBoxResult.Location = new System.Drawing.Point(1212, 10);
+            this._listBoxResult.Name = "_listBoxResult";
+            this._listBoxResult.Size = new System.Drawing.Size(120, 400);
+            this._listBoxResult.TabIndex = 4;
+            this._listBoxResult.SelectedIndexChanged += new System.EventHandler(this._lbResult_SelectedIndexChanged);
             // 
-            // _bnGrayLevel
+            // _buttonGrayLevel
             // 
-            this._bnGrayLevel.Location = new System.Drawing.Point(35, 528);
-            this._bnGrayLevel.Name = "_bnGrayLevel";
-            this._bnGrayLevel.Size = new System.Drawing.Size(154, 23);
-            this._bnGrayLevel.TabIndex = 5;
-            this._bnGrayLevel.Text = "Translate to Gray Level Image";
-            this._bnGrayLevel.UseVisualStyleBackColor = true;
-            this._bnGrayLevel.Click += new System.EventHandler(this._bnGrayLevel_Click);
+            this._buttonGrayLevel.Location = new System.Drawing.Point(35, 528);
+            this._buttonGrayLevel.Name = "_buttonGrayLevel";
+            this._buttonGrayLevel.Size = new System.Drawing.Size(154, 23);
+            this._buttonGrayLevel.TabIndex = 5;
+            this._buttonGrayLevel.Text = "Translate to Gray Level Image";
+            this._buttonGrayLevel.UseVisualStyleBackColor = true;
+            this._buttonGrayLevel.Click += new System.EventHandler(this._bnGrayLevel_Click);
             // 
-            // _cbThresholding
+            // _checkBoxThresholding
             // 
-            this._cbThresholding.AutoSize = true;
-            this._cbThresholding.Enabled = false;
-            this._cbThresholding.Location = new System.Drawing.Point(35, 583);
-            this._cbThresholding.Name = "_cbThresholding";
-            this._cbThresholding.Size = new System.Drawing.Size(118, 16);
-            this._cbThresholding.TabIndex = 6;
-            this._cbThresholding.Text = "Apply Thresholding";
-            this._cbThresholding.UseVisualStyleBackColor = true;
-            this._cbThresholding.CheckedChanged += new System.EventHandler(this._cbThresholding_CheckedChanged);
+            this._checkBoxThresholding.AutoSize = true;
+            this._checkBoxThresholding.Enabled = false;
+            this._checkBoxThresholding.Location = new System.Drawing.Point(35, 583);
+            this._checkBoxThresholding.Name = "_checkBoxThresholding";
+            this._checkBoxThresholding.Size = new System.Drawing.Size(118, 16);
+            this._checkBoxThresholding.TabIndex = 6;
+            this._checkBoxThresholding.Text = "Apply Thresholding";
+            this._checkBoxThresholding.UseVisualStyleBackColor = true;
+            this._checkBoxThresholding.CheckedChanged += new System.EventHandler(this._cbThresholding_CheckedChanged);
             // 
-            // _tbThresholding
+            // _trackBarThresholding
             // 
-            this._tbThresholding.Enabled = false;
-            this._tbThresholding.Location = new System.Drawing.Point(150, 583);
-            this._tbThresholding.Maximum = 255;
-            this._tbThresholding.Name = "_tbThresholding";
-            this._tbThresholding.Size = new System.Drawing.Size(104, 45);
-            this._tbThresholding.TabIndex = 7;
-            this._tbThresholding.TickStyle = System.Windows.Forms.TickStyle.None;
-            this._tbThresholding.ValueChanged += new System.EventHandler(this._tbThresholding_ValueChange);
+            this._trackBarThresholding.Enabled = false;
+            this._trackBarThresholding.Location = new System.Drawing.Point(150, 583);
+            this._trackBarThresholding.Maximum = 255;
+            this._trackBarThresholding.Name = "_trackBarThresholding";
+            this._trackBarThresholding.Size = new System.Drawing.Size(104, 45);
+            this._trackBarThresholding.TabIndex = 7;
+            this._trackBarThresholding.TickStyle = System.Windows.Forms.TickStyle.None;
+            this._trackBarThresholding.ValueChanged += new System.EventHandler(this._tbThresholding_ValueChange);
             // 
             // _textBoxThresholding
             // 
@@ -158,21 +158,21 @@ namespace DIP_hw1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
             this.Controls.Add(this._textBoxThresholding);
-            this.Controls.Add(this._tbThresholding);
-            this.Controls.Add(this._cbThresholding);
-            this.Controls.Add(this._bnGrayLevel);
-            this.Controls.Add(this._bnRGBExtraction);
-            this.Controls.Add(this._lbResult);
-            this.Controls.Add(this._pbResult);
-            this.Controls.Add(this._lbInputImage);
-            this.Controls.Add(this._pbInputImage);
-            this.Controls.Add(this._bnLoadImage);
+            this.Controls.Add(this._trackBarThresholding);
+            this.Controls.Add(this._checkBoxThresholding);
+            this.Controls.Add(this._buttonGrayLevel);
+            this.Controls.Add(this._buttonRGBExtraction);
+            this.Controls.Add(this._listBoxResult);
+            this.Controls.Add(this._pictureBoxResult);
+            this.Controls.Add(this._listBoxInput);
+            this.Controls.Add(this._pictureBoxInput);
+            this.Controls.Add(this._buttonLoadImage);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "MainForm";
             this.Text = "Main menu";
-            ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._pbResult)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._tbThresholding)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,15 +183,15 @@ namespace DIP_hw1
         private OpenFileDialog _openFile;
         private List<Bitmap> _inputImages;
         private List<Bitmap> _resultImages;
-        private System.Windows.Forms.Button _bnLoadImage;
-        private System.Windows.Forms.PictureBox _pbInputImage;
-        private System.Windows.Forms.ListBox _lbInputImage;
-        private System.Windows.Forms.Button _bnRGBExtraction;
-        private System.Windows.Forms.PictureBox _pbResult;
-        private System.Windows.Forms.ListBox _lbResult;
-        private System.Windows.Forms.Button _bnGrayLevel;
-        private CheckBox _cbThresholding;
-        private TrackBar _tbThresholding;
+        private System.Windows.Forms.Button _buttonLoadImage;
+        private System.Windows.Forms.PictureBox _pictureBoxInput;
+        private System.Windows.Forms.ListBox _listBoxInput;
+        private System.Windows.Forms.Button _buttonRGBExtraction;
+        private System.Windows.Forms.PictureBox _pictureBoxResult;
+        private System.Windows.Forms.ListBox _listBoxResult;
+        private System.Windows.Forms.Button _buttonGrayLevel;
+        private CheckBox _checkBoxThresholding;
+        private TrackBar _trackBarThresholding;
         private TextBox _textBoxThresholding;
     }
 }
