@@ -50,6 +50,8 @@ namespace DIP_hw1
             List<string> resultName = new List<string>();
             resultName.Add("Temp Result");
             ShowResult(ref results, ref resultName, true);
+            _buttonGrayLevel.Enabled = true;
+            _buttonRGBExtraction.Enabled = true;
             _checkBoxThresholding.Enabled = true;
             _checkBoxThresholding.Checked = false;
             _checkBoxSmoothing.Enabled = true;
@@ -82,11 +84,6 @@ namespace DIP_hw1
 
         private void _bnRGBExtraction_Click(object sender, EventArgs e)
         {
-            if (_inputImages.Count == 0)
-            {
-                return;
-            }
-
             Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
             List<Bitmap> results;
             RGBExtraction(ref inputImage, out results);
@@ -137,10 +134,6 @@ namespace DIP_hw1
 
         private void _bnGrayLevel_Click(object sender, EventArgs e)
         {
-            if (_inputImages.Count == 0)
-            {
-                return;
-            }
             Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
             Bitmap result;
             TranslateGrayLevel(ref inputImage, out result);

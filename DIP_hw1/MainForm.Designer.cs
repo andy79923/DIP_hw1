@@ -85,6 +85,7 @@ namespace DIP_hw1
             // 
             // _buttonRGBExtraction
             // 
+            this._buttonRGBExtraction.Enabled = false;
             this._buttonRGBExtraction.Location = new System.Drawing.Point(35, 477);
             this._buttonRGBExtraction.Name = "_buttonRGBExtraction";
             this._buttonRGBExtraction.Size = new System.Drawing.Size(95, 23);
@@ -116,6 +117,7 @@ namespace DIP_hw1
             // 
             // _buttonGrayLevel
             // 
+            this._buttonGrayLevel.Enabled = false;
             this._buttonGrayLevel.Location = new System.Drawing.Point(35, 528);
             this._buttonGrayLevel.Name = "_buttonGrayLevel";
             this._buttonGrayLevel.Size = new System.Drawing.Size(154, 23);
