@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace DIP_hw1
 {
+
     public partial class MainForm : Form
     {
         public MainForm()
@@ -19,6 +20,7 @@ namespace DIP_hw1
             _openFile = new OpenFileDialog();
             _openFile.InitialDirectory = "C:";
             _openFile.Filter = "Bitmap Files (.bmp)|*.bmp|JPEG (.jpg)|*.jpg|PNG (.png)|*.png|All Files|*.*";
+            _smoothingMethod = MeanSmoothing;
         }
 
         private void _bnLoadImage_Click(object sender, EventArgs e)
@@ -270,6 +272,8 @@ namespace DIP_hw1
                 _lbResult.SetSelected(0, true);
                 return;
             }
+            _radioButtonMeanSmoothing.Enabled = true;
+            _radioButtonMedianSmoothing.Enabled = true;
 
             Bitmap inputImage = _resultImages[_lbResult.SelectedIndex];
             Bitmap result;
@@ -283,7 +287,7 @@ namespace DIP_hw1
             results.Add(inputImage);
             results.Add(result);
             inputImage = result;
-            MeanSmoothing(ref inputImage, out result, 3);//set filter size is 3;
+            _smoothingMethod(ref inputImage, out result, 3);//set filter size is 3;
             results.Add(result);
 
             ShowResult(ref results, ref resultName, true);
@@ -319,6 +323,26 @@ namespace DIP_hw1
                     int median = intensity.Count / 2 + 1;
                     result.SetPixel(x, y, Color.FromArgb(intensity[median], intensity[median], intensity[median]));
                 }
+            }
+        }
+
+        private void _radioButtonMeanSmoothing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_radioButtonMeanSmoothing.Checked == true)
+            {
+                _smoothingMethod = MeanSmoothing;
+                _lbResult.SetSelected(0, true);
+                _checkBoxSmoothing_CheckedChanged(sender, e);
+            }
+        }
+
+        private void _radioButtonMedianSmoothing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_radioButtonMedianSmoothing.Checked == true)
+            {
+                _smoothingMethod = MedianSmoothing;
+                _lbResult.SetSelected(0, true);
+                _checkBoxSmoothing_CheckedChanged(sender, e);
             }
         }
     }

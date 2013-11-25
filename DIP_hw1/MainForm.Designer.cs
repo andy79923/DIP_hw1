@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 namespace DIP_hw1
 {
+    delegate void RadioButtonSmoothing(ref Bitmap image, out Bitmap result, int filterSize);
     partial class MainForm
     {
         /// <summary>
@@ -42,6 +43,8 @@ namespace DIP_hw1
             this._tbThresholding = new System.Windows.Forms.TrackBar();
             this._textBoxThresholding = new System.Windows.Forms.TextBox();
             this._checkBoxSmoothing = new System.Windows.Forms.CheckBox();
+            this._radioButtonMeanSmoothing = new System.Windows.Forms.RadioButton();
+            this._radioButtonMedianSmoothing = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this._pbInputImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._tbThresholding)).BeginInit();
@@ -165,11 +168,40 @@ namespace DIP_hw1
             this._checkBoxSmoothing.UseVisualStyleBackColor = true;
             this._checkBoxSmoothing.CheckedChanged += new System.EventHandler(this._checkBoxSmoothing_CheckedChanged);
             // 
+            // _radioButtonMeanSmoothing
+            // 
+            this._radioButtonMeanSmoothing.AutoSize = true;
+            this._radioButtonMeanSmoothing.Checked = true;
+            this._radioButtonMeanSmoothing.Enabled = false;
+            this._radioButtonMeanSmoothing.Location = new System.Drawing.Point(159, 611);
+            this._radioButtonMeanSmoothing.Name = "_radioButtonMeanSmoothing";
+            this._radioButtonMeanSmoothing.Size = new System.Drawing.Size(49, 16);
+            this._radioButtonMeanSmoothing.TabIndex = 10;
+            this._radioButtonMeanSmoothing.TabStop = true;
+            this._radioButtonMeanSmoothing.Text = "Mean";
+            this._radioButtonMeanSmoothing.UseVisualStyleBackColor = true;
+            this._radioButtonMeanSmoothing.CheckedChanged += new System.EventHandler(this._radioButtonMeanSmoothing_CheckedChanged);
+            // 
+            // _radioButtonMedianSmoothing
+            // 
+            this._radioButtonMedianSmoothing.AutoSize = true;
+            this._radioButtonMedianSmoothing.Enabled = false;
+            this._radioButtonMedianSmoothing.Location = new System.Drawing.Point(214, 610);
+            this._radioButtonMedianSmoothing.Name = "_radioButtonMedianSmoothing";
+            this._radioButtonMedianSmoothing.Size = new System.Drawing.Size(58, 16);
+            this._radioButtonMedianSmoothing.TabIndex = 11;
+            this._radioButtonMedianSmoothing.TabStop = true;
+            this._radioButtonMedianSmoothing.Text = "Median";
+            this._radioButtonMedianSmoothing.UseVisualStyleBackColor = true;
+            this._radioButtonMedianSmoothing.CheckedChanged += new System.EventHandler(this._radioButtonMedianSmoothing_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._radioButtonMedianSmoothing);
+            this.Controls.Add(this._radioButtonMeanSmoothing);
             this.Controls.Add(this._checkBoxSmoothing);
             this.Controls.Add(this._textBoxThresholding);
             this.Controls.Add(this._tbThresholding);
@@ -208,6 +240,9 @@ namespace DIP_hw1
         private TrackBar _tbThresholding;
         private TextBox _textBoxThresholding;
         private CheckBox _checkBoxSmoothing;
+        private RadioButton _radioButtonMeanSmoothing;
+        private RadioButton _radioButtonMedianSmoothing;
+        private RadioButtonSmoothing _smoothingMethod;
     }
 }
 
