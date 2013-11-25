@@ -56,6 +56,7 @@ namespace DIP_hw1
             _checkBoxThresholding.Checked = false;
             _checkBoxSmoothing.Enabled = true;
             _checkBoxSmoothing.Checked = false;
+            _buttonHistogramEqualization.Enabled = true;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -354,6 +355,55 @@ namespace DIP_hw1
                 _checkBoxSmoothing_CheckedChanged(sender, e);
             }
             
+        }
+
+        static public void HistogramEqualization(ref Bitmap image, out Bitmap result)//the image should be a gray level image
+        {
+            result = new Bitmap(image.Width, image.Height);
+            double[] histogram = new double[256];
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    int intensity = image.GetPixel(x, y).R;
+                    histogram[intensity]+=1;
+                }
+            }
+            for (int i = 1; i < 256; i++)
+            {
+                histogram[i] += histogram[i - 1];
+            }
+            double ratio = 255 / histogram[255];
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    int intensity = Convert.ToInt32(Math.Round(histogram[image.GetPixel(x, y).R] * ratio));
+                    result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
+                }
+            }
+
+        }
+
+        private void _buttonHistogramEqualization_Click(object sender, EventArgs e)
+        {
+            Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
+            Bitmap result;
+            TranslateGrayLevel(ref inputImage, out result);
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Origin Image");
+            resultName.Add("Gray Level Image");
+            resultName.Add("Histogram Equalization");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(inputImage);
+            results.Add(result);
+            inputImage = result;
+
+            HistogramEqualization(ref inputImage, out result);
+            results.Add(result);
+
+            ShowResult(ref results, ref resultName, true);
         }
     }
 }
