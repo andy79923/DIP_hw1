@@ -162,6 +162,7 @@ namespace DIP_hw1
 
         private void _cbThresholding_CheckedChanged(object sender, EventArgs e)
         {
+
             if (_checkBoxThresholding.Checked == false)
             {
                 _trackBarThresholding.Enabled = false;
@@ -439,6 +440,7 @@ namespace DIP_hw1
 
         private void _buttonSobel_Click(object sender, EventArgs e)
         {
+            _buttonOverlap.Enabled = true;
             Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
             Bitmap result, vertical, horizontal;
 
@@ -474,6 +476,32 @@ namespace DIP_hw1
             results.Add(result);
 
             ShowResult(ref results, ref resultName, true);
+        }
+
+        private void _buttonOverlap_Click(object sender, EventArgs e)
+        {
+            _buttonOverlap.Enabled = false;
+            Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
+            Bitmap edge = _resultImages[_listBoxResult.SelectedIndex];
+            Bitmap result = new Bitmap(inputImage);
+            for (int y = 0; y < inputImage.Height; y++)
+            {
+                for (int x = 0; x < inputImage.Width; x++)
+                {
+                    if (edge.GetPixel(x, y).R == 255)
+                    {
+                        result.SetPixel(x, y, Color.FromArgb(0, 255, 0));
+                    }
+                }
+            }
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Overlap Image");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(result);
+
+            ShowResult(ref results, ref resultName, false);
+
         }
     }
 }

@@ -50,6 +50,7 @@ namespace DIP_hw1
             this._buttonHistogramEqualization = new System.Windows.Forms.Button();
             this._buttonSobel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._buttonOverlap = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -244,7 +245,7 @@ namespace DIP_hw1
             this._buttonSobel.Text = "Apply Sobel Edge Detection";
             this._buttonSobel.UseVisualStyleBackColor = true;
             this._buttonSobel.Click += new System.EventHandler(this._buttonSobel_Click);
-            //
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this._radioButtonMeanSmoothing);
@@ -256,11 +257,23 @@ namespace DIP_hw1
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Method";
             // 
+            // _buttonOverlap
+            // 
+            this._buttonOverlap.Enabled = false;
+            this._buttonOverlap.Location = new System.Drawing.Point(369, 528);
+            this._buttonOverlap.Name = "_buttonOverlap";
+            this._buttonOverlap.Size = new System.Drawing.Size(184, 23);
+            this._buttonOverlap.TabIndex = 16;
+            this._buttonOverlap.Text = "Overlap Edge On The Origin Image";
+            this._buttonOverlap.UseVisualStyleBackColor = true;
+            this._buttonOverlap.Click += new System.EventHandler(this._buttonOverlap_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._buttonOverlap);
             this.Controls.Add(this._buttonSobel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._buttonHistogramEqualization);
@@ -314,6 +327,7 @@ namespace DIP_hw1
         private Button _buttonHistogramEqualization;
         private Button _buttonSobel;
         private GroupBox groupBox1;
+        private Button _buttonOverlap;
     }
 }
 
