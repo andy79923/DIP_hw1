@@ -57,6 +57,7 @@ namespace DIP_hw1
             _checkBoxSmoothing.Enabled = true;
             _checkBoxSmoothing.Checked = false;
             _buttonHistogramEqualization.Enabled = true;
+            _buttonSobel.Enabled=true;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -426,13 +427,49 @@ namespace DIP_hw1
                             int wX = x - 3 / 2 + i;
                             wX = (wX < 0) ? 0 : wX;
                             wX = (wX >= image.Width) ? image.Width - 1 : wX;
-                            intensity += (image.GetPixel(x, y).R * filter[i, j]);
+                            intensity += (image.GetPixel(wX, wY).R * filter[i, j]);
                         }
                     }
+                    intensity = (intensity > 255) ? 255 : intensity;
+                    intensity = (intensity < 0) ? 0 : intensity;
+                    result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
+                }
+            }
+        }
+
+        private void _buttonSobel_Click(object sender, EventArgs e)
+        {
+            Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
+            Bitmap result, vertical, horizontal;
+
+            TranslateGrayLevel(ref inputImage, out result);
+
+            List<string> resultName = new List<string>();
+            resultName.Add("Origin Image");
+            resultName.Add("Gray Level Image");
+            resultName.Add("Histogram Equalization");
+            List<Bitmap> results = new List<Bitmap>();
+            results.Add(inputImage);
+            results.Add(result);
+            inputImage = result;
+
+            Sobel(ref inputImage, out vertical, false);
+            Sobel(ref inputImage, out horizontal, true);
+            result = new Bitmap(inputImage.Width, inputImage.Height);
+
+            for (int y = 0; y < result.Height; y++)
+            {
+                for (int x = 0; x < result.Width; x++)
+                {
+                    int intensity = vertical.GetPixel(x, y).R + horizontal.GetPixel(x, y).R;
                     intensity = (intensity > 255) ? 255 : intensity;
                     result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
                 }
             }
+
+            results.Add(result);
+
+            ShowResult(ref results, ref resultName, true);
         }
     }
 }

@@ -48,6 +48,7 @@ namespace DIP_hw1
             this._textBoxSmoothing = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._buttonHistogramEqualization = new System.Windows.Forms.Button();
+            this._buttonSobel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -231,11 +232,23 @@ namespace DIP_hw1
             this._buttonHistogramEqualization.UseVisualStyleBackColor = true;
             this._buttonHistogramEqualization.Click += new System.EventHandler(this._buttonHistogramEqualization_Click);
             // 
+            // _buttonSobel
+            // 
+            this._buttonSobel.Enabled = false;
+            this._buttonSobel.Location = new System.Drawing.Point(214, 528);
+            this._buttonSobel.Name = "_buttonSobel";
+            this._buttonSobel.Size = new System.Drawing.Size(149, 23);
+            this._buttonSobel.TabIndex = 15;
+            this._buttonSobel.Text = "Apply Sobel Edge Detection";
+            this._buttonSobel.UseVisualStyleBackColor = true;
+            this._buttonSobel.Click += new System.EventHandler(this._buttonSobel_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._buttonSobel);
             this.Controls.Add(this._buttonHistogramEqualization);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._textBoxSmoothing);
@@ -285,6 +298,7 @@ namespace DIP_hw1
         private TextBox _textBoxSmoothing;
         private Label label1;
         private Button _buttonHistogramEqualization;
+        private Button _buttonSobel;
     }
 }
 
