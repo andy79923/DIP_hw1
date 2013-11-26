@@ -48,9 +48,11 @@ namespace DIP_hw1
             this._textBoxSmoothing = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._buttonHistogramEqualization = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _buttonLoadImage
@@ -165,7 +167,7 @@ namespace DIP_hw1
             // 
             this._checkBoxSmoothing.AutoSize = true;
             this._checkBoxSmoothing.Enabled = false;
-            this._checkBoxSmoothing.Location = new System.Drawing.Point(35, 616);
+            this._checkBoxSmoothing.Location = new System.Drawing.Point(35, 632);
             this._checkBoxSmoothing.Name = "_checkBoxSmoothing";
             this._checkBoxSmoothing.Size = new System.Drawing.Size(107, 16);
             this._checkBoxSmoothing.TabIndex = 9;
@@ -178,7 +180,7 @@ namespace DIP_hw1
             this._radioButtonMeanSmoothing.AutoSize = true;
             this._radioButtonMeanSmoothing.Checked = true;
             this._radioButtonMeanSmoothing.Enabled = false;
-            this._radioButtonMeanSmoothing.Location = new System.Drawing.Point(159, 616);
+            this._radioButtonMeanSmoothing.Location = new System.Drawing.Point(6, 21);
             this._radioButtonMeanSmoothing.Name = "_radioButtonMeanSmoothing";
             this._radioButtonMeanSmoothing.Size = new System.Drawing.Size(49, 16);
             this._radioButtonMeanSmoothing.TabIndex = 10;
@@ -191,7 +193,7 @@ namespace DIP_hw1
             // 
             this._radioButtonMedianSmoothing.AutoSize = true;
             this._radioButtonMedianSmoothing.Enabled = false;
-            this._radioButtonMedianSmoothing.Location = new System.Drawing.Point(214, 615);
+            this._radioButtonMedianSmoothing.Location = new System.Drawing.Point(61, 22);
             this._radioButtonMedianSmoothing.Name = "_radioButtonMedianSmoothing";
             this._radioButtonMedianSmoothing.Size = new System.Drawing.Size(58, 16);
             this._radioButtonMedianSmoothing.TabIndex = 11;
@@ -203,7 +205,7 @@ namespace DIP_hw1
             // _textBoxSmoothing
             // 
             this._textBoxSmoothing.Enabled = false;
-            this._textBoxSmoothing.Location = new System.Drawing.Point(335, 614);
+            this._textBoxSmoothing.Location = new System.Drawing.Point(335, 630);
             this._textBoxSmoothing.Name = "_textBoxSmoothing";
             this._textBoxSmoothing.Size = new System.Drawing.Size(28, 22);
             this._textBoxSmoothing.TabIndex = 12;
@@ -214,7 +216,7 @@ namespace DIP_hw1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(278, 617);
+            this.label1.Location = new System.Drawing.Point(278, 633);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 12);
             this.label1.TabIndex = 13;
@@ -223,7 +225,7 @@ namespace DIP_hw1
             // _buttonHistogramEqualization
             // 
             this._buttonHistogramEqualization.Enabled = false;
-            this._buttonHistogramEqualization.Location = new System.Drawing.Point(35, 650);
+            this._buttonHistogramEqualization.Location = new System.Drawing.Point(35, 671);
             this._buttonHistogramEqualization.Name = "_buttonHistogramEqualization";
             this._buttonHistogramEqualization.Size = new System.Drawing.Size(154, 23);
             this._buttonHistogramEqualization.TabIndex = 14;
@@ -231,16 +233,26 @@ namespace DIP_hw1
             this._buttonHistogramEqualization.UseVisualStyleBackColor = true;
             this._buttonHistogramEqualization.Click += new System.EventHandler(this._buttonHistogramEqualization_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this._radioButtonMeanSmoothing);
+            this.groupBox1.Controls.Add(this._radioButtonMedianSmoothing);
+            this.groupBox1.Location = new System.Drawing.Point(152, 611);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(120, 54);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Method";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._buttonHistogramEqualization);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._textBoxSmoothing);
-            this.Controls.Add(this._radioButtonMedianSmoothing);
-            this.Controls.Add(this._radioButtonMeanSmoothing);
             this.Controls.Add(this._checkBoxSmoothing);
             this.Controls.Add(this._textBoxThresholding);
             this.Controls.Add(this._trackBarThresholding);
@@ -258,6 +270,8 @@ namespace DIP_hw1
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,6 +299,7 @@ namespace DIP_hw1
         private TextBox _textBoxSmoothing;
         private Label label1;
         private Button _buttonHistogramEqualization;
+        private GroupBox groupBox1;
     }
 }
 
