@@ -405,5 +405,34 @@ namespace DIP_hw1
 
             ShowResult(ref results, ref resultName, true);
         }
+
+        static public void Sobel(ref Bitmap image, out Bitmap result, bool x_order)//the image should be a gray level image
+        {
+            result = new Bitmap(image.Width, image.Height);
+            int[,] filter = (x_order == true) ? new int[,] { { -1, 0, 1 }, { -2, 0, 2 }, { -1, 0, 1 } } : new int[,] { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    int intensity = 0;
+                    for (int j = 0; j < 3; j++)//Use replicate to interpolate the pixel when the filter position is out of the boundary of the source image
+                    {
+                        int wY = y - 3 / 2 + j;
+                        wY = (wY < 0) ? 0 : wY;
+                        wY = (wY >= image.Height) ? image.Height - 1 : wY;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            int wX = x - 3 / 2 + i;
+                            wX = (wX < 0) ? 0 : wX;
+                            wX = (wX >= image.Width) ? image.Width - 1 : wX;
+                            intensity += (image.GetPixel(x, y).R * filter[i, j]);
+                        }
+                    }
+                    intensity = (intensity > 255) ? 255 : intensity;
+                    result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
+                }
+            }
+        }
     }
 }
