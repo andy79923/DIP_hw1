@@ -430,8 +430,8 @@ namespace DIP_hw1
                             intensity += (image.GetPixel(wX, wY).R * filter[i, j]);
                         }
                     }
+                    intensity = Math.Abs(intensity);
                     intensity = (intensity > 255) ? 255 : intensity;
-                    intensity = (intensity < 0) ? 0 : intensity;
                     result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
                 }
             }
