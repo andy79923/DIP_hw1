@@ -447,7 +447,9 @@ namespace DIP_hw1
             List<string> resultName = new List<string>();
             resultName.Add("Origin Image");
             resultName.Add("Gray Level Image");
-            resultName.Add("Histogram Equalization");
+            resultName.Add("Vertical Edge");
+            resultName.Add("Horizontal Edge");
+            resultName.Add("Combined Image");
             List<Bitmap> results = new List<Bitmap>();
             results.Add(inputImage);
             results.Add(result);
@@ -467,6 +469,8 @@ namespace DIP_hw1
                 }
             }
 
+            results.Add(vertical);
+            results.Add(horizontal);
             results.Add(result);
 
             ShowResult(ref results, ref resultName, true);
