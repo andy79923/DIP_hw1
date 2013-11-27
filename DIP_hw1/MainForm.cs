@@ -503,5 +503,29 @@ namespace DIP_hw1
             ShowResult(ref results, ref resultName, false);
 
         }
+
+        static public void Stretching(ref Bitmap image, out Bitmap result, double xScale, double yScale)//the image should be a gray level image
+        {
+            result = new Bitmap(Convert.ToInt32(Convert.ToDouble(image.Width)*xScale), Convert.ToInt32(Convert.ToDouble(image.Height)*yScale));
+            double[,] invertibleTransformation = new double[2, 2] { { yScale / (xScale * yScale), 0 }, { 0, xScale / (xScale * yScale) } };
+
+            for (int rY = 0; rY < result.Height; rY++)
+            {
+                for (int rX = 0; rX < result.Width; rX++)
+                {
+                    double x = invertibleTransformation[0, 0] * rX + invertibleTransformation[0, 1] * rY;
+                    double y = invertibleTransformation[1, 0] * rX + invertibleTransformation[1, 1] * rY;
+                    int leftX = (int)x;
+                    int rightX = (leftX + 1 >= image.Width) ? leftX : leftX + 1;
+                    int topY = (int)y;
+                    int bottomY = (topY + 1 >= image.Height) ? topY : topY + 1;
+                    double alpha = x - (double)leftX;
+                    double beta = y - (double)topY;
+                    int intensity = (int)(Math.Round((1 - alpha) * (1 - beta) * (double)image.GetPixel(leftX, topY).R + alpha * (1 - beta) * (double)image.GetPixel(rightX, topY).R
+                                    + (1 - alpha) * beta * (double)image.GetPixel(leftX, bottomY).R + alpha * beta * (double)image.GetPixel(rightX, bottomY).R));
+                    result.SetPixel(rX, rY, Color.FromArgb(intensity, intensity, intensity));
+                }
+            }
+        }
     }
 }
