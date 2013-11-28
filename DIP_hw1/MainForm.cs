@@ -58,6 +58,7 @@ namespace DIP_hw1
             _checkBoxSmoothing.Checked = false;
             _buttonHistogramEqualization.Enabled = true;
             _buttonSobel.Enabled=true;
+            _trackBarStretchingHorizontalScale.Enabled = true;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -548,9 +549,9 @@ namespace DIP_hw1
 
             }
             inputImage = _resultImages[1];
-            Stretching(ref inputImage, out result, (double)_trackBarStretchingX.Value / 100, 1);
+            Stretching(ref inputImage, out result, (double)_trackBarStretchingHorizontalScale.Value / 100, 1);
             
-            resultName.Add("Stretching Image (x = " + ((double)_trackBarStretchingX.Value / 100).ToString() + ", y = 1)");
+            resultName.Add("Stretching Image (x = " + ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString() + ", y = 1)");
             results.Add(result);
 
             ShowResult(ref results, ref resultName, false);

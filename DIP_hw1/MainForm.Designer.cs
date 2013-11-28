@@ -51,13 +51,13 @@ namespace DIP_hw1
             this._buttonSobel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._buttonOverlap = new System.Windows.Forms.Button();
-            this._trackBarStretchingX = new System.Windows.Forms.TrackBar();
+            this._trackBarStretchingHorizontalScale = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingHorizontalScale)).BeginInit();
             this.SuspendLayout();
             // 
             // _buttonLoadImage
@@ -271,17 +271,18 @@ namespace DIP_hw1
             this._buttonOverlap.UseVisualStyleBackColor = true;
             this._buttonOverlap.Click += new System.EventHandler(this._buttonOverlap_Click);
             // 
-            // _trackBarStretchingX
+            // _trackBarStretchingHorizontalScale
             // 
-            this._trackBarStretchingX.Location = new System.Drawing.Point(690, 554);
-            this._trackBarStretchingX.Maximum = 200;
-            this._trackBarStretchingX.Minimum = 1;
-            this._trackBarStretchingX.Name = "_trackBarStretchingX";
-            this._trackBarStretchingX.Size = new System.Drawing.Size(104, 45);
-            this._trackBarStretchingX.TabIndex = 17;
-            this._trackBarStretchingX.TickStyle = System.Windows.Forms.TickStyle.None;
-            this._trackBarStretchingX.Value = 100;
-            this._trackBarStretchingX.ValueChanged += new System.EventHandler(this._trackBarStretching_ValueChange);
+            this._trackBarStretchingHorizontalScale.Enabled = false;
+            this._trackBarStretchingHorizontalScale.Location = new System.Drawing.Point(690, 554);
+            this._trackBarStretchingHorizontalScale.Maximum = 200;
+            this._trackBarStretchingHorizontalScale.Minimum = 1;
+            this._trackBarStretchingHorizontalScale.Name = "_trackBarStretchingHorizontalScale";
+            this._trackBarStretchingHorizontalScale.Size = new System.Drawing.Size(104, 45);
+            this._trackBarStretchingHorizontalScale.TabIndex = 17;
+            this._trackBarStretchingHorizontalScale.TickStyle = System.Windows.Forms.TickStyle.None;
+            this._trackBarStretchingHorizontalScale.Value = 100;
+            this._trackBarStretchingHorizontalScale.ValueChanged += new System.EventHandler(this._trackBarStretching_ValueChange);
             // 
             // label2
             // 
@@ -298,7 +299,7 @@ namespace DIP_hw1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this._trackBarStretchingX);
+            this.Controls.Add(this._trackBarStretchingHorizontalScale);
             this.Controls.Add(this._buttonOverlap);
             this.Controls.Add(this._buttonSobel);
             this.Controls.Add(this.groupBox1);
@@ -324,7 +325,7 @@ namespace DIP_hw1
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingHorizontalScale)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,7 +356,7 @@ namespace DIP_hw1
         private Button _buttonSobel;
         private GroupBox groupBox1;
         private Button _buttonOverlap;
-        private TrackBar _trackBarStretchingX;
+        private TrackBar _trackBarStretchingHorizontalScale;
         private Label label2;
     }
 }
