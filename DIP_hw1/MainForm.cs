@@ -59,6 +59,7 @@ namespace DIP_hw1
             _buttonHistogramEqualization.Enabled = true;
             _buttonSobel.Enabled=true;
             _trackBarStretchingHorizontalScale.Enabled = true;
+            _textBoxStretchingHorizontalScale.Enabled = true;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -554,8 +555,41 @@ namespace DIP_hw1
             resultName.Add("Stretching Image (x = " + ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString() + ", y = 1)");
             results.Add(result);
 
+            _textBoxStretchingHorizontalScale.Text = ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString();
+
             ShowResult(ref results, ref resultName, false);
 
+        }
+
+        private void _textBoxStretchingHorizontalScale_TextChanged(object sender, EventArgs e)
+        {
+            if (_textBoxStretchingHorizontalScale.Text == "" || Convert.ToDouble(_textBoxStretchingHorizontalScale.Text) == 0)
+            {
+                return;
+            }
+            if (Convert.ToDouble(_textBoxStretchingHorizontalScale.Text) > 2)
+            {
+                _textBoxStretchingHorizontalScale.Text = "2.0";
+            }
+            _trackBarStretchingHorizontalScale.Value = (int)(Convert.ToDouble((_textBoxStretchingHorizontalScale.Text)) * 100);
+        }
+
+        private void _textBox_double_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != 8 && _textBoxStretchingHorizontalScale.Text.Length >= 4)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyChar == '.' && _textBoxStretchingHorizontalScale.Text.Length != 1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && (e.KeyChar != 8 && e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

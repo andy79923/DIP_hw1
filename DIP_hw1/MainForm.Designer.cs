@@ -53,6 +53,7 @@ namespace DIP_hw1
             this._buttonOverlap = new System.Windows.Forms.Button();
             this._trackBarStretchingHorizontalScale = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
+            this._textBoxStretchingHorizontalScale = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -293,11 +294,23 @@ namespace DIP_hw1
             this.label2.TabIndex = 18;
             this.label2.Text = "Stretching Value of Horizontal Direction";
             // 
+            // _textBoxStretchingHorizontalScale
+            // 
+            this._textBoxStretchingHorizontalScale.Enabled = false;
+            this._textBoxStretchingHorizontalScale.Location = new System.Drawing.Point(801, 554);
+            this._textBoxStretchingHorizontalScale.Name = "_textBoxStretchingHorizontalScale";
+            this._textBoxStretchingHorizontalScale.Size = new System.Drawing.Size(29, 22);
+            this._textBoxStretchingHorizontalScale.TabIndex = 19;
+            this._textBoxStretchingHorizontalScale.Text = "1.0";
+            this._textBoxStretchingHorizontalScale.TextChanged += new System.EventHandler(this._textBoxStretchingHorizontalScale_TextChanged);
+            this._textBoxStretchingHorizontalScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_double_KeyPress);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._textBoxStretchingHorizontalScale);
             this.Controls.Add(this.label2);
             this.Controls.Add(this._trackBarStretchingHorizontalScale);
             this.Controls.Add(this._buttonOverlap);
@@ -358,6 +371,7 @@ namespace DIP_hw1
         private Button _buttonOverlap;
         private TrackBar _trackBarStretchingHorizontalScale;
         private Label label2;
+        private TextBox _textBoxStretchingHorizontalScale;
     }
 }
 
