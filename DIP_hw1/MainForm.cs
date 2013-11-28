@@ -63,6 +63,7 @@ namespace DIP_hw1
             _trackBarStretchingVerticalScale.Enabled = true;
             _trackBarStretchingVerticalScale.Value = 100;
             _trackBarStretchingHorizontalScale.Value = 100;
+            _textBoxStretchingVerticalScale.Enabled = true;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -559,6 +560,7 @@ namespace DIP_hw1
             results.Add(result);
 
             _textBoxStretchingHorizontalScale.Text = ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString();
+            _textBoxStretchingVerticalScale.Text = ((double)_trackBarStretchingVerticalScale.Value / 100).ToString();
 
             ShowResult(ref results, ref resultName, false);
 
@@ -579,12 +581,13 @@ namespace DIP_hw1
 
         private void _textBox_double_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar != 8 && _textBoxStretchingHorizontalScale.Text.Length >= 4)
+            TextBox text = sender as TextBox;
+            if (e.KeyChar != 8 && (text.Text.Length >= 4))
             {
                 e.Handled = true;
                 return;
             }
-            if (e.KeyChar == '.' && _textBoxStretchingHorizontalScale.Text.Length != 1)
+            if (e.KeyChar == '.' && text.Text.Length != 1)
             {
                 e.Handled = true;
                 return;
@@ -593,6 +596,19 @@ namespace DIP_hw1
             {
                 e.Handled = true;
             }
+        }
+
+        private void _textBoxStretchingVerticalScale_TextChanged(object sender, EventArgs e)
+        {
+            if (_textBoxStretchingVerticalScale.Text == "" || Convert.ToDouble(_textBoxStretchingVerticalScale.Text) == 0)
+            {
+                return;
+            }
+            if (Convert.ToDouble(_textBoxStretchingVerticalScale.Text) > 2)
+            {
+                _textBoxStretchingVerticalScale.Text = "2.0";
+            }
+            _trackBarStretchingVerticalScale.Value = (int)(Convert.ToDouble((_textBoxStretchingVerticalScale.Text)) * 100);
         }
     }
 }

@@ -56,6 +56,7 @@ namespace DIP_hw1
             this._textBoxStretchingHorizontalScale = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this._trackBarStretchingVerticalScale = new System.Windows.Forms.TrackBar();
+            this._textBoxStretchingVerticalScale = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -304,7 +305,7 @@ namespace DIP_hw1
             this._textBoxStretchingHorizontalScale.Name = "_textBoxStretchingHorizontalScale";
             this._textBoxStretchingHorizontalScale.Size = new System.Drawing.Size(29, 22);
             this._textBoxStretchingHorizontalScale.TabIndex = 19;
-            this._textBoxStretchingHorizontalScale.Text = "1.0";
+            this._textBoxStretchingHorizontalScale.Text = "1";
             this._textBoxStretchingHorizontalScale.TextChanged += new System.EventHandler(this._textBoxStretchingHorizontalScale_TextChanged);
             this._textBoxStretchingHorizontalScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_double_KeyPress);
             // 
@@ -330,11 +331,23 @@ namespace DIP_hw1
             this._trackBarStretchingVerticalScale.Value = 100;
             this._trackBarStretchingVerticalScale.ValueChanged += new System.EventHandler(this._trackBarStretching_ValueChange);
             // 
+            // _textBoxStretchingVerticalScale
+            // 
+            this._textBoxStretchingVerticalScale.Enabled = false;
+            this._textBoxStretchingVerticalScale.Location = new System.Drawing.Point(803, 620);
+            this._textBoxStretchingVerticalScale.Name = "_textBoxStretchingVerticalScale";
+            this._textBoxStretchingVerticalScale.Size = new System.Drawing.Size(27, 22);
+            this._textBoxStretchingVerticalScale.TabIndex = 22;
+            this._textBoxStretchingVerticalScale.Text = "1";
+            this._textBoxStretchingVerticalScale.TextChanged += new System.EventHandler(this._textBoxStretchingVerticalScale_TextChanged);
+            this._textBoxStretchingVerticalScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_double_KeyPress);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._textBoxStretchingVerticalScale);
             this.Controls.Add(this._trackBarStretchingVerticalScale);
             this.Controls.Add(this.label3);
             this.Controls.Add(this._textBoxStretchingHorizontalScale);
@@ -402,6 +415,7 @@ namespace DIP_hw1
         private TextBox _textBoxStretchingHorizontalScale;
         private Label label3;
         private TrackBar _trackBarStretchingVerticalScale;
+        private TextBox _textBoxStretchingVerticalScale;
     }
 }
 
