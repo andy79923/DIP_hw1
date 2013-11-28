@@ -54,11 +54,14 @@ namespace DIP_hw1
             this._trackBarStretchingHorizontalScale = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this._textBoxStretchingHorizontalScale = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this._trackBarStretchingVerticalScale = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingHorizontalScale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingVerticalScale)).BeginInit();
             this.SuspendLayout();
             // 
             // _buttonLoadImage
@@ -305,11 +308,35 @@ namespace DIP_hw1
             this._textBoxStretchingHorizontalScale.TextChanged += new System.EventHandler(this._textBoxStretchingHorizontalScale_TextChanged);
             this._textBoxStretchingHorizontalScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_double_KeyPress);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(690, 592);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(180, 12);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Stretching Value of Vertical Direction";
+            // 
+            // _trackBarStretchingVerticalScale
+            // 
+            this._trackBarStretchingVerticalScale.Enabled = false;
+            this._trackBarStretchingVerticalScale.Location = new System.Drawing.Point(692, 620);
+            this._trackBarStretchingVerticalScale.Maximum = 200;
+            this._trackBarStretchingVerticalScale.Minimum = 1;
+            this._trackBarStretchingVerticalScale.Name = "_trackBarStretchingVerticalScale";
+            this._trackBarStretchingVerticalScale.Size = new System.Drawing.Size(104, 45);
+            this._trackBarStretchingVerticalScale.TabIndex = 21;
+            this._trackBarStretchingVerticalScale.TickStyle = System.Windows.Forms.TickStyle.None;
+            this._trackBarStretchingVerticalScale.Value = 100;
+            this._trackBarStretchingVerticalScale.ValueChanged += new System.EventHandler(this._trackBarStretching_ValueChange);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._trackBarStretchingVerticalScale);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this._textBoxStretchingHorizontalScale);
             this.Controls.Add(this.label2);
             this.Controls.Add(this._trackBarStretchingHorizontalScale);
@@ -339,6 +366,7 @@ namespace DIP_hw1
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingHorizontalScale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingVerticalScale)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,6 +400,8 @@ namespace DIP_hw1
         private TrackBar _trackBarStretchingHorizontalScale;
         private Label label2;
         private TextBox _textBoxStretchingHorizontalScale;
+        private Label label3;
+        private TrackBar _trackBarStretchingVerticalScale;
     }
 }
 

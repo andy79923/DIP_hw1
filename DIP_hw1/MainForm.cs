@@ -60,6 +60,9 @@ namespace DIP_hw1
             _buttonSobel.Enabled=true;
             _trackBarStretchingHorizontalScale.Enabled = true;
             _textBoxStretchingHorizontalScale.Enabled = true;
+            _trackBarStretchingVerticalScale.Enabled = true;
+            _trackBarStretchingVerticalScale.Value = 100;
+            _trackBarStretchingHorizontalScale.Value = 100;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -550,9 +553,9 @@ namespace DIP_hw1
 
             }
             inputImage = _resultImages[1];
-            Stretching(ref inputImage, out result, (double)_trackBarStretchingHorizontalScale.Value / 100, 1);
-            
-            resultName.Add("Stretching Image (x = " + ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString() + ", y = 1)");
+            Stretching(ref inputImage, out result, (double)_trackBarStretchingHorizontalScale.Value / 100, (double)_trackBarStretchingVerticalScale.Value / 100);
+
+            resultName.Add("Stretching Image (x = " + ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString() + ", y =" + ((double)_trackBarStretchingVerticalScale.Value / 100).ToString() + ")");
             results.Add(result);
 
             _textBoxStretchingHorizontalScale.Text = ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString();
