@@ -59,6 +59,7 @@ namespace DIP_hw1
             this._textBoxStretchingVerticalScale = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this._trackBarRotation = new System.Windows.Forms.TrackBar();
+            this._textBoxRotation = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -365,11 +366,23 @@ namespace DIP_hw1
             this._trackBarRotation.TickStyle = System.Windows.Forms.TickStyle.None;
             this._trackBarRotation.ValueChanged += new System.EventHandler(this._trackBarRotation_ValueChange);
             // 
+            // _textBoxRotation
+            // 
+            this._textBoxRotation.Enabled = false;
+            this._textBoxRotation.Location = new System.Drawing.Point(1034, 554);
+            this._textBoxRotation.Name = "_textBoxRotation";
+            this._textBoxRotation.Size = new System.Drawing.Size(30, 22);
+            this._textBoxRotation.TabIndex = 25;
+            this._textBoxRotation.Text = "0";
+            this._textBoxRotation.TextChanged += new System.EventHandler(this._textBoxTrtation_TextChanged);
+            this._textBoxRotation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_KeyPress);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._textBoxRotation);
             this.Controls.Add(this._trackBarRotation);
             this.Controls.Add(this.label4);
             this.Controls.Add(this._textBoxStretchingVerticalScale);
@@ -444,6 +457,7 @@ namespace DIP_hw1
         private TextBox _textBoxStretchingVerticalScale;
         private Label label4;
         private TrackBar _trackBarRotation;
+        private TextBox _textBoxRotation;
     }
 }
 

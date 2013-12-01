@@ -66,6 +66,8 @@ namespace DIP_hw1
             _textBoxStretchingVerticalScale.Enabled = true;
             _trackBarRotation.Enabled = true;
             _trackBarRotation.Value = 0;
+            _textBoxRotation.Enabled = true;
+
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -700,7 +702,21 @@ namespace DIP_hw1
             resultName.Add("Rotation Image (" + _trackBarRotation.Value.ToString() + ")");
             results.Add(result);
 
+            _textBoxRotation.Text = _trackBarRotation.Value.ToString();
             ShowResult(ref results, ref resultName, false);
+        }
+
+        private void _textBoxTrtation_TextChanged(object sender, EventArgs e)
+        {
+            if (_textBoxRotation.Text == "")
+            {
+                return;
+            }
+            if (Convert.ToInt32(_textBoxRotation.Text) > 360)
+            {
+                _textBoxRotation.Text = "360";
+            }
+            _trackBarRotation.Value = Convert.ToInt32(_textBoxRotation.Text);
         }
     }
 }
