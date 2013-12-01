@@ -57,12 +57,15 @@ namespace DIP_hw1
             this.label3 = new System.Windows.Forms.Label();
             this._trackBarStretchingVerticalScale = new System.Windows.Forms.TrackBar();
             this._textBoxStretchingVerticalScale = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this._trackBarRotation = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingHorizontalScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingVerticalScale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarRotation)).BeginInit();
             this.SuspendLayout();
             // 
             // _buttonLoadImage
@@ -342,11 +345,33 @@ namespace DIP_hw1
             this._textBoxStretchingVerticalScale.TextChanged += new System.EventHandler(this._textBoxStretchingVerticalScale_TextChanged);
             this._textBoxStretchingVerticalScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_double_KeyPress);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(921, 533);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 12);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Rotational Value";
+            // 
+            // _trackBarRotation
+            // 
+            this._trackBarRotation.Enabled = false;
+            this._trackBarRotation.Location = new System.Drawing.Point(923, 554);
+            this._trackBarRotation.Maximum = 360;
+            this._trackBarRotation.Name = "_trackBarRotation";
+            this._trackBarRotation.Size = new System.Drawing.Size(104, 45);
+            this._trackBarRotation.TabIndex = 24;
+            this._trackBarRotation.TickStyle = System.Windows.Forms.TickStyle.None;
+            this._trackBarRotation.ValueChanged += new System.EventHandler(this._trackBarRotation_ValueChange);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._trackBarRotation);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this._textBoxStretchingVerticalScale);
             this.Controls.Add(this._trackBarStretchingVerticalScale);
             this.Controls.Add(this.label3);
@@ -380,6 +405,7 @@ namespace DIP_hw1
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingHorizontalScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingVerticalScale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarRotation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,6 +442,8 @@ namespace DIP_hw1
         private Label label3;
         private TrackBar _trackBarStretchingVerticalScale;
         private TextBox _textBoxStretchingVerticalScale;
+        private Label label4;
+        private TrackBar _trackBarRotation;
     }
 }
 

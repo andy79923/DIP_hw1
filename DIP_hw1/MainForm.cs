@@ -64,6 +64,8 @@ namespace DIP_hw1
             _trackBarStretchingVerticalScale.Value = 100;
             _trackBarStretchingHorizontalScale.Value = 100;
             _textBoxStretchingVerticalScale.Enabled = true;
+            _trackBarRotation.Enabled = true;
+            _trackBarRotation.Value = 0;
         }
 
         static public void RGBExtraction(ref Bitmap image, out List<Bitmap> results)
@@ -671,6 +673,34 @@ namespace DIP_hw1
                     result.SetPixel(rX, rY, Color.FromArgb(intensity, intensity, intensity));
                 }
             }
+        }
+
+        private void _trackBarRotation_ValueChange(object sender, EventArgs e)
+        {
+            Bitmap inputImage = _resultImages[0];
+            Bitmap result;
+            List<string> resultName = new List<string>();
+            List<Bitmap> results = new List<Bitmap>();
+            if (_listBoxResult.Items.Count < 2 || _listBoxResult.Items[1].ToString() != "Gray Level Image")
+            {
+                TranslateGrayLevel(ref inputImage, out result);
+                results.Add(inputImage);
+                results.Add(result);
+                inputImage = result;
+                resultName.Add("Origin Image");
+                resultName.Add("Gray Level Image");
+                ShowResult(ref results, ref resultName, true);
+                results.Clear();
+                resultName.Clear();
+
+            }
+            inputImage = _resultImages[1];
+            Rotation(ref inputImage, out result, (double)_trackBarRotation.Value * Math.PI / 180.0, new PointF((float)(inputImage.Width - 1) / 2, (float)(inputImage.Height - 1) / 2));
+
+            resultName.Add("Rotation Image (" + _trackBarRotation.Value.ToString() + ")");
+            results.Add(result);
+
+            ShowResult(ref results, ref resultName, false);
         }
     }
 }
