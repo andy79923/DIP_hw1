@@ -610,5 +610,67 @@ namespace DIP_hw1
             }
             _trackBarStretchingVerticalScale.Value = (int)(Convert.ToDouble((_textBoxStretchingVerticalScale.Text)) * 100);
         }
+
+        static public void Rotation(ref Bitmap image, out Bitmap result, double angle, PointF center)//the image should be a gray level image
+        {
+            double[,] transform = new double[2, 2] { { Math.Cos(angle), -Math.Sin(angle) }, { Math.Sin(angle), Math.Cos(angle) } };
+            PointF p1 = new PointF(0, 0);
+            PointF p2 = new PointF(0, image.Height);
+            PointF p3 = new PointF(image.Width, 0);
+            PointF p4 = new PointF(image.Width, image.Height);
+            PointF np1 = new PointF((float)Math.Round(transform[0, 0] * p1.X + transform[0, 1] * p1.Y), (float)Math.Round(transform[1, 0] * p1.X + transform[1, 1] * p1.Y));
+            PointF np2 = new PointF((float)Math.Round(transform[0, 0] * p2.X + transform[0, 1] * p2.Y), (float)Math.Round(transform[1, 0] * p2.X + transform[1, 1] * p2.Y));
+            PointF np3 = new PointF((float)Math.Round(transform[0, 0] * p3.X + transform[0, 1] * p3.Y), (float)Math.Round(transform[1, 0] * p3.X + transform[1, 1] * p3.Y));
+            PointF np4 = new PointF((float)Math.Round(transform[0, 0] * p4.X + transform[0, 1] * p4.Y), (float)Math.Round(transform[1, 0] * p4.X + transform[1, 1] * p4.Y));
+
+            double minX = np1.X, maxX = np1.X, minY = np1.Y, maxY = np1.Y;
+            minX = (np2.X < minX) ? np2.X : minX;
+            minX = (np3.X < minX) ? np3.X : minX;
+            minX = (np4.X < minX) ? np4.X : minX;
+            maxX = (np2.X > maxX) ? np2.X : maxX;
+            maxX = (np3.X > maxX) ? np3.X : maxX;
+            maxX = (np4.X > maxX) ? np4.X : maxX;
+            minY = (np2.Y < minY) ? np2.Y : minY;
+            minY = (np3.Y < minY) ? np3.Y : minY;
+            minY = (np4.Y < minY) ? np4.Y : minY;
+            maxY = (np2.Y > maxY) ? np2.Y : maxY;
+            maxY = (np3.Y > maxY) ? np3.Y : maxY;
+            maxY = (np4.Y > maxY) ? np4.Y : maxY;
+
+
+            result = new Bitmap((int)(maxX - minX), (int)(maxY - minY));
+            PointF resultTranslate = new PointF((float)(result.Width - 1) / 2, (float)(result.Height - 1) / 2);
+            double transformDivision = transform[0, 0] * transform[1, 1] - transform[0, 1] * transform[1, 0];
+            double[,] invertableTransform = new double[2, 2] { { transform[1, 1] / transformDivision, -transform[0, 1] / transformDivision }, { -transform[1, 0] / transformDivision, transform[0, 0] / transformDivision } };
+
+            for (int rY = 0; rY < result.Height; rY++)
+            {
+                for (int rX = 0; rX < result.Width; rX++)
+                {
+                    double x = invertableTransform[0, 0] * ((double)rX - resultTranslate.X) + invertableTransform[0, 1] * ((double)rY - resultTranslate.Y) + center.X;
+                    double y = invertableTransform[1, 0] * ((double)rX - resultTranslate.X) + invertableTransform[1, 1] * ((double)rY - resultTranslate.Y) + center.Y;
+                    
+                    int leftX = (int)x;
+                    int rightX = (leftX + 1 >= image.Width) ? leftX : leftX + 1;
+                    int topY = (int)y;
+                    int bottomY = (topY + 1 >= image.Height) ? topY : topY + 1;
+                    double alpha = x - (double)leftX;
+                    double beta = y - (double)topY;
+                    leftX = (leftX  == -1) ? leftX + 1 : leftX;
+                    rightX = (rightX == image.Width) ? rightX - 1 : rightX;
+                    topY = (topY  == -1) ? topY + 1 : topY;
+                    bottomY = (bottomY == image.Height) ? bottomY - 1 : bottomY;
+                    double leftTopPixel = (leftX < 0 || leftX >= image.Width || topY < 0 || topY >= image.Height) ? 0 : (double)image.GetPixel(leftX, topY).R;
+                    double rightTopPixel = (rightX < 0 || rightX >= image.Width || topY < 0 || topY >= image.Height) ? 0 : (double)image.GetPixel(rightX, topY).R;
+                    double leftBottomPixel = (leftX < 0 || leftX >= image.Width || bottomY < 0 || bottomY >= image.Height) ? 0 : (double)image.GetPixel(leftX, bottomY).R;
+                    double rightBottomPixel = (rightX < 0 || rightX >= image.Width || bottomY < 0 || bottomY >= image.Height) ? 0 : (double)image.GetPixel(rightX, bottomY).R;
+
+                    int intensity = (int)(Math.Round((1 - alpha) * (1 - beta) * leftTopPixel + alpha * (1 - beta) * rightTopPixel + (1 - alpha) * beta * leftBottomPixel + alpha * beta * rightBottomPixel));
+                    intensity = (intensity < 0) ? 0 : intensity;
+                    intensity = (intensity > 255) ? 255 : intensity;
+                    result.SetPixel(rX, rY, Color.FromArgb(intensity, intensity, intensity));
+                }
+            }
+        }
     }
 }
