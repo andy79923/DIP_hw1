@@ -33,10 +33,13 @@ namespace DIP_hw1
                     _listBoxInput.Items.Add(_openFile.FileName);
                     _inputImages.Add(new Bitmap(_openFile.FileName));
                     index = _listBoxInput.Items.Count - 1;
+                    _buttonGrayLevel.Enabled = true;
+                    _buttonRGBExtraction.Enabled = true;
                 }
                 _listBoxInput.SetSelected(index, true);
                 _openFile.FileName = "";
                 _openFile.InitialDirectory = _openFile.FileName.Substring(0, _openFile.FileName.Length - _openFile.SafeFileName.Length);
+                
             }
         }
 
@@ -50,23 +53,40 @@ namespace DIP_hw1
             List<string> resultName = new List<string>();
             resultName.Add("Temp Result");
             ShowResult(ref results, ref resultName, true);
-            _buttonGrayLevel.Enabled = true;
-            _buttonRGBExtraction.Enabled = true;
-            _checkBoxThresholding.Enabled = true;
+            
+            _checkBoxThresholding.Enabled = false;
             _checkBoxThresholding.Checked = false;
+            _trackBarThresholding.Enabled = false;
+            _trackBarThresholding.Value = 0;
+            _textBoxThresholding.Enabled = false;
+            _textBoxThresholding.Text = "0";
+
             _checkBoxSmoothing.Enabled = true;
             _checkBoxSmoothing.Checked = false;
-            _buttonHistogramEqualization.Enabled = true;
-            _buttonSobel.Enabled=true;
+            _radioButtonMeanSmoothing.Enabled = false;
+            _radioButtonMeanSmoothing.Checked = true;
+            _radioButtonMedianSmoothing.Enabled = false;
+            _textBoxSmoothing.Enabled = false;
+            _textBoxSmoothing.Text = "3";
+
+            _buttonHistogramEqualization.Enabled = false;
+            _buttonSobel.Enabled = false;
+            _buttonOverlap.Enabled = false;
+
             _trackBarStretchingHorizontalScale.Enabled = true;
-            _textBoxStretchingHorizontalScale.Enabled = true;
-            _trackBarStretchingVerticalScale.Enabled = true;
-            _trackBarStretchingVerticalScale.Value = 100;
             _trackBarStretchingHorizontalScale.Value = 100;
-            _textBoxStretchingVerticalScale.Enabled = true;
-            _trackBarRotation.Enabled = true;
+            _textBoxStretchingHorizontalScale.Enabled = false;
+            _textBoxStretchingHorizontalScale.Text = "1";
+
+            _trackBarStretchingVerticalScale.Enabled = false;
+            _trackBarStretchingVerticalScale.Value = 100;
+            _textBoxStretchingVerticalScale.Enabled = false;
+            _textBoxStretchingVerticalScale.Text = "1";
+            
+            _trackBarRotation.Enabled = false;
             _trackBarRotation.Value = 0;
-            _textBoxRotation.Enabled = true;
+            _textBoxRotation.Enabled = false;
+            _textBoxRotation.Text = "0";
 
         }
 
