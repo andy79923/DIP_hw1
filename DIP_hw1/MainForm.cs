@@ -45,13 +45,14 @@ namespace DIP_hw1
 
         private void _lbInputImage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _pictureBoxInput.Image = _inputImages[_listBoxInput.SelectedIndex];
             Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
+            _pictureBoxInput.SizeMode = (inputImage.Width > _pictureBoxInput.Width || inputImage.Height > _pictureBoxInput.Height) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
+            _pictureBoxInput.Image = inputImage;
             List<Bitmap> results = new List<Bitmap>();
-            results.Add(new Bitmap(_inputImages[_listBoxInput.SelectedIndex]));
+            results.Add(new Bitmap(inputImage));
 
             List<string> resultName = new List<string>();
-            resultName.Add("Temp Result");
+            resultName.Add("Origin Image");
             ShowResult(ref results, ref resultName, true);
             
             _checkBoxThresholding.Enabled = false;
@@ -123,7 +124,13 @@ namespace DIP_hw1
 
         private void _lbResult_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _pictureBoxResult.Image = _resultImages[_listBoxResult.SelectedIndex];
+            if (_listBoxResult.SelectedIndex > _listBoxResult.Items.Count - 1 || _listBoxResult.SelectedIndex < 0)
+            {
+                return;
+            }
+            Bitmap resultImage = _resultImages[_listBoxResult.SelectedIndex];
+            _pictureBoxResult.SizeMode = (resultImage.Width > _pictureBoxResult.Width || resultImage.Height > _pictureBoxResult.Height) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
+            _pictureBoxResult.Image = resultImage;
         }
 
         private void _bnGrayLevel_Click(object sender, EventArgs e)
