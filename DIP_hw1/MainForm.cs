@@ -514,7 +514,6 @@ namespace DIP_hw1
                 //Enable all the components of rotation
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
-                
             }
 
             _buttonOverlap.Enabled = true;
@@ -546,9 +545,47 @@ namespace DIP_hw1
 
         private void _buttonOverlap_Click(object sender, EventArgs e)
         {
+
+            //Enable all the components of thresholding
+            _checkBoxThresholding.Enabled = false;
+            _checkBoxThresholding.Checked = false;
+            _checkBoxThresholding.Enabled = true;
+
+            //Enable all the components of smoothing
+            _checkBoxSmoothing.Enabled = false;
+            _checkBoxSmoothing.Checked = false;
+            _checkBoxSmoothing.Enabled = true;
+
+            //Disable all the components of stretching
+            _trackBarStretchingHorizontalScale.Enabled = false;
+            _textBoxStretchingHorizontalScale.Enabled = false;
+            _trackBarStretchingVerticalScale.Enabled = false;
+            _textBoxStretchingVerticalScale.Enabled = false;
+            //set all value of components  of stretching default
+            _trackBarStretchingHorizontalScale.Value = 100;
+            _trackBarStretchingVerticalScale.Value = 100;
+            _textBoxStretchingHorizontalScale.Text = "1";
+            _textBoxStretchingVerticalScale.Text = "1";
+            //Enable all the components of stretching
+            _trackBarStretchingHorizontalScale.Enabled = true;
+            _textBoxStretchingHorizontalScale.Enabled = true;
+            _trackBarStretchingVerticalScale.Enabled = true;
+            _textBoxStretchingVerticalScale.Enabled = true;
+
+            //Disable all the components of rotation
+            _trackBarRotation.Enabled = false;
+            _textBoxRotation.Enabled = false;
+            //set all value of components  of rotation default
+            _trackBarRotation.Value = 0;
+            _textBoxRotation.Text = "0";
+            //Enable all the components of rotation
+            _trackBarRotation.Enabled = true;
+            _textBoxRotation.Enabled = true;
+
+
             _buttonOverlap.Enabled = false;
             Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
-            Bitmap edge = _resultImages[_listBoxResult.SelectedIndex];
+            Bitmap edge = _resultImages[_resultImages.Count - 1];
             Bitmap result = new Bitmap(inputImage);
             for (int y = 0; y < inputImage.Height; y++)
             {
@@ -560,14 +597,9 @@ namespace DIP_hw1
                     }
                 }
             }
-
-            List<string> resultName = new List<string>();
-            resultName.Add("Overlap Image");
-            List<Bitmap> results = new List<Bitmap>();
-            results.Add(result);
-
-            ShowResult(ref results, ref resultName, false);
-
+            _listBoxResult.Items.Add("Overlap Image");
+            _resultImages.Add(result);
+            _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
         }
 
         private void _trackBarStretching_ValueChange(object sender, EventArgs e)
