@@ -57,10 +57,6 @@ namespace DIP_hw1
             
             _checkBoxThresholding.Enabled = false;
             _checkBoxThresholding.Checked = false;
-            _trackBarThresholding.Enabled = false;
-            _trackBarThresholding.Value = 0;
-            _textBoxThresholding.Enabled = false;
-            _textBoxThresholding.Text = "0";
 
             _checkBoxSmoothing.Enabled = false;
             _checkBoxSmoothing.Checked = false;
@@ -93,20 +89,12 @@ namespace DIP_hw1
 
         private void _bnRGBExtraction_Click(object sender, EventArgs e)
         {
-            if (_listBoxResult.Items[_listBoxResult.Items.Count-1].ToString() != "Blue Channel Image")
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString() != "Blue Channel Image")
             {
-                //Disable all the components of thresholding
-                _checkBoxThresholding.Enabled = false;
-                _trackBarThresholding.Enabled = false;
-                _textBoxThresholding.Enabled = false;
-                //set all value of components of thresholding default
-                _checkBoxThresholding.Checked = false;
-                _trackBarThresholding.Value = 0;
-                _textBoxThresholding.Text = "0";
                 //Enable all the components of thresholding
+                _checkBoxThresholding.Enabled = false;
+                _checkBoxThresholding.Checked = false;
                 _checkBoxThresholding.Enabled = true;
-                _trackBarThresholding.Enabled = true;
-                _textBoxThresholding.Enabled = true;
 
                 //Disable all the components of smoothing
                 _checkBoxSmoothing.Enabled = false;
@@ -152,7 +140,7 @@ namespace DIP_hw1
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
 
-                Bitmap inputImage = _resultImages[_listBoxResult.Items.Count - 1];
+                Bitmap inputImage = _resultImages[_resultImages.Count - 1];
                 List<Bitmap> results;
                 ImageProcessing.RGBExtraction(ref inputImage, out results);
                 _listBoxResult.Items.Add("Red Channel Image");
@@ -198,18 +186,10 @@ namespace DIP_hw1
         {
             if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString() != "Gray Level Image")
             {
-                //Disable all the components of thresholding
-                _checkBoxThresholding.Enabled = false;
-                _trackBarThresholding.Enabled = false;
-                _textBoxThresholding.Enabled = false;
-                //set all value of components of thresholding default
-                _checkBoxThresholding.Checked = false;
-                _trackBarThresholding.Value = 0;
-                _textBoxThresholding.Text = "0";
                 //Enable all the components of thresholding
+                _checkBoxThresholding.Enabled = false;
+                _checkBoxThresholding.Checked = false;
                 _checkBoxThresholding.Enabled = true;
-                _trackBarThresholding.Enabled = true;
-                _textBoxThresholding.Enabled = true;
 
                 //Disable all the components of smoothing
                 _checkBoxSmoothing.Enabled = false;
@@ -255,66 +235,116 @@ namespace DIP_hw1
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
 
-                Bitmap inputImage = _resultImages[_listBoxResult.Items.Count-1];
+                Bitmap inputImage = _resultImages[_resultImages.Count - 1];
                 Bitmap result;
                 ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
                 _listBoxResult.Items.Add("Gray Level Image");
                 _resultImages.Add(result);
                 _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
-
             }       
         }
 
         private void _cbThresholding_CheckedChanged(object sender, EventArgs e)
         {
-
             if (_checkBoxThresholding.Checked == false)
             {
                 _trackBarThresholding.Enabled = false;
-                _trackBarThresholding.Value = 0;
                 _textBoxThresholding.Enabled = false;
+                _trackBarThresholding.Value = 0;
                 _textBoxThresholding.Text = "0";
-                _listBoxResult.SetSelected(0, true);
-
+                if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Thresholding") != -1 && _checkBoxThresholding.Enabled == true)
+                {
+                    _resultImages.RemoveAt(_resultImages.Count - 1);
+                    _listBoxResult.Items.RemoveAt(_listBoxResult.Items.Count - 1);
+                    _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
+                }
                 return;
             }
-            _trackBarThresholding.Enabled = true;
-            _textBoxThresholding.Enabled = true;
-            Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
-            Bitmap result;
-            ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
 
-            List<string> resultName = new List<string>();
-            resultName.Add("Origin Image");
-            resultName.Add("Gray Level Image");
-            List<Bitmap> results = new List<Bitmap>();
-            results.Add(inputImage);
-            results.Add(result);
-            ShowResult(ref results, ref resultName, true);
-            _trackBarThresholding.Value = 100;
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Thresholding") == -1)
+            {
+                //Disable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _radioButtonMeanSmoothing.Enabled = false;
+                _radioButtonMedianSmoothing.Enabled = false;
+                _textBoxSmoothing.Enabled = false;
+                //set all value of components  of smoothing default
+                _checkBoxSmoothing.Checked = false;
+                _radioButtonMeanSmoothing.Checked = true;
+                _textBoxSmoothing.Text = "3";
+                //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = true;
+                _radioButtonMeanSmoothing.Enabled = true;
+                _radioButtonMedianSmoothing.Enabled = true;
+                _textBoxSmoothing.Enabled = true;
 
+                _buttonHistogramEqualization.Enabled = true;
+                _buttonSobel.Enabled = true;
+
+                //Disable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = false;
+                _textBoxStretchingHorizontalScale.Enabled = false;
+                _trackBarStretchingVerticalScale.Enabled = false;
+                _textBoxStretchingVerticalScale.Enabled = false;
+                //set all value of components  of stretching default
+                _trackBarStretchingHorizontalScale.Value = 100;
+                _trackBarStretchingVerticalScale.Value = 100;
+                _textBoxStretchingHorizontalScale.Text = "1";
+                _textBoxStretchingVerticalScale.Text = "1";
+                //Enable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = true;
+                _textBoxStretchingHorizontalScale.Enabled = true;
+                _trackBarStretchingVerticalScale.Enabled = true;
+                _textBoxStretchingVerticalScale.Enabled = true;
+
+                //Disable all the components of rotation
+                _trackBarRotation.Enabled = false;
+                _textBoxRotation.Enabled = false;
+                //set all value of components  of rotation default
+                _trackBarRotation.Value = 0;
+                _textBoxRotation.Text = "0";
+                //Enable all the components of stretching
+                _trackBarRotation.Enabled = true;
+                _textBoxRotation.Enabled = true;
+
+                //Enable all the components of thresholding
+                _trackBarThresholding.Enabled = true;
+                _textBoxThresholding.Enabled = true;
+                _trackBarThresholding.Value = 100;
+            }
         }
 
         private void _tbThresholding_ValueChange(object sender, EventArgs e)
         {
-            if (_checkBoxThresholding.Checked == false)
+            if (_trackBarThresholding.Enabled == false)
             {
                 return;
             }
-            _textBoxThresholding.Text = _trackBarThresholding.Value.ToString();
-            Bitmap inputImage = _resultImages[0];
+            Bitmap inputImage = _resultImages[_resultImages.Count -2];
             Bitmap result;
+
+
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Thresholding") == -1)
+            {
+                inputImage = _resultImages[_resultImages.Count - 1];
+                _listBoxResult.Items.Add("Thresholding Image(" + _trackBarThresholding.Value.ToString() + ")");
+                _resultImages.Add(new Bitmap(inputImage, Width, inputImage.Height));
+            }
+
             ImageProcessing.Thresholding(ref inputImage, out result, _trackBarThresholding.Value);
 
-            List<string> resultName = new List<string>();
-            resultName.Add("Thresholding Image(" + _trackBarThresholding.Value.ToString() + ")");
-            List<Bitmap> results = new List<Bitmap>();
-            results.Add(result);
-            ShowResult(ref results, ref resultName, false);
+            _listBoxResult.Items[_listBoxResult.Items.Count - 1] = "Thresholding Image(" + _trackBarThresholding.Value.ToString() + ")";
+            _resultImages[_resultImages.Count - 1] = result;
+            _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
+            _textBoxThresholding.Text = _trackBarThresholding.Value.ToString();
         }
 
         private void _textBoxThresholding_TextChanged(object sender, EventArgs e)
         {
+            if (_textBoxThresholding.Enabled == false)
+            {
+                return;
+            }
             if (_checkBoxThresholding.Checked == false || _textBoxThresholding.Text == "")
             {
                 return;
