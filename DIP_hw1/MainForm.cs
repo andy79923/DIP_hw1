@@ -604,39 +604,55 @@ namespace DIP_hw1
 
         private void _trackBarStretching_ValueChange(object sender, EventArgs e)
         {
-            Bitmap inputImage = _resultImages[0];
-            Bitmap result;
-            List<string> resultName = new List<string>();
-            List<Bitmap> results = new List<Bitmap>();
-            if (_listBoxResult.Items.Count < 2 || _listBoxResult.Items[1].ToString() != "Gray Level Image")
+            if (_trackBarStretchingHorizontalScale.Enabled == false || _trackBarStretchingVerticalScale.Enabled == false)
             {
-                ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
-                results.Add(inputImage);
-                results.Add(result);
-                inputImage = result;
-                resultName.Add("Origin Image");
-                resultName.Add("Gray Level Image");
-                ShowResult(ref results, ref resultName, true);
-                results.Clear();
-                resultName.Clear();
-
+                return;
             }
-            inputImage = _resultImages[1];
-            ImageProcessing.Stretching(ref inputImage, out result, (double)_trackBarStretchingHorizontalScale.Value / 100, (double)_trackBarStretchingVerticalScale.Value / 100);
 
-            resultName.Add("Stretching Image (x = " + ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString() + ", y =" + ((double)_trackBarStretchingVerticalScale.Value / 100).ToString() + ")");
-            results.Add(result);
+            Bitmap inputImage = _resultImages[_resultImages.Count - 2];
+            Bitmap result;
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Stretching Image") == -1)
+            {
+                //Enable all the components of thresholding
+                _checkBoxThresholding.Enabled = false;
+                _checkBoxThresholding.Checked = false;
+                _checkBoxThresholding.Enabled = true;
+
+                //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _checkBoxSmoothing.Checked = false;
+                _checkBoxSmoothing.Enabled = true;
+
+                //Disable all the components of rotation
+                _trackBarRotation.Enabled = false;
+                _textBoxRotation.Enabled = false;
+                //set all value of components  of rotation default
+                _trackBarRotation.Value = 0;
+                _textBoxRotation.Text = "0";
+                //Enable all the components of rotation
+                _trackBarRotation.Enabled = true;
+                _textBoxRotation.Enabled = true;
+
+                inputImage = _resultImages[_resultImages.Count - 1];
+                _listBoxResult.Items.Add("Stretching Image (x = " + ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString() + ", y =" + ((double)_trackBarStretchingVerticalScale.Value / 100).ToString() + ")");
+                _resultImages.Add(new Bitmap(inputImage.Width, inputImage.Height));
+            }
+
+            ImageProcessing.Stretching(ref inputImage, out result, (double)_trackBarStretchingHorizontalScale.Value / 100.0, (double)_trackBarStretchingVerticalScale.Value / 100.0);
+
+            _listBoxResult.Items[_listBoxResult.Items.Count - 1] = "Stretching Image (x = " + ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString() + 
+                                                                   ", y =" + ((double)_trackBarStretchingVerticalScale.Value / 100).ToString() + ")";
+
+            _resultImages[_resultImages.Count - 1] = result;
+            _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
 
             _textBoxStretchingHorizontalScale.Text = ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString();
             _textBoxStretchingVerticalScale.Text = ((double)_trackBarStretchingVerticalScale.Value / 100).ToString();
-
-            ShowResult(ref results, ref resultName, false);
-
         }
 
         private void _textBoxStretchingHorizontalScale_TextChanged(object sender, EventArgs e)
         {
-            if (_textBoxStretchingHorizontalScale.Text == "" || Convert.ToDouble(_textBoxStretchingHorizontalScale.Text) == 0)
+            if (_textBoxStretchingHorizontalScale.Enabled == false ||　_textBoxStretchingHorizontalScale.Text == "" || Convert.ToDouble(_textBoxStretchingHorizontalScale.Text) == 0)
             {
                 return;
             }
@@ -668,7 +684,7 @@ namespace DIP_hw1
 
         private void _textBoxStretchingVerticalScale_TextChanged(object sender, EventArgs e)
         {
-            if (_textBoxStretchingVerticalScale.Text == "" || Convert.ToDouble(_textBoxStretchingVerticalScale.Text) == 0)
+            if (_textBoxStretchingVerticalScale.Enabled == false || _textBoxStretchingVerticalScale.Text == "" || Convert.ToDouble(_textBoxStretchingVerticalScale.Text) == 0)
             {
                 return;
             }

@@ -183,7 +183,7 @@ namespace DIP_hw1
 
         static public void Stretching(ref Bitmap image, out Bitmap result, double xScale, double yScale)//the image should be a gray level image
         {
-            result = new Bitmap(Convert.ToInt32(Convert.ToDouble(image.Width) * xScale), Convert.ToInt32(Convert.ToDouble(image.Height) * yScale));
+            result = new Bitmap((int)((double)image.Width * xScale), (int)((double)image.Height * yScale));
             double[,] invertibleTransformation = new double[2, 2] { { yScale / (xScale * yScale), 0 }, { 0, xScale / (xScale * yScale) } };
 
             for (int rY = 0; rY < result.Height; rY++)
