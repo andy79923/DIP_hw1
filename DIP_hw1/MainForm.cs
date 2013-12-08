@@ -126,7 +126,7 @@ namespace DIP_hw1
                 //set all value of components  of rotation default
                 _trackBarRotation.Value = 0;
                 _textBoxRotation.Text = "0";
-                //Enable all the components of stretching
+                //Enable all the components of rotation
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
 
@@ -211,7 +211,7 @@ namespace DIP_hw1
                 //set all value of components  of rotation default
                 _trackBarRotation.Value = 0;
                 _textBoxRotation.Text = "0";
-                //Enable all the components of stretching
+                //Enable all the components of rotation
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
 
@@ -248,9 +248,6 @@ namespace DIP_hw1
                 _checkBoxSmoothing.Checked = false;
                 _checkBoxSmoothing.Enabled = true;
 
-                _buttonHistogramEqualization.Enabled = true;
-                _buttonSobel.Enabled = true;
-
                 //Disable all the components of stretching
                 _trackBarStretchingHorizontalScale.Enabled = false;
                 _textBoxStretchingHorizontalScale.Enabled = false;
@@ -273,7 +270,7 @@ namespace DIP_hw1
                 //set all value of components  of rotation default
                 _trackBarRotation.Value = 0;
                 _textBoxRotation.Text = "0";
-                //Enable all the components of stretching
+                //Enable all the components of rotation
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
 
@@ -358,9 +355,6 @@ namespace DIP_hw1
                 _checkBoxThresholding.Checked = false;
                 _checkBoxThresholding.Enabled = true;
 
-                _buttonHistogramEqualization.Enabled = true;
-                _buttonSobel.Enabled = true;
-
                 //Disable all the components of stretching
                 _trackBarStretchingHorizontalScale.Enabled = false;
                 _textBoxStretchingHorizontalScale.Enabled = false;
@@ -383,7 +377,7 @@ namespace DIP_hw1
                 //set all value of components  of rotation default
                 _trackBarRotation.Value = 0;
                 _textBoxRotation.Text = "0";
-                //Enable all the components of stretching
+                //Enable all the components of rotation
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
 
@@ -446,8 +440,6 @@ namespace DIP_hw1
                 _checkBoxSmoothing.Checked = false;
                 _checkBoxSmoothing.Enabled = true;
 
-                _buttonSobel.Enabled = true;
-
                 //Disable all the components of stretching
                 _trackBarStretchingHorizontalScale.Enabled = false;
                 _textBoxStretchingHorizontalScale.Enabled = false;
@@ -485,27 +477,57 @@ namespace DIP_hw1
 
         private void _buttonSobel_Click(object sender, EventArgs e)
         {
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Sobel Image") == -1)
+            {
+                //Enable all the components of thresholding
+                _checkBoxThresholding.Enabled = false;
+                _checkBoxThresholding.Checked = false;
+                _checkBoxThresholding.Enabled = true;
+
+                //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _checkBoxSmoothing.Checked = false;
+                _checkBoxSmoothing.Enabled = true;
+
+                //Disable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = false;
+                _textBoxStretchingHorizontalScale.Enabled = false;
+                _trackBarStretchingVerticalScale.Enabled = false;
+                _textBoxStretchingVerticalScale.Enabled = false;
+                //set all value of components  of stretching default
+                _trackBarStretchingHorizontalScale.Value = 100;
+                _trackBarStretchingVerticalScale.Value = 100;
+                _textBoxStretchingHorizontalScale.Text = "1";
+                _textBoxStretchingVerticalScale.Text = "1";
+                //Enable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = true;
+                _textBoxStretchingHorizontalScale.Enabled = true;
+                _trackBarStretchingVerticalScale.Enabled = true;
+                _textBoxStretchingVerticalScale.Enabled = true;
+
+                //Disable all the components of rotation
+                _trackBarRotation.Enabled = false;
+                _textBoxRotation.Enabled = false;
+                //set all value of components  of rotation default
+                _trackBarRotation.Value = 0;
+                _textBoxRotation.Text = "0";
+                //Enable all the components of rotation
+                _trackBarRotation.Enabled = true;
+                _textBoxRotation.Enabled = true;
+                
+            }
+
             _buttonOverlap.Enabled = true;
-            Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
+            Bitmap inputImage = _resultImages[_resultImages.Count - 1];
             Bitmap result, vertical, horizontal;
-
-            ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
-
-            List<string> resultName = new List<string>();
-            resultName.Add("Origin Image");
-            resultName.Add("Gray Level Image");
-            resultName.Add("Vertical Edge");
-            resultName.Add("Horizontal Edge");
-            resultName.Add("Combined Image");
-            List<Bitmap> results = new List<Bitmap>();
-            results.Add(inputImage);
-            results.Add(result);
-            inputImage = result;
-
+            ImageProcessing.HistogramEqualization(ref inputImage, out result);
+            _listBoxResult.Items.Add("Sobel Image(Vertical Edge)");
+            _listBoxResult.Items.Add("Sobel Image(Horizontal Edge)");
+            _listBoxResult.Items.Add("Sobel Image(Combined Edge)");
             ImageProcessing.Sobel(ref inputImage, out vertical, false);
             ImageProcessing.Sobel(ref inputImage, out horizontal, true);
-            result = new Bitmap(inputImage.Width, inputImage.Height);
 
+            result = new Bitmap(inputImage.Width, inputImage.Height);
             for (int y = 0; y < result.Height; y++)
             {
                 for (int x = 0; x < result.Width; x++)
@@ -515,12 +537,11 @@ namespace DIP_hw1
                     result.SetPixel(x, y, Color.FromArgb(intensity, intensity, intensity));
                 }
             }
+            _resultImages.Add(vertical);
+            _resultImages.Add(horizontal);
+            _resultImages.Add(result);
 
-            results.Add(vertical);
-            results.Add(horizontal);
-            results.Add(result);
-
-            ShowResult(ref results, ref resultName, true);
+            _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
         }
 
         private void _buttonOverlap_Click(object sender, EventArgs e)
