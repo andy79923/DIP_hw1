@@ -697,36 +697,57 @@ namespace DIP_hw1
 
         private void _trackBarRotation_ValueChange(object sender, EventArgs e)
         {
-            Bitmap inputImage = _resultImages[0];
-            Bitmap result;
-            List<string> resultName = new List<string>();
-            List<Bitmap> results = new List<Bitmap>();
-            if (_listBoxResult.Items.Count < 2 || _listBoxResult.Items[1].ToString() != "Gray Level Image")
+            if (_trackBarRotation.Enabled == false)
             {
-                ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
-                results.Add(inputImage);
-                results.Add(result);
-                inputImage = result;
-                resultName.Add("Origin Image");
-                resultName.Add("Gray Level Image");
-                ShowResult(ref results, ref resultName, true);
-                results.Clear();
-                resultName.Clear();
-
+                return;
             }
-            inputImage = _resultImages[1];
-            ImageProcessing.Rotation(ref inputImage, out result, (double)_trackBarRotation.Value * Math.PI / 180.0, new PointF((float)(inputImage.Width - 1) / 2, (float)(inputImage.Height - 1) / 2));
 
-            resultName.Add("Rotation Image (" + _trackBarRotation.Value.ToString() + ")");
-            results.Add(result);
+            Bitmap inputImage = _resultImages[_resultImages.Count - 2];
+            Bitmap result;
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Rotation Image") == -1)
+            {
+                //Enable all the components of thresholding
+                _checkBoxThresholding.Enabled = false;
+                _checkBoxThresholding.Checked = false;
+                _checkBoxThresholding.Enabled = true;
+
+                //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _checkBoxSmoothing.Checked = false;
+                _checkBoxSmoothing.Enabled = true;
+
+                //Disable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = false;
+                _textBoxStretchingHorizontalScale.Enabled = false;
+                _trackBarStretchingVerticalScale.Enabled = false;
+                _textBoxStretchingVerticalScale.Enabled = false;
+                //set all value of components  of stretching default
+                _trackBarStretchingHorizontalScale.Value = 100;
+                _trackBarStretchingVerticalScale.Value = 100;
+                _textBoxStretchingHorizontalScale.Text = "1";
+                _textBoxStretchingVerticalScale.Text = "1";
+                //Enable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = true;
+                _textBoxStretchingHorizontalScale.Enabled = true;
+                _trackBarStretchingVerticalScale.Enabled = true;
+                _textBoxStretchingVerticalScale.Enabled = true;
+
+                inputImage = _resultImages[_resultImages.Count - 1];
+                _listBoxResult.Items.Add("Rotation Image (" + _trackBarRotation.Value.ToString() + ")");
+                _resultImages.Add(new Bitmap(inputImage.Width, inputImage.Height));
+            }
+
+            ImageProcessing.Rotation(ref inputImage, out result, (double)_trackBarRotation.Value * Math.PI / 180.0, new PointF((float)(inputImage.Width - 1) / 2, (float)(inputImage.Height - 1) / 2));
+            _listBoxResult.Items[_listBoxResult.Items.Count - 1] = "Rotation Image (" + _trackBarRotation.Value.ToString() + ")";
+            _resultImages[_resultImages.Count - 1] = result;
+            _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
 
             _textBoxRotation.Text = _trackBarRotation.Value.ToString();
-            ShowResult(ref results, ref resultName, false);
         }
 
         private void _textBoxTrtation_TextChanged(object sender, EventArgs e)
         {
-            if (_textBoxRotation.Text == "")
+            if (_textBoxRotation.Enabled==false || _textBoxRotation.Text == "")
             {
                 return;
             }
