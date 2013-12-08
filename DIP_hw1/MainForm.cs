@@ -516,7 +516,11 @@ namespace DIP_hw1
                 _textBoxRotation.Enabled = true;
             }
 
-            _buttonOverlap.Enabled = true;
+            if (_resultImages[_resultImages.Count - 1].Size == _inputImages[_listBoxInput.SelectedIndex].Size)
+            {
+                _buttonOverlap.Enabled = true;
+            }
+            
             Bitmap inputImage = _resultImages[_resultImages.Count - 1];
             Bitmap result, vertical, horizontal;
             ImageProcessing.HistogramEqualization(ref inputImage, out result);
