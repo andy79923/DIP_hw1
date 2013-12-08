@@ -103,6 +103,7 @@ namespace DIP_hw1
                 
                 _buttonHistogramEqualization.Enabled = true;
                 _buttonSobel.Enabled = true;
+                _buttonDeleteFinalResult.Enabled = true;
 
                 //Disable all the components of stretching
                 _trackBarStretchingHorizontalScale.Enabled = false;
@@ -188,6 +189,7 @@ namespace DIP_hw1
 
                 _buttonHistogramEqualization.Enabled = true;
                 _buttonSobel.Enabled = true;
+                _buttonDeleteFinalResult.Enabled = true;
 
                 //Disable all the components of stretching
                 _trackBarStretchingHorizontalScale.Enabled = false;
@@ -278,6 +280,8 @@ namespace DIP_hw1
                 _trackBarThresholding.Enabled = true;
                 _textBoxThresholding.Enabled = true;
                 _trackBarThresholding.Value = 100;
+
+                _buttonDeleteFinalResult.Enabled = true;
             }
         }
 
@@ -390,6 +394,7 @@ namespace DIP_hw1
                 _radioButtonMedianSmoothing.Enabled = true;
                 _textBoxSmoothing.Enabled = true;
 
+                _buttonDeleteFinalResult.Enabled = true;
             }
 
             _smoothingMethod(ref inputImage, out result, (_textBoxSmoothing.Text == "1") ? 3 : Convert.ToInt32(_textBoxSmoothing.Text));//if filter size is 1, replace the value with 3
@@ -466,6 +471,8 @@ namespace DIP_hw1
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
 
+                _buttonDeleteFinalResult.Enabled = true;
+
                 Bitmap inputImage = _resultImages[_resultImages.Count - 1];
                 Bitmap result;
                 ImageProcessing.HistogramEqualization(ref inputImage, out result);
@@ -514,6 +521,8 @@ namespace DIP_hw1
                 //Enable all the components of rotation
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
+
+                _buttonDeleteFinalResult.Enabled = true;
             }
 
             if (_resultImages[_resultImages.Count - 1].Size == _inputImages[_listBoxInput.SelectedIndex].Size)
@@ -586,6 +595,8 @@ namespace DIP_hw1
             _trackBarRotation.Enabled = true;
             _textBoxRotation.Enabled = true;
 
+            _buttonDeleteFinalResult.Enabled = true;
+
 
             _buttonOverlap.Enabled = false;
             Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
@@ -636,6 +647,8 @@ namespace DIP_hw1
                 //Enable all the components of rotation
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
+
+                _buttonDeleteFinalResult.Enabled = true;
 
                 inputImage = _resultImages[_resultImages.Count - 1];
                 _listBoxResult.Items.Add("Stretching Image (x = " + ((double)_trackBarStretchingHorizontalScale.Value / 100).ToString() + ", y =" + ((double)_trackBarStretchingVerticalScale.Value / 100).ToString() + ")");
@@ -736,6 +749,8 @@ namespace DIP_hw1
                 _trackBarStretchingVerticalScale.Enabled = true;
                 _textBoxStretchingVerticalScale.Enabled = true;
 
+                _buttonDeleteFinalResult.Enabled = true;
+
                 inputImage = _resultImages[_resultImages.Count - 1];
                 _listBoxResult.Items.Add("Rotation Image (" + _trackBarRotation.Value.ToString() + ")");
                 _resultImages.Add(new Bitmap(inputImage.Width, inputImage.Height));
@@ -760,6 +775,67 @@ namespace DIP_hw1
                 _textBoxRotation.Text = "360";
             }
             _trackBarRotation.Value = Convert.ToInt32(_textBoxRotation.Text);
+        }
+
+        private void _buttonDeleteFinalResult_Click(object sender, EventArgs e)
+        {
+            //Enable all the components of thresholding
+            _checkBoxThresholding.Enabled = false;
+            _checkBoxThresholding.Checked = false;
+            _checkBoxThresholding.Enabled = true;
+
+            //Enable all the components of smoothing
+            _checkBoxSmoothing.Enabled = false;
+            _checkBoxSmoothing.Checked = false;
+            _checkBoxSmoothing.Enabled = true;
+
+            _buttonHistogramEqualization.Enabled = true;
+            _buttonSobel.Enabled = true;
+
+            //Disable all the components of stretching
+            _trackBarStretchingHorizontalScale.Enabled = false;
+            _textBoxStretchingHorizontalScale.Enabled = false;
+            _trackBarStretchingVerticalScale.Enabled = false;
+            _textBoxStretchingVerticalScale.Enabled = false;
+            //set all value of components  of stretching default
+            _trackBarStretchingHorizontalScale.Value = 100;
+            _trackBarStretchingVerticalScale.Value = 100;
+            _textBoxStretchingHorizontalScale.Text = "1";
+            _textBoxStretchingVerticalScale.Text = "1";
+            //Enable all the components of stretching
+            _trackBarStretchingHorizontalScale.Enabled = true;
+            _textBoxStretchingHorizontalScale.Enabled = true;
+            _trackBarStretchingVerticalScale.Enabled = true;
+            _textBoxStretchingVerticalScale.Enabled = true;
+
+            //Disable all the components of rotation
+            _trackBarRotation.Enabled = false;
+            _textBoxRotation.Enabled = false;
+            //set all value of components  of rotation default
+            _trackBarRotation.Value = 0;
+            _textBoxRotation.Text = "0";
+            //Enable all the components of rotation
+            _trackBarRotation.Enabled = true;
+            _textBoxRotation.Enabled = true;
+
+            _listBoxResult.Items.RemoveAt(_listBoxResult.Items.Count - 1);
+            _resultImages.RemoveAt(_resultImages.Count - 1);
+            _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
+            if (_resultImages.Count == 1)
+            {
+                _buttonDeleteFinalResult.Enabled = false;
+                _checkBoxThresholding.Enabled = false;
+                _checkBoxSmoothing.Enabled = false;
+                _buttonHistogramEqualization.Enabled = false;
+                _buttonSobel.Enabled = false;
+                _buttonOverlap.Enabled = false;
+                _trackBarStretchingHorizontalScale.Enabled = false;
+                _textBoxStretchingHorizontalScale.Enabled = false;
+                _trackBarStretchingVerticalScale.Enabled = false;
+                _textBoxStretchingVerticalScale.Enabled = false;
+                _trackBarRotation.Enabled = false;
+                _textBoxRotation.Enabled = false;
+            }
         }
     }
 }

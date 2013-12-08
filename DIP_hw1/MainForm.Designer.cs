@@ -60,6 +60,7 @@ namespace DIP_hw1
             this.label4 = new System.Windows.Forms.Label();
             this._trackBarRotation = new System.Windows.Forms.TrackBar();
             this._textBoxRotation = new System.Windows.Forms.TextBox();
+            this._buttonDeleteFinalResult = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -377,11 +378,23 @@ namespace DIP_hw1
             this._textBoxRotation.TextChanged += new System.EventHandler(this._textBoxTrtation_TextChanged);
             this._textBoxRotation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._textBox_KeyPress);
             // 
+            // _buttonDeleteFinalResult
+            // 
+            this._buttonDeleteFinalResult.Enabled = false;
+            this._buttonDeleteFinalResult.Location = new System.Drawing.Point(1212, 434);
+            this._buttonDeleteFinalResult.Name = "_buttonDeleteFinalResult";
+            this._buttonDeleteFinalResult.Size = new System.Drawing.Size(120, 23);
+            this._buttonDeleteFinalResult.TabIndex = 26;
+            this._buttonDeleteFinalResult.Text = "Delete the Final Result";
+            this._buttonDeleteFinalResult.UseVisualStyleBackColor = true;
+            this._buttonDeleteFinalResult.Click += new System.EventHandler(this._buttonDeleteFinalResult_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 698);
+            this.Controls.Add(this._buttonDeleteFinalResult);
             this.Controls.Add(this._textBoxRotation);
             this.Controls.Add(this._trackBarRotation);
             this.Controls.Add(this.label4);
@@ -458,6 +471,7 @@ namespace DIP_hw1
         private Label label4;
         private TrackBar _trackBarRotation;
         private TextBox _textBoxRotation;
+        private Button _buttonDeleteFinalResult;
     }
 }
 
