@@ -96,20 +96,10 @@ namespace DIP_hw1
                 _checkBoxThresholding.Checked = false;
                 _checkBoxThresholding.Enabled = true;
 
-                //Disable all the components of smoothing
-                _checkBoxSmoothing.Enabled = false;
-                _radioButtonMeanSmoothing.Enabled = false;
-                _radioButtonMedianSmoothing.Enabled = false;
-                _textBoxSmoothing.Enabled = false;
-                //set all value of components  of smoothing default
-                _checkBoxSmoothing.Checked = false;
-                _radioButtonMeanSmoothing.Checked = true;
-                _textBoxSmoothing.Text = "3";
                 //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _checkBoxSmoothing.Checked = false;
                 _checkBoxSmoothing.Enabled = true;
-                _radioButtonMeanSmoothing.Enabled = true;
-                _radioButtonMedianSmoothing.Enabled = true;
-                _textBoxSmoothing.Enabled = true;
                 
                 _buttonHistogramEqualization.Enabled = true;
                 _buttonSobel.Enabled = true;
@@ -191,20 +181,10 @@ namespace DIP_hw1
                 _checkBoxThresholding.Checked = false;
                 _checkBoxThresholding.Enabled = true;
 
-                //Disable all the components of smoothing
-                _checkBoxSmoothing.Enabled = false;
-                _radioButtonMeanSmoothing.Enabled = false;
-                _radioButtonMedianSmoothing.Enabled = false;
-                _textBoxSmoothing.Enabled = false;
-                //set all value of components  of smoothing default
-                _checkBoxSmoothing.Checked = false;
-                _radioButtonMeanSmoothing.Checked = true;
-                _textBoxSmoothing.Text = "3";
                 //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _checkBoxSmoothing.Checked = false;
                 _checkBoxSmoothing.Enabled = true;
-                _radioButtonMeanSmoothing.Enabled = true;
-                _radioButtonMedianSmoothing.Enabled = true;
-                _textBoxSmoothing.Enabled = true;
 
                 _buttonHistogramEqualization.Enabled = true;
                 _buttonSobel.Enabled = true;
@@ -263,20 +243,10 @@ namespace DIP_hw1
 
             if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Thresholding") == -1)
             {
-                //Disable all the components of smoothing
-                _checkBoxSmoothing.Enabled = false;
-                _radioButtonMeanSmoothing.Enabled = false;
-                _radioButtonMedianSmoothing.Enabled = false;
-                _textBoxSmoothing.Enabled = false;
-                //set all value of components  of smoothing default
-                _checkBoxSmoothing.Checked = false;
-                _radioButtonMeanSmoothing.Checked = true;
-                _textBoxSmoothing.Text = "3";
                 //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _checkBoxSmoothing.Checked = false;
                 _checkBoxSmoothing.Enabled = true;
-                _radioButtonMeanSmoothing.Enabled = true;
-                _radioButtonMedianSmoothing.Enabled = true;
-                _textBoxSmoothing.Enabled = true;
 
                 _buttonHistogramEqualization.Enabled = true;
                 _buttonSobel.Enabled = true;
@@ -341,11 +311,7 @@ namespace DIP_hw1
 
         private void _textBoxThresholding_TextChanged(object sender, EventArgs e)
         {
-            if (_textBoxThresholding.Enabled == false)
-            {
-                return;
-            }
-            if (_checkBoxThresholding.Checked == false || _textBoxThresholding.Text == "")
+            if (_textBoxThresholding.Enabled == false || _checkBoxThresholding.Checked == false || _textBoxThresholding.Text == "")
             {
                 return;
             }
@@ -368,65 +334,101 @@ namespace DIP_hw1
         {
             if (_checkBoxSmoothing.Checked == false)
             {
-                _listBoxResult.SetSelected(0, true);
                 _radioButtonMeanSmoothing.Enabled = false;
-                _radioButtonMeanSmoothing.Checked = true;
                 _radioButtonMedianSmoothing.Enabled = false;
                 _textBoxSmoothing.Enabled = false;
+                _radioButtonMeanSmoothing.Checked = true;
                 _textBoxSmoothing.Text = "3";
+                if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Smoothing Image") != -1 && _checkBoxSmoothing.Enabled == true)
+                {
+                    _resultImages.RemoveAt(_resultImages.Count - 1);
+                    _listBoxResult.Items.RemoveAt(_listBoxResult.Items.Count - 1);
+                    _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
+                }
                 return;
             }
-            _radioButtonMeanSmoothing.Enabled = true;
-            _radioButtonMedianSmoothing.Enabled = true;
-            _textBoxSmoothing.Enabled = true;
 
-            Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
+            Bitmap inputImage = _resultImages[_resultImages.Count - 2];
             Bitmap result;
-            ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
 
-            List<string> resultName = new List<string>();
-            resultName.Add("Origin Image");
-            resultName.Add("Gray Level Image");
-            resultName.Add("Smoothing image");
-            List<Bitmap> results = new List<Bitmap>();
-            results.Add(inputImage);
-            results.Add(result);
-            inputImage = result;
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString().IndexOf("Smoothing Image") == -1)
+            {
+                //Enable all the components of thresholding
+                _checkBoxThresholding.Enabled = false;
+                _checkBoxThresholding.Checked = false;
+                _checkBoxThresholding.Enabled = true;
+
+                _buttonHistogramEqualization.Enabled = true;
+                _buttonSobel.Enabled = true;
+
+                //Disable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = false;
+                _textBoxStretchingHorizontalScale.Enabled = false;
+                _trackBarStretchingVerticalScale.Enabled = false;
+                _textBoxStretchingVerticalScale.Enabled = false;
+                //set all value of components  of stretching default
+                _trackBarStretchingHorizontalScale.Value = 100;
+                _trackBarStretchingVerticalScale.Value = 100;
+                _textBoxStretchingHorizontalScale.Text = "1";
+                _textBoxStretchingVerticalScale.Text = "1";
+                //Enable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = true;
+                _textBoxStretchingHorizontalScale.Enabled = true;
+                _trackBarStretchingVerticalScale.Enabled = true;
+                _textBoxStretchingVerticalScale.Enabled = true;
+
+                //Disable all the components of rotation
+                _trackBarRotation.Enabled = false;
+                _textBoxRotation.Enabled = false;
+                //set all value of components  of rotation default
+                _trackBarRotation.Value = 0;
+                _textBoxRotation.Text = "0";
+                //Enable all the components of stretching
+                _trackBarRotation.Enabled = true;
+                _textBoxRotation.Enabled = true;
+
+                inputImage = _resultImages[_resultImages.Count - 1];
+                _listBoxResult.Items.Add("Smoothing Image (Mean)");
+                _resultImages.Add(new Bitmap(inputImage.Width, inputImage.Height));
+
+                //Enable all the components of smoothing
+                _radioButtonMeanSmoothing.Enabled = true;
+                _radioButtonMedianSmoothing.Enabled = true;
+                _textBoxSmoothing.Enabled = true;
+
+            }
 
             _smoothingMethod(ref inputImage, out result, (_textBoxSmoothing.Text == "1") ? 3 : Convert.ToInt32(_textBoxSmoothing.Text));//if filter size is 1, replace the value with 3
-            results.Add(result);
-
-            ShowResult(ref results, ref resultName, true);
+            _resultImages[_resultImages.Count - 1] = result;
+            _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
         }
 
         private void _radioButtonMeanSmoothing_CheckedChanged(object sender, EventArgs e)
         {
-            if (_radioButtonMeanSmoothing.Checked == true)
+            if (_radioButtonMeanSmoothing.Enabled != false && _radioButtonMeanSmoothing.Checked == true)
             {
                 _smoothingMethod = ImageProcessing.MeanSmoothing;
-                _listBoxResult.SetSelected(0, true);
+                _listBoxResult.Items[_listBoxResult.Items.Count - 1] = "Smoothing Image (Mean)";
                 _checkBoxSmoothing_CheckedChanged(sender, e);
             }
         }
 
         private void _radioButtonMedianSmoothing_CheckedChanged(object sender, EventArgs e)
         {
-            if (_radioButtonMedianSmoothing.Checked == true)
+            if (_radioButtonMedianSmoothing.Enabled != false &&_radioButtonMedianSmoothing.Checked == true)
             {
                 _smoothingMethod = ImageProcessing.MedianSmoothing;
-                _listBoxResult.SetSelected(0, true);
+                _listBoxResult.Items[_listBoxResult.Items.Count - 1] = "Smoothing Image (Median)";
                 _checkBoxSmoothing_CheckedChanged(sender, e);
             }
         }
 
         private void _textBoxSmoothing_TextChanged(object sender, EventArgs e)
         {
-            if (_textBoxSmoothing.Text != "")
+            if (_textBoxSmoothing.Enabled != false && _textBoxSmoothing.Text != "")
             {
-                _listBoxResult.SetSelected(0, true);
                 _checkBoxSmoothing_CheckedChanged(sender, e);
             }
-            
         }
 
         private void _buttonHistogramEqualization_Click(object sender, EventArgs e)
