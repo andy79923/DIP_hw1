@@ -125,8 +125,6 @@ namespace DIP_hw1
                 
                 _buttonHistogramEqualization.Enabled = true;
                 _buttonSobel.Enabled = true;
-                _buttonOverlap.Enabled = false;
-
 
                 //Disable all the components of stretching
                 _trackBarStretchingHorizontalScale.Enabled = false;
@@ -154,22 +152,17 @@ namespace DIP_hw1
                 _trackBarRotation.Enabled = true;
                 _textBoxRotation.Enabled = true;
 
+                Bitmap inputImage = _resultImages[_listBoxResult.Items.Count - 1];
+                List<Bitmap> results;
+                ImageProcessing.RGBExtraction(ref inputImage, out results);
                 _listBoxResult.Items.Add("Red Channel Image");
                 _listBoxResult.Items.Add("Green Channel Image");
                 _listBoxResult.Items.Add("Blue Channel Image");
-
-
-                Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
-                List<Bitmap> results;
-                ImageProcessing.RGBExtraction(ref inputImage, out results);
                 _resultImages.Add(results[0]);
                 _resultImages.Add(results[1]);
                 _resultImages.Add(results[2]);
                 _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
             }
-            
-
-            
         }
 
         private void ShowResult(ref List<Bitmap> results, ref List<string> names, bool isClearAllResult)
@@ -203,15 +196,73 @@ namespace DIP_hw1
 
         private void _bnGrayLevel_Click(object sender, EventArgs e)
         {
-            Bitmap inputImage = _inputImages[_listBoxInput.SelectedIndex];
-            Bitmap result;
-            ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString() != "Gray Level Image")
+            {
+                //Disable all the components of thresholding
+                _checkBoxThresholding.Enabled = false;
+                _trackBarThresholding.Enabled = false;
+                _textBoxThresholding.Enabled = false;
+                //set all value of components of thresholding default
+                _checkBoxThresholding.Checked = false;
+                _trackBarThresholding.Value = 0;
+                _textBoxThresholding.Text = "0";
+                //Enable all the components of thresholding
+                _checkBoxThresholding.Enabled = true;
+                _trackBarThresholding.Enabled = true;
+                _textBoxThresholding.Enabled = true;
 
-            List<string> resultName = new List<string>();
-            resultName.Add("Gray Level Image");
-            List<Bitmap> results = new List<Bitmap>();
-            results.Add(result);            
-            ShowResult(ref results, ref resultName, true);
+                //Disable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _radioButtonMeanSmoothing.Enabled = false;
+                _radioButtonMedianSmoothing.Enabled = false;
+                _textBoxSmoothing.Enabled = false;
+                //set all value of components  of smoothing default
+                _checkBoxSmoothing.Checked = false;
+                _radioButtonMeanSmoothing.Checked = true;
+                _textBoxSmoothing.Text = "3";
+                //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = true;
+                _radioButtonMeanSmoothing.Enabled = true;
+                _radioButtonMedianSmoothing.Enabled = true;
+                _textBoxSmoothing.Enabled = true;
+
+                _buttonHistogramEqualization.Enabled = true;
+                _buttonSobel.Enabled = true;
+
+                //Disable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = false;
+                _textBoxStretchingHorizontalScale.Enabled = false;
+                _trackBarStretchingVerticalScale.Enabled = false;
+                _textBoxStretchingVerticalScale.Enabled = false;
+                //set all value of components  of stretching default
+                _trackBarStretchingHorizontalScale.Value = 100;
+                _trackBarStretchingVerticalScale.Value = 100;
+                _textBoxStretchingHorizontalScale.Text = "1";
+                _textBoxStretchingVerticalScale.Text = "1";
+                //Enable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = true;
+                _textBoxStretchingHorizontalScale.Enabled = true;
+                _trackBarStretchingVerticalScale.Enabled = true;
+                _textBoxStretchingVerticalScale.Enabled = true;
+
+                //Disable all the components of rotation
+                _trackBarRotation.Enabled = false;
+                _textBoxRotation.Enabled = false;
+                //set all value of components  of rotation default
+                _trackBarRotation.Value = 0;
+                _textBoxRotation.Text = "0";
+                //Enable all the components of stretching
+                _trackBarRotation.Enabled = true;
+                _textBoxRotation.Enabled = true;
+
+                Bitmap inputImage = _resultImages[_listBoxResult.Items.Count-1];
+                Bitmap result;
+                ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
+                _listBoxResult.Items.Add("Gray Level Image");
+                _resultImages.Add(result);
+                _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
+
+            }       
         }
 
         private void _cbThresholding_CheckedChanged(object sender, EventArgs e)
