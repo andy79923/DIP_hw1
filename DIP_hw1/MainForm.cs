@@ -433,23 +433,54 @@ namespace DIP_hw1
 
         private void _buttonHistogramEqualization_Click(object sender, EventArgs e)
         {
-            Bitmap inputImage = _resultImages[_listBoxResult.SelectedIndex];
-            Bitmap result;
-            ImageProcessing.TranslateGrayLevel(ref inputImage, out result);
 
-            List<string> resultName = new List<string>();
-            resultName.Add("Origin Image");
-            resultName.Add("Gray Level Image");
-            resultName.Add("Histogram Equalization");
-            List<Bitmap> results = new List<Bitmap>();
-            results.Add(inputImage);
-            results.Add(result);
-            inputImage = result;
+            if (_listBoxResult.Items[_listBoxResult.Items.Count - 1].ToString() != "Histogram Equalization")
+            {
+                //Enable all the components of thresholding
+                _checkBoxThresholding.Enabled = false;
+                _checkBoxThresholding.Checked = false;
+                _checkBoxThresholding.Enabled = true;
 
-            ImageProcessing.HistogramEqualization(ref inputImage, out result);
-            results.Add(result);
+                //Enable all the components of smoothing
+                _checkBoxSmoothing.Enabled = false;
+                _checkBoxSmoothing.Checked = false;
+                _checkBoxSmoothing.Enabled = true;
 
-            ShowResult(ref results, ref resultName, true);
+                _buttonSobel.Enabled = true;
+
+                //Disable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = false;
+                _textBoxStretchingHorizontalScale.Enabled = false;
+                _trackBarStretchingVerticalScale.Enabled = false;
+                _textBoxStretchingVerticalScale.Enabled = false;
+                //set all value of components  of stretching default
+                _trackBarStretchingHorizontalScale.Value = 100;
+                _trackBarStretchingVerticalScale.Value = 100;
+                _textBoxStretchingHorizontalScale.Text = "1";
+                _textBoxStretchingVerticalScale.Text = "1";
+                //Enable all the components of stretching
+                _trackBarStretchingHorizontalScale.Enabled = true;
+                _textBoxStretchingHorizontalScale.Enabled = true;
+                _trackBarStretchingVerticalScale.Enabled = true;
+                _textBoxStretchingVerticalScale.Enabled = true;
+
+                //Disable all the components of rotation
+                _trackBarRotation.Enabled = false;
+                _textBoxRotation.Enabled = false;
+                //set all value of components  of rotation default
+                _trackBarRotation.Value = 0;
+                _textBoxRotation.Text = "0";
+                //Enable all the components of stretching
+                _trackBarRotation.Enabled = true;
+                _textBoxRotation.Enabled = true;
+
+                Bitmap inputImage = _resultImages[_resultImages.Count - 1];
+                Bitmap result;
+                ImageProcessing.HistogramEqualization(ref inputImage, out result);
+                _listBoxResult.Items.Add("Histogram Equalization");
+                _resultImages.Add(result);
+                _listBoxResult.SetSelected(_listBoxResult.Items.Count - 1, true);
+            }
         }
 
         private void _buttonSobel_Click(object sender, EventArgs e)
