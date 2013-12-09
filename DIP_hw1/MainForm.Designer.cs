@@ -50,6 +50,7 @@ namespace DIP_hw1
             this._buttonHistogramEqualization = new System.Windows.Forms.Button();
             this._buttonSobel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this._buttonOverlap = new System.Windows.Forms.Button();
             this._trackBarStretchingHorizontalScale = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,6 +62,10 @@ namespace DIP_hw1
             this._trackBarRotation = new System.Windows.Forms.TrackBar();
             this._textBoxRotation = new System.Windows.Forms.TextBox();
             this._buttonDeleteFinalResult = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -68,11 +73,17 @@ namespace DIP_hw1
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingHorizontalScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingVerticalScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarRotation)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _buttonLoadImage
             // 
-            this._buttonLoadImage.Location = new System.Drawing.Point(35, 434);
+            this._buttonLoadImage.Location = new System.Drawing.Point(33, 416);
             this._buttonLoadImage.Name = "_buttonLoadImage";
             this._buttonLoadImage.Size = new System.Drawing.Size(75, 23);
             this._buttonLoadImage.TabIndex = 0;
@@ -83,7 +94,7 @@ namespace DIP_hw1
             // _pictureBoxInput
             // 
             this._pictureBoxInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._pictureBoxInput.Location = new System.Drawing.Point(150, 10);
+            this._pictureBoxInput.Location = new System.Drawing.Point(140, 10);
             this._pictureBoxInput.Name = "_pictureBoxInput";
             this._pictureBoxInput.Size = new System.Drawing.Size(512, 512);
             this._pictureBoxInput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -104,7 +115,7 @@ namespace DIP_hw1
             // _buttonRGBExtraction
             // 
             this._buttonRGBExtraction.Enabled = false;
-            this._buttonRGBExtraction.Location = new System.Drawing.Point(35, 477);
+            this._buttonRGBExtraction.Location = new System.Drawing.Point(13, 13);
             this._buttonRGBExtraction.Name = "_buttonRGBExtraction";
             this._buttonRGBExtraction.Size = new System.Drawing.Size(95, 23);
             this._buttonRGBExtraction.TabIndex = 3;
@@ -115,7 +126,7 @@ namespace DIP_hw1
             // _pictureBoxResult
             // 
             this._pictureBoxResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._pictureBoxResult.Location = new System.Drawing.Point(680, 10);
+            this._pictureBoxResult.Location = new System.Drawing.Point(662, 10);
             this._pictureBoxResult.Name = "_pictureBoxResult";
             this._pictureBoxResult.Size = new System.Drawing.Size(512, 512);
             this._pictureBoxResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -127,16 +138,16 @@ namespace DIP_hw1
             this._listBoxResult.FormattingEnabled = true;
             this._listBoxResult.HorizontalScrollbar = true;
             this._listBoxResult.ItemHeight = 12;
-            this._listBoxResult.Location = new System.Drawing.Point(1212, 10);
+            this._listBoxResult.Location = new System.Drawing.Point(1184, 10);
             this._listBoxResult.Name = "_listBoxResult";
-            this._listBoxResult.Size = new System.Drawing.Size(120, 400);
+            this._listBoxResult.Size = new System.Drawing.Size(140, 400);
             this._listBoxResult.TabIndex = 4;
             this._listBoxResult.SelectedIndexChanged += new System.EventHandler(this._lbResult_SelectedIndexChanged);
             // 
             // _buttonGrayLevel
             // 
             this._buttonGrayLevel.Enabled = false;
-            this._buttonGrayLevel.Location = new System.Drawing.Point(35, 528);
+            this._buttonGrayLevel.Location = new System.Drawing.Point(13, 42);
             this._buttonGrayLevel.Name = "_buttonGrayLevel";
             this._buttonGrayLevel.Size = new System.Drawing.Size(154, 23);
             this._buttonGrayLevel.TabIndex = 5;
@@ -148,7 +159,7 @@ namespace DIP_hw1
             // 
             this._checkBoxThresholding.AutoSize = true;
             this._checkBoxThresholding.Enabled = false;
-            this._checkBoxThresholding.Location = new System.Drawing.Point(35, 583);
+            this._checkBoxThresholding.Location = new System.Drawing.Point(6, 18);
             this._checkBoxThresholding.Name = "_checkBoxThresholding";
             this._checkBoxThresholding.Size = new System.Drawing.Size(118, 16);
             this._checkBoxThresholding.TabIndex = 6;
@@ -159,7 +170,7 @@ namespace DIP_hw1
             // _trackBarThresholding
             // 
             this._trackBarThresholding.Enabled = false;
-            this._trackBarThresholding.Location = new System.Drawing.Point(150, 583);
+            this._trackBarThresholding.Location = new System.Drawing.Point(6, 42);
             this._trackBarThresholding.Maximum = 255;
             this._trackBarThresholding.Name = "_trackBarThresholding";
             this._trackBarThresholding.Size = new System.Drawing.Size(104, 45);
@@ -170,7 +181,7 @@ namespace DIP_hw1
             // _textBoxThresholding
             // 
             this._textBoxThresholding.Enabled = false;
-            this._textBoxThresholding.Location = new System.Drawing.Point(261, 583);
+            this._textBoxThresholding.Location = new System.Drawing.Point(116, 42);
             this._textBoxThresholding.Name = "_textBoxThresholding";
             this._textBoxThresholding.Size = new System.Drawing.Size(30, 22);
             this._textBoxThresholding.TabIndex = 8;
@@ -182,7 +193,7 @@ namespace DIP_hw1
             // 
             this._checkBoxSmoothing.AutoSize = true;
             this._checkBoxSmoothing.Enabled = false;
-            this._checkBoxSmoothing.Location = new System.Drawing.Point(35, 632);
+            this._checkBoxSmoothing.Location = new System.Drawing.Point(6, 18);
             this._checkBoxSmoothing.Name = "_checkBoxSmoothing";
             this._checkBoxSmoothing.Size = new System.Drawing.Size(107, 16);
             this._checkBoxSmoothing.TabIndex = 9;
@@ -195,7 +206,7 @@ namespace DIP_hw1
             this._radioButtonMeanSmoothing.AutoSize = true;
             this._radioButtonMeanSmoothing.Checked = true;
             this._radioButtonMeanSmoothing.Enabled = false;
-            this._radioButtonMeanSmoothing.Location = new System.Drawing.Point(6, 21);
+            this._radioButtonMeanSmoothing.Location = new System.Drawing.Point(51, 40);
             this._radioButtonMeanSmoothing.Name = "_radioButtonMeanSmoothing";
             this._radioButtonMeanSmoothing.Size = new System.Drawing.Size(49, 16);
             this._radioButtonMeanSmoothing.TabIndex = 10;
@@ -208,7 +219,7 @@ namespace DIP_hw1
             // 
             this._radioButtonMedianSmoothing.AutoSize = true;
             this._radioButtonMedianSmoothing.Enabled = false;
-            this._radioButtonMedianSmoothing.Location = new System.Drawing.Point(61, 22);
+            this._radioButtonMedianSmoothing.Location = new System.Drawing.Point(106, 40);
             this._radioButtonMedianSmoothing.Name = "_radioButtonMedianSmoothing";
             this._radioButtonMedianSmoothing.Size = new System.Drawing.Size(58, 16);
             this._radioButtonMedianSmoothing.TabIndex = 11;
@@ -220,7 +231,7 @@ namespace DIP_hw1
             // _textBoxSmoothing
             // 
             this._textBoxSmoothing.Enabled = false;
-            this._textBoxSmoothing.Location = new System.Drawing.Point(335, 630);
+            this._textBoxSmoothing.Location = new System.Drawing.Point(63, 62);
             this._textBoxSmoothing.Name = "_textBoxSmoothing";
             this._textBoxSmoothing.Size = new System.Drawing.Size(28, 22);
             this._textBoxSmoothing.TabIndex = 12;
@@ -231,7 +242,7 @@ namespace DIP_hw1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(278, 633);
+            this.label1.Location = new System.Drawing.Point(6, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 12);
             this.label1.TabIndex = 13;
@@ -240,7 +251,7 @@ namespace DIP_hw1
             // _buttonHistogramEqualization
             // 
             this._buttonHistogramEqualization.Enabled = false;
-            this._buttonHistogramEqualization.Location = new System.Drawing.Point(35, 671);
+            this._buttonHistogramEqualization.Location = new System.Drawing.Point(13, 73);
             this._buttonHistogramEqualization.Name = "_buttonHistogramEqualization";
             this._buttonHistogramEqualization.Size = new System.Drawing.Size(154, 23);
             this._buttonHistogramEqualization.TabIndex = 14;
@@ -251,7 +262,7 @@ namespace DIP_hw1
             // _buttonSobel
             // 
             this._buttonSobel.Enabled = false;
-            this._buttonSobel.Location = new System.Drawing.Point(214, 528);
+            this._buttonSobel.Location = new System.Drawing.Point(182, 13);
             this._buttonSobel.Name = "_buttonSobel";
             this._buttonSobel.Size = new System.Drawing.Size(149, 23);
             this._buttonSobel.TabIndex = 15;
@@ -261,19 +272,32 @@ namespace DIP_hw1
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this._radioButtonMeanSmoothing);
             this.groupBox1.Controls.Add(this._radioButtonMedianSmoothing);
-            this.groupBox1.Location = new System.Drawing.Point(152, 611);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this._textBoxSmoothing);
+            this.groupBox1.Controls.Add(this._checkBoxSmoothing);
+            this.groupBox1.Location = new System.Drawing.Point(574, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(120, 54);
+            this.groupBox1.Size = new System.Drawing.Size(167, 100);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Method";
+            this.groupBox1.Text = "Smoothing";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Method";
             // 
             // _buttonOverlap
             // 
             this._buttonOverlap.Enabled = false;
-            this._buttonOverlap.Location = new System.Drawing.Point(369, 528);
+            this._buttonOverlap.Location = new System.Drawing.Point(182, 42);
             this._buttonOverlap.Name = "_buttonOverlap";
             this._buttonOverlap.Size = new System.Drawing.Size(184, 23);
             this._buttonOverlap.TabIndex = 16;
@@ -284,7 +308,7 @@ namespace DIP_hw1
             // _trackBarStretchingHorizontalScale
             // 
             this._trackBarStretchingHorizontalScale.Enabled = false;
-            this._trackBarStretchingHorizontalScale.Location = new System.Drawing.Point(690, 554);
+            this._trackBarStretchingHorizontalScale.Location = new System.Drawing.Point(9, 35);
             this._trackBarStretchingHorizontalScale.Maximum = 200;
             this._trackBarStretchingHorizontalScale.Minimum = 1;
             this._trackBarStretchingHorizontalScale.Name = "_trackBarStretchingHorizontalScale";
@@ -297,7 +321,7 @@ namespace DIP_hw1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(688, 533);
+            this.label2.Location = new System.Drawing.Point(7, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(193, 12);
             this.label2.TabIndex = 18;
@@ -306,7 +330,7 @@ namespace DIP_hw1
             // _textBoxStretchingHorizontalScale
             // 
             this._textBoxStretchingHorizontalScale.Enabled = false;
-            this._textBoxStretchingHorizontalScale.Location = new System.Drawing.Point(801, 554);
+            this._textBoxStretchingHorizontalScale.Location = new System.Drawing.Point(108, 35);
             this._textBoxStretchingHorizontalScale.Name = "_textBoxStretchingHorizontalScale";
             this._textBoxStretchingHorizontalScale.Size = new System.Drawing.Size(29, 22);
             this._textBoxStretchingHorizontalScale.TabIndex = 19;
@@ -317,7 +341,7 @@ namespace DIP_hw1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(690, 592);
+            this.label3.Location = new System.Drawing.Point(7, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(180, 12);
             this.label3.TabIndex = 20;
@@ -326,7 +350,7 @@ namespace DIP_hw1
             // _trackBarStretchingVerticalScale
             // 
             this._trackBarStretchingVerticalScale.Enabled = false;
-            this._trackBarStretchingVerticalScale.Location = new System.Drawing.Point(692, 620);
+            this._trackBarStretchingVerticalScale.Location = new System.Drawing.Point(9, 75);
             this._trackBarStretchingVerticalScale.Maximum = 200;
             this._trackBarStretchingVerticalScale.Minimum = 1;
             this._trackBarStretchingVerticalScale.Name = "_trackBarStretchingVerticalScale";
@@ -339,9 +363,9 @@ namespace DIP_hw1
             // _textBoxStretchingVerticalScale
             // 
             this._textBoxStretchingVerticalScale.Enabled = false;
-            this._textBoxStretchingVerticalScale.Location = new System.Drawing.Point(803, 620);
+            this._textBoxStretchingVerticalScale.Location = new System.Drawing.Point(108, 75);
             this._textBoxStretchingVerticalScale.Name = "_textBoxStretchingVerticalScale";
-            this._textBoxStretchingVerticalScale.Size = new System.Drawing.Size(27, 22);
+            this._textBoxStretchingVerticalScale.Size = new System.Drawing.Size(29, 22);
             this._textBoxStretchingVerticalScale.TabIndex = 22;
             this._textBoxStretchingVerticalScale.Text = "1";
             this._textBoxStretchingVerticalScale.TextChanged += new System.EventHandler(this._textBoxStretchingVerticalScale_TextChanged);
@@ -350,16 +374,16 @@ namespace DIP_hw1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(921, 533);
+            this.label4.Location = new System.Drawing.Point(6, 18);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 12);
+            this.label4.Size = new System.Drawing.Size(84, 12);
             this.label4.TabIndex = 23;
-            this.label4.Text = "Rotational Value";
+            this.label4.Text = "Rotational Angle";
             // 
             // _trackBarRotation
             // 
             this._trackBarRotation.Enabled = false;
-            this._trackBarRotation.Location = new System.Drawing.Point(923, 554);
+            this._trackBarRotation.Location = new System.Drawing.Point(8, 35);
             this._trackBarRotation.Maximum = 360;
             this._trackBarRotation.Name = "_trackBarRotation";
             this._trackBarRotation.Size = new System.Drawing.Size(104, 45);
@@ -370,7 +394,7 @@ namespace DIP_hw1
             // _textBoxRotation
             // 
             this._textBoxRotation.Enabled = false;
-            this._textBoxRotation.Location = new System.Drawing.Point(1034, 554);
+            this._textBoxRotation.Location = new System.Drawing.Point(109, 35);
             this._textBoxRotation.Name = "_textBoxRotation";
             this._textBoxRotation.Size = new System.Drawing.Size(30, 22);
             this._textBoxRotation.TabIndex = 25;
@@ -381,7 +405,7 @@ namespace DIP_hw1
             // _buttonDeleteFinalResult
             // 
             this._buttonDeleteFinalResult.Enabled = false;
-            this._buttonDeleteFinalResult.Location = new System.Drawing.Point(1212, 434);
+            this._buttonDeleteFinalResult.Location = new System.Drawing.Point(1184, 416);
             this._buttonDeleteFinalResult.Name = "_buttonDeleteFinalResult";
             this._buttonDeleteFinalResult.Size = new System.Drawing.Size(120, 23);
             this._buttonDeleteFinalResult.TabIndex = 26;
@@ -389,38 +413,83 @@ namespace DIP_hw1
             this._buttonDeleteFinalResult.UseVisualStyleBackColor = true;
             this._buttonDeleteFinalResult.Click += new System.EventHandler(this._buttonDeleteFinalResult_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this._checkBoxThresholding);
+            this.groupBox2.Controls.Add(this._textBoxThresholding);
+            this.groupBox2.Controls.Add(this._trackBarThresholding);
+            this.groupBox2.Location = new System.Drawing.Point(392, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(156, 101);
+            this.groupBox2.TabIndex = 27;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Thresholding";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this._textBoxStretchingVerticalScale);
+            this.groupBox3.Controls.Add(this._trackBarStretchingVerticalScale);
+            this.groupBox3.Controls.Add(this._textBoxStretchingHorizontalScale);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this._trackBarStretchingHorizontalScale);
+            this.groupBox3.Location = new System.Drawing.Point(761, 13);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(219, 115);
+            this.groupBox3.TabIndex = 28;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Stretching";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this._trackBarRotation);
+            this.groupBox4.Controls.Add(this._textBoxRotation);
+            this.groupBox4.Location = new System.Drawing.Point(996, 13);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(150, 84);
+            this.groupBox4.TabIndex = 29;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Rotation";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this._listBoxInput);
+            this.splitContainer1.Panel1.Controls.Add(this._pictureBoxInput);
+            this.splitContainer1.Panel1.Controls.Add(this._pictureBoxResult);
+            this.splitContainer1.Panel1.Controls.Add(this._listBoxResult);
+            this.splitContainer1.Panel1.Controls.Add(this._buttonDeleteFinalResult);
+            this.splitContainer1.Panel1.Controls.Add(this._buttonLoadImage);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
+            this.splitContainer1.Panel2.Controls.Add(this._buttonRGBExtraction);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
+            this.splitContainer1.Panel2.Controls.Add(this._buttonGrayLevel);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
+            this.splitContainer1.Panel2.Controls.Add(this._buttonHistogramEqualization);
+            this.splitContainer1.Panel2.Controls.Add(this._buttonOverlap);
+            this.splitContainer1.Panel2.Controls.Add(this._buttonSobel);
+            this.splitContainer1.Size = new System.Drawing.Size(1338, 658);
+            this.splitContainer1.SplitterDistance = 536;
+            this.splitContainer1.TabIndex = 30;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1374, 698);
-            this.Controls.Add(this._buttonDeleteFinalResult);
-            this.Controls.Add(this._textBoxRotation);
-            this.Controls.Add(this._trackBarRotation);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this._textBoxStretchingVerticalScale);
-            this.Controls.Add(this._trackBarStretchingVerticalScale);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this._textBoxStretchingHorizontalScale);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this._trackBarStretchingHorizontalScale);
-            this.Controls.Add(this._buttonOverlap);
-            this.Controls.Add(this._buttonSobel);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this._buttonHistogramEqualization);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this._textBoxSmoothing);
-            this.Controls.Add(this._checkBoxSmoothing);
-            this.Controls.Add(this._textBoxThresholding);
-            this.Controls.Add(this._trackBarThresholding);
-            this.Controls.Add(this._checkBoxThresholding);
-            this.Controls.Add(this._buttonGrayLevel);
-            this.Controls.Add(this._buttonRGBExtraction);
-            this.Controls.Add(this._listBoxResult);
-            this.Controls.Add(this._pictureBoxResult);
-            this.Controls.Add(this._listBoxInput);
-            this.Controls.Add(this._pictureBoxInput);
-            this.Controls.Add(this._buttonLoadImage);
+            this.ClientSize = new System.Drawing.Size(1338, 658);
+            this.Controls.Add(this.splitContainer1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "MainForm";
             this.Text = "Main menu";
@@ -432,8 +501,16 @@ namespace DIP_hw1
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingHorizontalScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarStretchingVerticalScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarRotation)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -472,6 +549,11 @@ namespace DIP_hw1
         private TrackBar _trackBarRotation;
         private TextBox _textBoxRotation;
         private Button _buttonDeleteFinalResult;
+        private GroupBox groupBox2;
+        private Label label5;
+        private GroupBox groupBox3;
+        private GroupBox groupBox4;
+        private SplitContainer splitContainer1;
     }
 }
 
