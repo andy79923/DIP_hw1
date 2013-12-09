@@ -20,6 +20,9 @@ namespace DIP_hw1
             _openFile = new OpenFileDialog();
             _openFile.InitialDirectory = "C:";
             _openFile.Filter = "Bitmap Files (.bmp)|*.bmp|JPEG (.jpg)|*.jpg|PNG (.png)|*.png|All Files|*.*";
+            _saveFile = new SaveFileDialog();
+            _saveFile.InitialDirectory = "C";
+            _saveFile.Filter = "Bitmap Files (.bmp)|*.bmp";
             _smoothingMethod = ImageProcessing.MeanSmoothing;
         }
 
@@ -35,6 +38,7 @@ namespace DIP_hw1
                     index = _listBoxInput.Items.Count - 1;
                     _buttonGrayLevel.Enabled = true;
                     _buttonRGBExtraction.Enabled = true;
+                    _buttonSaveResult.Enabled = true;
                 }
                 _listBoxInput.SetSelected(index, true);
                 _openFile.FileName = "";
@@ -835,6 +839,16 @@ namespace DIP_hw1
                 _textBoxStretchingVerticalScale.Enabled = false;
                 _trackBarRotation.Enabled = false;
                 _textBoxRotation.Enabled = false;
+            }
+        }
+
+        private void _buttonSaveResult_Click(object sender, EventArgs e)
+        {
+
+            if (_saveFile.ShowDialog() == DialogResult.OK)
+            {
+                _resultImages[_listBoxResult.SelectedIndex].Save(_saveFile.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                _saveFile.InitialDirectory = _saveFile.FileName.Substring(0, _saveFile.FileName.Length - 4);
             }
         }
     }

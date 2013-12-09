@@ -66,6 +66,7 @@ namespace DIP_hw1
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this._buttonSaveResult = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarThresholding)).BeginInit();
@@ -462,6 +463,7 @@ namespace DIP_hw1
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this._buttonSaveResult);
             this.splitContainer1.Panel1.Controls.Add(this._listBoxInput);
             this.splitContainer1.Panel1.Controls.Add(this._pictureBoxInput);
             this.splitContainer1.Panel1.Controls.Add(this._pictureBoxResult);
@@ -483,6 +485,17 @@ namespace DIP_hw1
             this.splitContainer1.Size = new System.Drawing.Size(1338, 658);
             this.splitContainer1.SplitterDistance = 536;
             this.splitContainer1.TabIndex = 30;
+            // 
+            // _buttonSaveResult
+            // 
+            this._buttonSaveResult.Enabled = false;
+            this._buttonSaveResult.Location = new System.Drawing.Point(1184, 446);
+            this._buttonSaveResult.Name = "_buttonSaveResult";
+            this._buttonSaveResult.Size = new System.Drawing.Size(75, 23);
+            this._buttonSaveResult.TabIndex = 27;
+            this._buttonSaveResult.Text = "Save Result";
+            this._buttonSaveResult.UseVisualStyleBackColor = true;
+            this._buttonSaveResult.Click += new System.EventHandler(this._buttonSaveResult_Click);
             // 
             // MainForm
             // 
@@ -517,6 +530,7 @@ namespace DIP_hw1
         #endregion
 
         private OpenFileDialog _openFile;
+        private SaveFileDialog _saveFile;
         private List<Bitmap> _inputImages;
         private List<Bitmap> _resultImages;
         private System.Windows.Forms.Button _buttonLoadImage;
@@ -554,6 +568,7 @@ namespace DIP_hw1
         private GroupBox groupBox3;
         private GroupBox groupBox4;
         private SplitContainer splitContainer1;
+        private Button _buttonSaveResult;
     }
 }
 
